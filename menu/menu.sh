@@ -89,7 +89,7 @@ let vma=$vmc/2
 ssh1="$(awk -F: '$3 >= 1000 && $1 != "nobody" {print $1}' /etc/passwd | wc -l)"
 trx=$(grep -c -E "^#! " "/etc/xray/config.json")
 let tra=$trx/2
-ssx=$(grep -c -E "^#!# " "/etc/xray/config.json")
+ssx=$(grep -c -E "^## " "/etc/xray/config.json")
 let ssa=$ssx/2
 UDPX="https://docs.google.com/uc?export=download&confirm=$(wget --quiet --save-cookies /tmp/cookies.txt --keep-session-cookies --no-check-certificate 'https://docs.google.com/uc?export=download&id=1S3IE25v_fyUfCLslnujFBSBMNunDHDk2' -O- | sed -rn 's/.*confirm=([0-9A-Za-z_]+).*/\1\n/p')&id=1S3IE25v_fyUfCLslnujFBSBMNunDHDk2"
 BIBlack='\033[1;90m'      # Black
@@ -111,15 +111,9 @@ IBlue='\033[0;94m'        # Blue
 IPurple='\033[0;95m'      # Purple
 ICyan='\033[0;96m'        # Cyan
 IWhite='\033[0;97m'       # White
-Blue="\033[0;34m"
-y='\033[1;33m' #yellow
-BGX="\033[42m"
-CYAN="\033[96m"
 w="\033[97m"
-f="\033[1;97;41m"
-z="\033[96m"
-RED='\033[0;31m'
-NC='\033[0m'
+ORANGE="\033[0;34m"
+NC='\e[0m'
 dtoday="$(vnstat -i eth0 | grep "today" | awk '{print $2" "substr ($3, 1, 1)}')"
 utoday="$(vnstat -i eth0 | grep "today" | awk '{print $5" "substr ($6, 1, 1)}')"
 ttoday="$(vnstat -i eth0 | grep "today" | awk '{print $8" "substr ($9, 1, 1)}')"
@@ -267,47 +261,47 @@ export sem=$( curl -s https://raw.githubusercontent.com/vermiliion/api/main/vers
 export pak=$( cat /home/.ver)
 IPVPS=$(curl -s ipinfo.io/ip )
 clear
-echo -e " ${w} ◇═════════════════════════════════════════════════════════◇$NC"
-echo -e " ${w} $NC${f}                    FREENET LITE                   $NC${z} $NC"
-echo -e " ${w} ◇═════════════════════════════════════════════════════════◇$NC"
-echo -e " ${w} ◇═════════════════════════════════════════════════════════◇$NC"
-echo -e " ${w}  $NC$yOS        :  $Blue$( cat /etc/os-release | grep -w PRETTY_NAME | sed 's/PRETTY_NAME//g' | sed 's/=//g' | sed 's/"//g' )$NC"
-echo -e " ${w}  $NC$yNS        :  $Blue$(cat /root/nsdomain)$NC"
-echo -e " ${w}  $NC$yOMAIN    :  $Blue$(cat /etc/xray/domain)$NC"
-echo -e " ${w}  $NC$yRAM & CPU :  $Blue$totalram MB / $cpu_usage$NC"
-echo -e " ${w}  $NC$ySWAP RAM  :  $Blue$uram / $tram MB$NC"
-echo -e " ${w}  $NC$yIP VPS    :  $Blue$IPVPS$NC"
-echo -e " ${w}  $NC$yREBOOT    :  $Bluejam 02:00 malam$NC"
-echo -e " ${w}  $NC$yTELEGRAM  :  $Blue@Lite_Vermilion$NC"
-echo -e " ${w} ◇═════════════════════════════════════════════════════════◇$NC"
-echo -e " ${w} ◇═════════════════════════════════════════════════════════◇$NC"
-echo -e " ${w}  $NC$y Ssh$NC : $ressh         $y Nginx$NC : $resngx        $y V2ray$NC : $resv2r$NC${w} $NC" 
-echo -e " ${w}  $NC$y Stunnel$NC : $resst     $y Dropbear$NC : $resdbr     $y Trojan Go$NC : $resv2r$NC${w} $NC" 
-echo -e "            ${w}  $NC$y Ssh Websocket$NC : $ressshws$NC${w} $NC"
-echo -e " ${w} ◇═════════════════════════════════════════════════════════◇$NC"
-echo -e " ${w} ◇═════════════════════════════════════════════════════════◇$NC"
-echo -e " ${w} SSH$y=$w $ssh1    Vmess$y=$w $vma    Vless$y=$w $vla "
-echo -e "           ${w} Trojan$y=$w $tra    Shadowsocks$y=$w $ssa "
-echo -e " ${w} ◇═════════════════════════════════════════════════════════◇$NC"
-echo -e " ${w} ◇═════════════════════════════════════════════════════════◇$NC"
-echo -e " ${w} $NC [${w}01$NC]$w SSH$NC            ${w} $NC [${w}11$NC]$w BANDWITH$NC "
-echo -e " ${w} $NC [${w}02$NC]$w VMESS$NC          ${w} $NC [${w}12$NC]$w UPDATE SCRIPT$NC "
-echo -e " ${w} $NC [${w}03$NC]$w VLESS$NC          ${w} $NC [${w}13$NC]$w WARP$NC "
-echo -e " ${w} $NC [${w}04$NC]$w TROJAN$NC         ${w} $NC [${w}14$NC]$w INSTALL NOOBZ$NC "
-echo -e " ${w} $NC [${w}05$NC]$w SETTING$NC        ${w} $NC [${w}15$NC]$w NOOBZ MANAGE$NC "
-echo -e " ${w} $NC [${w}06$NC]$w TRIAL$NC          ${w} $NC [${w}16$NC]$w SHADOWSOCKS$NC "
-echo -e " ${w} $NC [${w}07$NC]$w BACKUP$NC         ${w} $NC [${w}17$NC]$w INSTALL UDP$NC "
-echo -e " ${w} $NC [${w}08$NC]$w DOMAIN$NC         ${w} $NC "
-echo -e " ${w} $NC [${w}09$NC]$w RUNNING$NC        ${w} $NC "
-echo -e " ${w} $NC [${w}10$NC]$w BOT TELEGRAM$NC   ${w} $NC "
-echo -e " ${w} ◇═════════════════════════════════════════════════════════◇$NC"
-echo -e " ${w} ◇═════════════════════════════════════════════════════════◇$NC"
-echo -e " ${w} $y Version Script : $(cat /opt/.ver) Last Update $Blue"
-echo -e " ${w} $y Username       :$Blue $Name "
-echo -e " ${w} $y Expired script :$Blue $exp $Blue:$Blue $exp2$Blue Days$NC"
-echo -e " ${w} ◇═════════════════════════════════════════════════════════◇$NC"
+echo -e "$(figlet   "")" | lolcat
+echo -e "${BIWhite} ┌═════════════════════════════════════════════════════┐${NC}"
+echo -e "\e[38;5;162m   \e[40;97;1m                    FREENET LITE                   \033[0m \e[38;5;162m\e[0m"
+echo -e "${BIWhite} └═════════════════════════════════════════════════════┘${NC}"
+echo -e "${BIWhite} ┌═════════════════════════════════════════════════════┐${NC}"
+echo -e "${BIWhite} │  ${BIWhite}OS        :  ${BIWhite}$( cat /etc/os-release | grep -w PRETTY_NAME | sed 's/PRETTY_NAME//g' | sed 's/=//g' | sed 's/"//g' )${NC}"
+echo -e "${BIWhite} │  ${BIWhite}NS        :  ${BIWhite}$(cat /root/nsdomain)${NC}"
+echo -e "${BIWhite} │  ${BIWhite}DOMAIN    :  ${BIWhite}$(cat /etc/xray/domain)${NC}"
+echo -e "${BIWhite} │  ${BIWhite}RAM & CPU :  ${BIWhite}$totalram MB / $cpu_usage${NC}"
+echo -e "${BIWhite} │  ${BIWhite}SWAP RAM  :  ${BIWhite}$uram / $tram MB${NC}"
+echo -e "${BIWhite} │  ${BIWhite}IP VPS    :  ${BIWhite}$IPVPS${NC}"
+echo -e "${BIWhite} │  ${BIWhite}REBOOT    :  ${BIWhite}jam 02:00 malam${NC}"
+echo -e "${BIWhite} │  ${BIWhite}TELEGRAM  :  ${BIWhite}@Lite_Vermilion${NC}"
+echo -e "${BIWhite} └═════════════════════════════════════════════════════┘${NC}"
+echo -e "${BIWhite} ┌═════════════════════════════════════════════════════┐${NC}"
+echo -e " ${BIWhite}│   ${BIWhite}SSH${NC}    :$ressh"" ${BIWhite}NGINX${NC}    :$resngx"" ${BIWhite}XRAY${NC}   :$resv2r"" ${BIWhite}TROJAN${NC}: $resv2r"
+echo -e " ${BIWhite}│   ${BIWhite}STUNNEL${NC}:$resst" "${BIWhite}DROPBEAR${NC} :$resdbr" "${BIWhite}SSH-WS${NC} :$ressshws"
+echo -e "${BIWhite} └═════════════════════════════════════════════════════┘${NC}"
+echo -e "${BIWhite}           ═══════════════════════════════════${NC}"
+echo -e "${BIWhite}                ${BIWhite}SSH    TOTAL ACCOUNT : $ssh1$NC" 
+echo -e "${BIWhite}                ${BIWhite}VLESS  TOTAL ACCOUNT : $vla$NC"  
+echo -e "${BIWhite}                ${BIWhite}VMESS  TOTAL ACCOUNT : $vma$NC"
+echo -e "${BIWhite}                ${BIWhite}TROJAN TOTAL ACCOUNT : $tra$NC"  
+echo -e "${BIWhite}           ═══════════════════════════════════${NC}"
+echo -e "${BIWhite} ┌═════════════════════════════════════════════════════┐${NC}"
+echo -e "${BIWhite} │  ${BICyan}[${BIWhite}01${BICyan}] SSH           ${NC}  ${BICyan}[${BIWhite}09${BICyan}] ADD-HOST        ${NC} ${BIWhite} │${NC}"
+echo -e "${BIWhite} │  ${BICyan}[${BIWhite}02${BICyan}] VMESS         ${NC}  ${BICyan}[${BIWhite}10${BICyan}] RUNNING         ${NC} ${BIWhite} │${NC}"
+echo -e "${BIWhite} │  ${BICyan}[${BIWhite}03${BICyan}] VLESS         ${NC}  ${BICyan}[${BIWhite}11${BICyan}] INSTALL UDP     ${NC} ${BIWhite} │${NC}"
+echo -e "${BIWhite} │  ${BICyan}[${BIWhite}04${BICyan}] TROJAN        ${NC}  ${BICyan}[${BIWhite}12${BICyan}] INSTALL BOT     ${NC} ${BIWhite} │${NC}"
+echo -e "${BIWhite} │  ${BICyan}[${BIWhite}05${BICyan}] SETING        ${NC}  ${BICyan}[${BIWhite}13${BICyan}] BANDWITH        ${NC} ${BIWhite} │${NC}"
+echo -e "${BIWhite} │  ${BICyan}[${BIWhite}06${BICyan}] TRIALL        ${NC}  ${BICyan}[${BIWhite}14${BICyan}] UPDATE SCRIPT   ${NC} ${BIWhite} │${NC}"
+echo -e "${BIWhite} │  ${BICyan}[${BIWhite}07${BICyan}] BACKUP        ${NC}  ${BICyan}[${BIWhite}15${BICyan}] WARP            ${NC} ${BIWhite} │${NC}"
+echo -e "${BIWhite} │  ${BICyan}[${BIWhite}08${BICyan}] NOOBZ         ${NC}  ${BICyan}[${BIWhite}16${BICyan}] NOOBZ MANAGE    ${NC} ${BIWhite} │${NC}"
+echo -e "${BIWhite} └═════════════════════════════════════════════════════┘${NC}"
+echo -e "${BIWhite} ┌═════════════════════════════════════════════════════┐${NC}"
+echo -e "${BIWhite} │${BIWhite} Version Script : $(cat /opt/.ver) Last Update ${BIWhite}"
+echo -e "${BIWhite} │${BIWhite} Username       :\033[1;36m $Name \e[0m"
+echo -e "${BIWhite} │${BIWhite} Expired script :${BIWhite} $exp ${BIWhite}:${BIWhite} $exp2${BIWhite} Days${NC}"
+echo -e "${BIWhite} └═════════════════════════════════════════════════════┘${NC}"
 echo -e ""
-read -p " Select menu : " opt
+read -p "                   Select angka >>> : " opt
 echo -e ""
 case $opt in
 1) clear ; menu-ssh ;;
@@ -319,14 +313,189 @@ case $opt in
 7) clear ; menu-backup ;;
 8) clear ; add-host ;;
 9) clear ; running ;;
-10) clear ; m-bot ;;
-11) clear ; bw ;;
-12) clear ; update ;;
-13) clear ; warp ;;
-14) clear ; noobz ;;
-15) clear ; m-noobz ;;
-16) clear ; m-ssws ;;
-17) clear ; wget https://raw.githubusercontent.com/Rerechan02/UDP/main/udp.sh && chmod +x udp.sh && ./udp.sh ;;
+10) clear ; clear ; wget https://raw.githubusercontent.com/Rerechan02/UDP/main/udp.sh && chmod +x udp.sh && ./udp.sh ;;
+11) clear ; 
+echo -e " ${w}◇━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━◇${NC}"
+echo -e " ${w} $NC${f}                   BOT MANAGER                $NC${z} $NC"
+echo -e " ${w}◇━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━◇${NC}"
+echo -e "  ${ORANGE}[1].${NC}\033[0;36m Install BOT CYBERVPN${NC}"
+echo -e "  ${ORANGE}[2].${NC}\033[0;36m Restart BOT CYBERVPN${NC}"
+echo -e "  ${ORANGE}[3].${NC}\033[0;36m Stop BOT CYBERVPN${NC}"
+echo -e "  ${ORANGE}[4].${NC}\033[0;36m Uninstall BOT CYBERVPN${NC}"
+echo -e " ${w}◇━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━◇${NC}"
+echo -e "  ${ORANGE}[5]${NC}${rd} Install Bot KYT${NC}"
+echo -e "  ${ORANGE}[6]${NC}${rd} Hapus Bot KYT${NC}"
+echo -e "  ${ORANGE}[7]${NC}${rd} Stop Bot KYT${NC}"
+echo -e "  ${ORANGE}[8]${NC}${rd} Restart Bot KYT${NC}"
+echo -e "  ${ORANGE}[9]${NC}${rd} Install Bot KYT For Public${NC}"
+echo -e "  ${ORANGE}[10]${NC}${rd} Install Bot Bansos${NC}"
+echo -e ""
+echo -e "  ${ORANGE}[x].${NC}\033[0;36m Exit${NC}"
+echo -e " ${w}◇━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━◇${NC}"
+read -p "  Select From Options [ 1 - 9 or x] : " menu
+case $menu in
+1) clear ;
+    wget https://raw.githubusercontent.com/vermiliion/api/main/botol/bot2 && chmod +x bot2 && ./bot2
+    ;;
+2) clear ;
+    wget https://raw.githubusercontent.com/vermiliion/api/main/botol/restart-bot2 && chmod +x restart-bot2 && ./restart-bot2
+    ;;
+3) clear ;
+    wget https://raw.githubusercontent.com/vermiliion/api/main/botol/stop-bot2 && chmod +x stop-bot2 && ./stop-bot2
+    ;;
+4) clear ;
+    wget https://raw.githubusercontent.com/vermiliion/api/main/botol/del-bot2 && chmod +x del-bot2 && ./del-bot2
+    ;;
+5) clear ;
+    wget https://raw.githubusercontent.com/vermiliion/api/main/botol/add-bot && chmod +x add-bot && ./add-bot
+    ;;
+6) clear ;
+    wget https://raw.githubusercontent.com/vermiliion/api/main/botol/hapus-bot && chmod +x hapus-bot && ./hapus-bot
+    ;;
+7) clear ;
+    wget https://raw.githubusercontent.com/vermiliion/api/main/botol/stop-bot && chmod +x stop-bot && ./stop-bot
+    ;;
+8) clear ;
+    wget https://raw.githubusercontent.com/vermiliion/api/main/botol/restart-bot && chmod +x restart-bot && ./restart-bot
+    ;;
+9) clear ;
+    wget https://raw.githubusercontent.com/vermiliion/api/main/botol/add-bot-bersama && chmod +x add-bot-bersama && ./add-bot-bersama
+   ;;
+10) clear ;
+    wget https://raw.githubusercontent.com/vermiliion/api/main/botol/bot-bansos && chmod +x bot-bansos && ./bot-bansos
+   ;;   
+x)
+    menu
+   ;;
+esac
+;;
+12) clear ; bw ;;
+13) clear ; update ;;
+14) clear ; 
+echo -e "\033[1;93m┌──────────────────────────────────────────┐\033[0m"
+echo -e "               WARP MANAGER"
+echo -e "\033[1;93m└──────────────────────────────────────────┘\033[0m"
+echo -e "\033[1;93m┌──────────────────────────────────────────┐\033[0m"
+echo -e "  ${ORANGE}[1].${NC}\033[0;36m Install Warp Client${NC}"
+echo -e "  ${ORANGE}[2].${NC}\033[0;36m Uninstall Warp Client${NC}"
+echo -e "  ${ORANGE}[3].${NC}\033[0;36m Restart Warp Client${NC}"
+echo -e "  ${ORANGE}[4].${NC}\033[0;36m Aktifkan Warp Mode Proxy${NC}"
+echo -e "  ${ORANGE}[5].${NC}\033[0;36m Matikan Warp Mode Proxy${NC}"
+echo -e "  ${ORANGE}[6].${NC}\033[0;36m Install Warp Wireguard${NC}"
+echo -e "  ${ORANGE}[7].${NC}\033[0;36m Warp Ipv4${NC}"
+echo -e "  ${ORANGE}[8].${NC}\033[0;36m Warp Ipv6${NC}"
+echo -e "  ${ORANGE}[9].${NC}\033[0;36m Warp Ipv4 & Ipv6${NC}"
+echo -e " ${ORANGE}[10].${NC}\033[0;36m Warp Routing IP${NC}"
+echo -e " ${ORANGE}[11].${NC}\033[0;36m Restart Warp Wireguard${NC}"
+echo -e " ${ORANGE}[12].${NC}\033[0;36m Matikan Warp Wireguard${NC}"
+echo -e " ${ORANGE}[13].${NC}\033[0;36m Warp Status${NC}"
+echo -e " ${ORANGE}[14].${NC}\033[0;36m Warp Version${NC}"
+echo -e " ${ORANGE}[15].${NC}\033[0;36m Help${NC}"
+echo -e " ${ORANGE}[16].${NC}\033[0;36m Warp Menu Chinese Special Feature${NC}"
+echo -e "  ${ORANGE}[x].${NC}\033[0;36m Exit To Menu ${NC}"
+echo -e "\033[1;93m└──────────────────────────────────────────┘\033[0m"
+read -p "Select From Options [ 1 - 16 or x ] : " menu
+echo -e ""
+
+# Aksi Berdasarkan Input
+case $menu in
+1)
+    bash <(curl -fsSL git.io/warp.sh) install
+    ;;
+2)
+    bash <(curl -fsSL git.io/warp.sh) uninstall
+    ;;
+3)
+    bash <(curl -fsSL git.io/warp.sh) restart
+    ;;
+4)
+    bash <(curl -fsSL git.io/warp.sh) proxy
+    ;;
+5)
+    bash <(curl -fsSL git.io/warp.sh) unproxy
+    ;;
+6)
+    bash <(curl -fsSL git.io/warp.sh) wg
+    ;;
+7)
+    bash <(curl -fsSL git.io/warp.sh) wg4
+    ;;
+8)
+    bash <(curl -fsSL git.io/warp.sh) wg6 
+    ;;
+9)
+    bash <(curl -fsSL git.io/warp.sh) wgd
+    ;;
+10) 
+    bash <(curl -fsSL git.io/warp.sh) wgx
+    ;;
+11)
+    bash <(curl -fsSL git.io/warp.sh) rwg
+    ;;
+12)
+    bash <(curl -fsSL git.io/warp.sh) dwg
+    ;;
+13)
+    bash <(curl -fsSL git.io/warp.sh) status
+    ;;
+14)
+    bash <(curl -fsSL git.io/warp.sh) version
+    ;;
+15)
+    bash <(curl -fsSL git.io/warp.sh) help
+    ;;
+16)
+    bash <(curl -fsSL git.io/warp.sh) menu
+    ;;
+x)
+    menu
+    ;;
+esac
+;;
+15) clear ; 
+echo -e " ${w}◇━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━◇${NC}"
+echo -e " ${w}            NOOBZVPNS MANAGER             ${NC}"
+echo -e " ${w}◇━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━◇${NC}"
+echo -e "  ${ORANGE}[1].${NC}\033[0;36m Install Noobzvpns${NC}"
+echo -e "  ${ORANGE}[2].${NC}\033[0;36m Restart Noobzvpns${NC}"
+echo -e "  ${ORANGE}[3].${NC}\033[0;36m Stop Noobzvpns${NC}"
+echo -e "  ${ORANGE}[4].${NC}\033[0;36m Uninstall Noobzvpns${NC}"
+echo -e ""
+echo -e "  ${ORANGE}[x].${NC}\033[0;36m Exit${NC}"
+echo -e " ${w}◇━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━◇${NC}"
+
+# Membaca input dari pengguna
+read -p "  Select From Options [ 1 - 4  or x ] : " menu
+
+# Aksi berdasarkan input pengguna
+case $menu in
+1) 
+    clear
+    git clone https://github.com/noobz-id/noobzvpns.git
+    cd noobzvpns/
+    ./install.sh
+    ;;
+2) 
+    clear
+    systemctl restart noobzvpns.service
+    ;;
+3) 
+    clear
+    systemctl stop noobzvpns.service
+    ;;
+4) 
+    clear
+    git clone https://github.com/noobz-id/noobzvpns.git
+    cd noobzvpns/
+    ./uninstall.sh
+    ;;
+x) 
+    clear
+    exit 0
+    ;;
+esac
+;;
+16) clear ; m-nob ;;
 0) clear ; menu ;;
 x) exit ;;
 *) echo -e "" ; echo "Press any key to back exit" ; sleep 1 ; exit ;;
