@@ -84,27 +84,10 @@ wget -q -O /usr/bin/del-vless "https://raw.githubusercontent.com/vermiliion/api/
 wget -q -O /usr/bin/cek-vless "https://raw.githubusercontent.com/vermiliion/api/main/xray/cek-vless.sh"
 wget -q -O /usr/bin/renew-vless "https://raw.githubusercontent.com/vermiliion/api/main/xray/renew-vless.sh"
 wget -q -O /usr/bin/trialvless "https://raw.githubusercontent.com/vermiliion/api/main/xray/trialvless.sh"
-wget -q -O /usr/bin/addss "https://raw.githubusercontent.com/vermiliion/api/main/xray/addss.sh"
-wget -q -O /usr/bin/trialss "https://raw.githubusercontent.com/vermiliion/api/main/xray/trialtrojango.sh"
-wget -q -O /usr/bin/delss "https://raw.githubusercontent.com/vermiliion/api/main/xray/delss.sh"
-wget -q -O /usr/bin/renewss "https://raw.githubusercontent.com/vermiliion/api/main/xray/renewss.sh"
-wget -q -O /usr/bin/cekss "https://raw.githubusercontent.com/vermiliion/api/main/xray/cekss.sh"
 wget -q -O /usr/bin/menu-trial "https://raw.githubusercontent.com/vermiliion/api/main/menu/menu-trial.sh"
 wget -q -O /usr/bin/warp "https://raw.githubusercontent.com/vermiliion/api/main/warp.sh"
 wget -q -O /usr/bin/noobz "https://raw.githubusercontent.com/vermiliion/api/main/noobz.sh"
 wget -q -O /usr/bin/m-nob "https://raw.githubusercontent.com/vermiliion/api/main/m-nob.sh"
-wget -q -O /usr/bin/m-ssws "https://raw.githubusercontent.com/vermiliion/api/main/m-ssws.sh"
-wget -q -O /usr/bin/bot2 "https://raw.githubusercontent.com/vermiliion/api/main/botol/bot2.sh"
-wget -q -O /usr/bin/restart-bot2 "https://raw.githubusercontent.com/vermiliion/api/main/botol/restart-bot2.sh"
-wget -q -O /usr/bin/stop-bot2 "https://raw.githubusercontent.com/vermiliion/api/main/botol/stop-bot2.sh"
-wget -q -O /usr/bin/del-bot2 "https://raw.githubusercontent.com/vermiliion/api/main/botol/del-bot2.sh"
-wget -q -O /usr/bin/add-bot "https://raw.githubusercontent.com/vermiliion/api/main/botol/add-bot.sh"
-wget -q -O /usr/bin/hapus-bot "https://raw.githubusercontent.com/vermiliion/api/main/botol/hapus-bot.sh"
-wget -q -O /usr/bin/stop-bot "https://raw.githubusercontent.com/vermiliion/api/main/botol/stop-bot.sh"
-wget -q -O /usr/bin/restart-bot "https://raw.githubusercontent.com/vermiliion/api/main/botol/restart-bot.sh"
-wget -q -O /usr/bin/add-bot-bersama "https://raw.githubusercontent.com/vermiliion/api/main/botol/add-bot-bersama.sh"
-wget -q -O /usr/bin/bot-bansos "https://raw.githubusercontent.com/vermiliion/api/main/botol/bot-bansos.sh"
-wget -q -O /usr/bin/m-bot "https://raw.githubusercontent.com/vermiliion/api/main/botol/m-bot.sh"
 chmod +x /usr/bin/usernew
 chmod +x /usr/bin/auto-reboot
 chmod +x /usr/bin/restart
@@ -145,26 +128,9 @@ chmod +x /usr/bin/cek-vless
 chmod +x /usr/bin/renew-vless
 chmod +x /usr/bin/trialvless
 chmod +x /usr/bin/menu-trial
-chmod +x /usr/bin/addss
-chmod +x /usr/bin/trialss
-chmod +x /usr/bin/delss
-chmod +x /usr/bin/renewss
-chmod +x /usr/bin/cekss
 chmod +x /usr/bin/warp
 chmod +x /usr/bin/noobz
 chmod +x /usr/bin/m-nob
-chmod +x /usr/bin/m-ssws
-chmod +x /usr/bin/add-bot-bersama
-chmod +x /usr/bin/restart-bot
-chmod +x /usr/bin/add-bot
-chmod +x /usr/bin/stop-bot
-chmod +x /usr/bin/hapus-bot
-chmod +x /usr/bin/del-bot2
-chmod +x /usr/bin/stop-bot2
-chmod +x /usr/bin/restart-bot2
-chmod +x /usr/bin/bot2
-chmod +x /usr/bin/bot-bansos
-chmod +x /usr/bin/m-bot
 clear
 echo -e ""
 echo -e "\e[0;32mDownloaded successfully!\e[0m"
