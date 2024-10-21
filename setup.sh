@@ -6,6 +6,7 @@ red='\e[1;31m'
 green='\e[0;32m'
 yell='\e[1;33m'
 tyblue='\e[1;36m'
+kuning='\033[0;93m'
 NC='\e[0m'
 purple() { echo -e "\\033[35;1m${*}\\033[0m"; }
 tyblue() { echo -e "\\033[36;1m${*}\\033[0m"; }
@@ -114,10 +115,9 @@ echo ""
 wget -q https://raw.githubusercontent.com/vermiliion/api/main/tools.sh;chmod +x tools.sh;./tools.sh
 rm tools.sh
 clear
-echo " "
-clear
-echo -e "$green━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━$NC"
-echo -e "$green━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━$NC"
+    echo -e""
+    echo -e "$green━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━$NC"
+    echo -e "$green━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━$NC"
     echo -e "$BBlue                     SETUP DOMAIN VPS     $NC"
     echo -e "$BYellow----------------------------------------------------------$NC"
     echo -e "$BGreen 1. Choose Your Own Domain / Gunakan Domain Sendiri $NC"
@@ -189,32 +189,32 @@ Edit By : @Lite_Vermilion
 
 curl -s --max-time $TIME -d "chat_id=$CHATID&disable_web_page_preview=1&text=$TEXT&parse_mode=html" $URL >/dev/null
 clear
-echo -e "\e[33m━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━\033[0m"
+echo -e "$kuning━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━"
 echo -e "$green      Install SSH / WS               $NC"
-echo -e "\e[33m━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━\033[0m"
+echo -e "$kuning━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━"
 sleep 2
 clear
 wget https://raw.githubusercontent.com/vermiliion/api/main/ssh/ssh-vpn.sh && chmod +x ssh-vpn.sh && ./ssh-vpn.sh
 clear
-echo -e "\e[33m━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━\033[0m"
+echo -e "$kuning━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━"
 echo -e "$green      Install BACKUP               $NC"
-echo -e "\e[33m━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━\033[0m"
+echo -e "$kuning━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━"
 sleep 2
 clear
 wget https://raw.githubusercontent.com/vermiliion/api/main/backup/set-br.sh &&  chmod +x set-br.sh && ./set-br.sh
 clear
 clear
-echo -e "\e[33m━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━\033[0m"
+echo -e "$kuning━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━"
 echo -e "$green          Install XRAY              $NC"
-echo -e "\e[33m━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━\033[0m"
+echo -e "$kuning━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━"
 sleep 2
 clear
 wget https://raw.githubusercontent.com/vermiliion/api/main/xray/ins-xray.sh && chmod +x ins-xray.sh && ./ins-xray.sh
 wget https://raw.githubusercontent.com/vermiliion/api/main/sshws/insshws.sh && chmod +x insshws.sh && ./insshws.sh
 clear
-echo -e "\e[33m━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━\033[0m"
+echo -e "$kuning━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━"
 echo -e "$green          Install SLOWDNS              $NC"
-echo -e "\e[33m━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━\033[0m"
+echo -e "$kuning━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━"
 sleep 2
 clear
 wget -q -O slow.sh https://raw.githubusercontent.com/vermiliion/api/main/slow.sh && chmod +x slow.sh && ./slow.sh
