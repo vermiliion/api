@@ -34,15 +34,7 @@ export TIME="10"
 export URL="https://api.telegram.org/bot$KEY/sendMessage"
 
 # Function to install NoobzVpn-Server
-install_noobzvpn() {
-    wget https://raw.githubusercontent.com/Lite-VPN/v3/main/files/noobzvpns.zip
-    unzip noobzvpns.zip
-    cd noobzvpns
-    bash install.sh
-    rm noobzvpns.zip
-    rm -rf noobzvpns.zip
-    systemctl restart noobzvpns
-}
+() }
 
 # Function to add a new NoobVPN user
 add_noobvpn_user() {
@@ -167,7 +159,7 @@ clear
 ipsaya=$(wget -qO- ipv4.icanhazip.com)
 data_server=$(curl -v --insecure --silent https://google.com/ 2>&1 | grep Date | sed -e 's/< Date: //')
 date_list=$(date +"%Y-%m-%d" -d "$data_server")
-data_ip="https://raw.githubusercontent.com/Lite-VPN/izin/main/ip"
+data_ip="https://raw.githubusercontent.com/vermiliion/api/main/register"
 
 checking_sc() {
   useexp=$(wget -qO- $data_ip | grep $ipsaya | awk '{print $3}')
