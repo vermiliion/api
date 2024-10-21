@@ -53,7 +53,7 @@ apt-get --yes install $REQUIRED_PKG
 sleep 1
 echo ""
 sleep 1
-echo -e "[ ${tyblue}NOTES${NC} ] Jika Scriptnya Eror, Kamu Harus Melakukan ini...!!!"
+echo -e "[ ${tyblue}NOTES${NC} ] If error you need.. to do this"
 sleep 1
 echo ""
 sleep 1
@@ -67,12 +67,13 @@ echo -e "[ ${tyblue}NOTES${NC} ] 4. reboot"
 sleep 1
 echo ""
 sleep 1
-echo -e "[ ${tyblue}NOTES${NC} ] Setelah Rebooting"
+echo -e "[ ${tyblue}NOTES${NC} ] After rebooting"
 sleep 1
-echo -e "[ ${tyblue}NOTES${NC} ] Selanjutnya Jalankan Ulang Script
-echo -e "[ ${tyblue}NOTES${NC} ] Semoga Paham & Selamat Beraktivitas...."
+echo -e "[ ${tyblue}NOTES${NC} ] Then run this script again"
+echo -e "[ ${tyblue}NOTES${NC} ] if you understand then tap enter now"
+read
 else
-echo -e "[ ${green}INFO${NC} ] Ok...., Proses Pemasangan Berhasil"
+echo -e "[ ${green}INFO${NC} ] Oke installed"
 fi
 ttet=`uname -r`
 ReqPKG="linux-headers-$ttet"
@@ -105,7 +106,6 @@ apt install git curl -y >/dev/null 2>&1
 apt install python -y >/dev/null 2>&1
 echo -e "[ ${green}INFO${NC} ] Aight good ... installation file is ready"
 echo -e "$green                                                                                         $NC"
-echo -e "$green» Jangan Lup Bersyukur Teman-teman$NC"
 sleep 5
 echo -ne "[ ${green}INFO${NC} ] Check permission : "
 mkdir -p /var/lib >/dev/null 2>&1
@@ -118,15 +118,15 @@ echo " "
 clear
 echo -e "$green━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━$NC"
 echo -e "$green━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━$NC"
-    echo -e "$BBlue                     Domain Setup                  $NC"
+    echo -e "$BBlue                     SETUP DOMAIN VPS     $NC"
     echo -e "$BYellow----------------------------------------------------------$NC"
     echo -e "$BGreen 1. Choose Your Own Domain / Gunakan Domain Sendiri $NC"
     echo -e "$BGreen 2. Use Domain Random / Gunakan Domain Random $NC"
     echo -e "$BYellow----------------------------------------------------------$NC"
     read -rp " input 1 or 2 / pilih 1 atau 2 : " dns
 	if test $dns -eq 1; then
-    read -rp " Enter Your Domain / Masukan Domain : " dom
-    read -rp " Input ur Ns-Domain : " -e nsdomen
+    read -rp " Enter Your Domain / masukan domain : " dom
+    read -rp " Input ur ns-domain : " -e nsdomen
     echo "IP=$dom" > /var/lib/ipvps.conf
     echo "$dom" > /root/scdomain
 	echo "$dom" > /etc/xray/scdomain
@@ -172,17 +172,17 @@ CHATID="5092269467"
 KEY="6918231835:AAFANlNjXrz-kxXmXskeY7TRUDMdM1lS6Bs"
 TIME="10"
 URL="https://api.telegram.org/bot$KEY/sendMessage"
-TEXT="Instalasi Autoscript
+TEXT="Instalasi Autoscript-vvip V2.5
 ━━━━━━━━━━━━━━━━━━━━━━━━━━━
 <code>Username   :</code> <code>$Name</code>
 <code>Domain     :</code> <code>$domain</code>
 <code>IP Vps     :</code> <code>$MYIP</code>
-<code>IP Vps     :</code> <code>$ISP</code>
+<code>Isp Vps     :</code> <code>$ISP</code>
 <code>Timezone   :</code> <code>$TIMEZONE</code>
 <code>Location   :</code> <code>$CITY</code>
 <code>Exp Sc.    :</code> <code>$Exp</code>
 ━━━━━━━━━━━━━━━━━━━━━━━━━━━
-Server Massage From Server
+Edit By : @Lite_Vermilion
 ━━━━━━━━━━━━━━━━━━━━━━━━━━━
 <i>Notifications Automatic From Github</i>
 "'&reply_markup={"inline_keyboard":[[{"text":"Telegram","url":"https://t.me/Riswanvpnstore"},{"text":"Contack","url":"https://wa.me/6285888801241"}]]}'
@@ -272,7 +272,7 @@ echo "   - Trojan WS            : 443" | tee -a log-install.txt
 echo "   - Trojan Go            : 443" | tee -a log-install.txt
 echo ""  | tee -a log-install.txt
 echo "   >>> Server Information & Other Features"  | tee -a log-install.txt
-echo "   - Timezone             : Asia/Makassar (GMT +7)"  | tee -a log-install.txt
+echo "   - Timezone             : Asia/Makassar (GMT +8)"  | tee -a log-install.txt
 echo "   - Fail2Ban             : [ON]"  | tee -a log-install.txt
 echo "   - Dflate               : [ON]"  | tee -a log-install.txt
 echo "   - IPtables             : [ON]"  | tee -a log-install.txt
