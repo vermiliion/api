@@ -311,10 +311,10 @@ case $opt in
 5) clear ; menu-set ;;
 6) clear ; menu-trial ;;
 7) clear ; menu-backup ;;
-8) clear ; add-host ;;
-9) clear ; running ;;
-10) clear ; clear ; wget https://raw.githubusercontent.com/Rerechan02/UDP/main/udp.sh && chmod +x udp.sh && ./udp.sh ;;
-11) clear ; 
+9) clear ; add-host ;;
+10) clear ; running ;;
+11) clear ; clear ; wget https://raw.githubusercontent.com/Rerechan02/UDP/main/udp.sh && chmod +x udp.sh && ./udp.sh ;;
+12) clear ; 
 echo -e " ${w}◇━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━◇${NC}"
 echo -e " ${w} $NC${f}                   BOT MANAGER                $NC${z} $NC"
 echo -e " ${w}◇━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━◇${NC}"
@@ -369,9 +369,9 @@ x)
    ;;
 esac
 ;;
-12) clear ; bw ;;
-13) clear ; update ;;
-14) clear ; 
+13) clear ; bw ;;
+14) clear ; update ;;
+15) clear ; 
 echo -e "\033[1;93m┌──────────────────────────────────────────┐\033[0m"
 echo -e "               WARP MANAGER"
 echo -e "\033[1;93m└──────────────────────────────────────────┘\033[0m"
@@ -452,7 +452,7 @@ x)
     ;;
 esac
 ;;
-15) clear ; 
+8) clear ; 
 echo -e " ${w}◇━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━◇${NC}"
 echo -e " ${w}            NOOBZVPNS MANAGER             ${NC}"
 echo -e " ${w}◇━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━◇${NC}"
