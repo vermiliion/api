@@ -89,11 +89,11 @@ wget -q -O /usr/bin/del-vless "https://raw.githubusercontent.com/vermiliion/api/
 wget -q -O /usr/bin/cek-vless "https://raw.githubusercontent.com/vermiliion/api/main/xray/cek-vless.sh"
 wget -q -O /usr/bin/renew-vless "https://raw.githubusercontent.com/vermiliion/api/main/xray/renew-vless.sh"
 wget -q -O /usr/bin/trialvless "https://raw.githubusercontent.com/vermiliion/api/main/xray/trialvless.sh"
-wget -q -O add-ss "https://raw.githubusercontent.com/vermiliion/api/main/xray/add-ss.sh"
-wget -q -O trialss "https://raw.githubusercontent.com/vermiliion/api/main/xray/trialss.sh"
-wget -q -O del-ss "https://raw.githubusercontent.com/vermiliion/api/main/xray/del-ss.sh"
-wget -q -O renew-ss "https://raw.githubusercontent.com/vermiliion/api/main/xray/renew-ss.sh"
-wget -q -O cek-ss "https://raw.githubusercontent.com/vermiliion/api/main/xray/cek-ss.sh"
+wget -q -O /usr/bin/add-ss "https://raw.githubusercontent.com/vermiliion/api/main/xray/add-ss.sh"
+wget -q -O /usr/bin/trialss "https://raw.githubusercontent.com/vermiliion/api/main/xray/trialss.sh"
+wget -q -O /usr/bin/del-ss "https://raw.githubusercontent.com/vermiliion/api/main/xray/del-ss.sh"
+wget -q -O /usr/bin/renew-ss "https://raw.githubusercontent.com/vermiliion/api/main/xray/renew-ss.sh"
+wget -q -O /usr/bin/cek-ss "https://raw.githubusercontent.com/vermiliion/api/main/xray/cek-ss.sh"
 wget -q -O /usr/bin/menu-trial "https://raw.githubusercontent.com/vermiliion/api/main/menu/menu-trial.sh"
 chmod +x /usr/bin/usernew
 chmod +x /usr/bin/auto-reboot
