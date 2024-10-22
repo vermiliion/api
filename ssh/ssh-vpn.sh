@@ -222,17 +222,16 @@ wget -O add-host "https://raw.githubusercontent.com/vermiliion/api/main/ssh/add-
 wget -O port-change "https://raw.githubusercontent.com/vermiliion/api/main/port/port-change.sh"
 wget -O certv2ray "https://raw.githubusercontent.com/vermiliion/api/main/xray/certv2ray.sh"
 wget -O menu-webmin "https://raw.githubusercontent.com/vermiliion/api/main/menu/menu-webmin.sh"
+wget -O menu-warp "https://raw.githubusercontent.com/vermiliion/api/main/menu/warp.sh"
+wget -O menu-nubz "https://raw.githubusercontent.com/vermiliion/api/main/menu/menu-nubz.sh"
+wget -O menu-nob "https://raw.githubusercontent.com/vermiliion/api/main/menu/menu-nob.sh"
+wget -O menu-bot "https://raw.githubusercontent.com/vermiliion/api/main/menu/menu-bot.sh"
+wget -O menu-ss "https://raw.githubusercontent.com/vermiliion/api/main/menu/menu-ss.sh"
 wget -O speedtest "https://raw.githubusercontent.com/vermiliion/api/main/ssh/speedtest_cli.py"
 wget -O about "https://raw.githubusercontent.com/vermiliion/api/main/menu/about.sh"
 wget -O auto-reboot "https://raw.githubusercontent.com/vermiliion/api/main/menu/auto-reboot.sh"
 wget -O restart "https://raw.githubusercontent.com/vermiliion/api/main/menu/restart.sh"
 wget -O bw "https://raw.githubusercontent.com/vermiliion/api/main/menu/bw.sh"
-wget -O menu-theme "https://raw.githubusercontent.com/vermiliion/api/main/theme/menu-theme.sh"
-wget -O menu1 "https://raw.githubusercontent.com/vermiliion/api/main/theme/menu1.sh"
-wget -O menu2 "https://raw.githubusercontent.com/vermiliion/api/main/theme/menu2.sh"
-wget -O menu3 "https://raw.githubusercontent.com/vermiliion/api/main/theme/menu3.sh"
-wget -O menu4 "https://raw.githubusercontent.com/vermiliion/api/main/theme/menu4.sh"
-wget -O menu5 "https://raw.githubusercontent.com/vermiliion/api/main/theme/menu5.sh"
 wget -O port-ssl "https://raw.githubusercontent.com/vermiliion/api/main/port/port-ssl.sh"
 wget -O port-ovpn "https://raw.githubusercontent.com/vermiliion/api/main/port/port-ovpn.sh"
 wget -O acs-set "https://raw.githubusercontent.com/vermiliion/api/main/acs-set.sh"
@@ -243,11 +242,9 @@ wget -O menu-backup "https://raw.githubusercontent.com/vermiliion/api/main/menu/
 wget -O backup "https://raw.githubusercontent.com/vermiliion/api/main/backup/backup.sh"
 wget -O restore "https://raw.githubusercontent.com/vermiliion/api/main/backup/restore.sh"
 wget -O jam "https://raw.githubusercontent.com/vermiliion/api/main/jam.sh"
-wget -q -O /usr/bin/xolpanel "https://raw.githubusercontent.com/vermiliion/api/main/xolpanel/xolpanel.sh"
 wget -q -O /usr/bin/lock "https://raw.githubusercontent.com/vermiliion/api/main/user-lock.sh"
 wget -q -O /usr/bin/unlock "https://raw.githubusercontent.com/vermiliion/api/main/user-unlock.sh"
 wget -q -O /usr/bin/update "https://raw.githubusercontent.com/vermiliion/api/main/update.sh"
-chmod +x xolpanel
 chmod +x menu
 chmod +x menu-trial
 chmod +x menu-vmess
@@ -256,12 +253,6 @@ chmod +x running
 chmod +x clearcache
 chmod +x menu-trgo
 chmod +x menu-trojan
-chmod +x menu-theme
-chmod +x menu1
-chmod +x menu2
-chmod +x menu3
-chmod +x menu4
-chmod +x menu5
 chmod +x menu-ssh
 chmod +x usernew
 chmod +x trial
@@ -279,6 +270,11 @@ chmod +x add-host
 chmod +x port-change
 chmod +x certv2ray
 chmod +x menu-webmin
+chmod +x menu-warp
+chmod +x menu-nubz
+chmod +x menu-nob
+chmod +x menu-bot
+chmod +x menu-ss
 chmod +x speedtest
 chmod +x about
 chmod +x auto-reboot
@@ -294,7 +290,6 @@ chmod +x menu-backup
 chmod +x backup
 chmod +x restore
 chmod +x jam
-chmod +x /usr/bin/xolpanel
 chmod +x /usr/bin/lock
 chmod +x /usr/bin/unlock
 chmod +x /usr/bin/update
