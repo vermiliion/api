@@ -244,6 +244,10 @@ wget -O restore "https://raw.githubusercontent.com/vermiliion/api/main/backup/re
 wget -O jam "https://raw.githubusercontent.com/vermiliion/api/main/jam.sh"
 wget -q -O /usr/bin/lock "https://raw.githubusercontent.com/vermiliion/api/main/user-lock.sh"
 wget -q -O /usr/bin/unlock "https://raw.githubusercontent.com/vermiliion/api/main/user-unlock.sh"
+wget -q -O /usr/bin/bot2 "https://raw.githubusercontent.com/vermiliion/api/main/bot/bot2.sh"
+wget -q -O /usr/bin/add-bot "https://raw.githubusercontent.com/vermiliion/api/main/bot/add-bot.sh"
+wget -q -O /usr/bin/add-bot-bersama "https://raw.githubusercontent.com/vermiliion/api/main/bot/add-bot-bersama.sh"
+wget -q -O /usr/bin/bot-bansos "https://raw.githubusercontent.com/vermiliion/api/main/bot/bot-bansos.sh"
 wget -q -O /usr/bin/update "https://raw.githubusercontent.com/vermiliion/api/main/update.sh"
 chmod +x menu
 chmod +x menu-trial
@@ -292,6 +296,10 @@ chmod +x restore
 chmod +x jam
 chmod +x /usr/bin/lock
 chmod +x /usr/bin/unlock
+chmod +x /usr/bin/bot2
+chmod +x /usr/bin/add-bot
+chmod +x /usr/bin/add-bot-bersama
+chmod +x /usr/bin/bot-bansos
 chmod +x /usr/bin/update
 cd
 cat > /etc/cron.d/re_otm <<-END
