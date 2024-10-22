@@ -60,6 +60,11 @@ wget -q -O /usr/bin/menu-ssh "https://raw.githubusercontent.com/vermiliion/api/m
 wget -q -O /usr/bin/menu-backup "https://raw.githubusercontent.com/vermiliion/api/main/menu/menu-backup.sh"
 wget -q -O /usr/bin/menu "https://raw.githubusercontent.com/vermiliion/api/main/menu/menu.sh"
 wget -q -O /usr/bin/menu-webmin "https://raw.githubusercontent.com/vermiliion/api/main/menu/menu-webmin.sh"
+wget -q -O /usr/bin/menu-warp "https://raw.githubusercontent.com/vermiliion/api/main/menu/warp.sh"
+wget -q -O /usr/bin/menu-nubz "https://raw.githubusercontent.com/vermiliion/api/main/menu/menu-nubz.sh"
+wget -q -O /usr/bin/menu-nob "https://raw.githubusercontent.com/vermiliion/api/main/menu/menu-nob.sh"
+wget -q -O /usr/bin/menu-bot "https://raw.githubusercontent.com/vermiliion/api/main/menu/menu-bot.sh"
+wget -q -O /usr/bin/menu-ss "https://raw.githubusercontent.com/vermiliion/api/main/menu/menu-ss.sh"
 wget -q -O /usr/bin/xp "https://raw.githubusercontent.com/vermiliion/api/main/ssh/xp.sh"
 wget -q -O /usr/bin/update "https://raw.githubusercontent.com/vermiliion/api/main/update.sh"
 wget -q -O /usr/bin/add-host "https://raw.githubusercontent.com/vermiliion/api/main/ssh/add-host.sh"
@@ -84,10 +89,12 @@ wget -q -O /usr/bin/del-vless "https://raw.githubusercontent.com/vermiliion/api/
 wget -q -O /usr/bin/cek-vless "https://raw.githubusercontent.com/vermiliion/api/main/xray/cek-vless.sh"
 wget -q -O /usr/bin/renew-vless "https://raw.githubusercontent.com/vermiliion/api/main/xray/renew-vless.sh"
 wget -q -O /usr/bin/trialvless "https://raw.githubusercontent.com/vermiliion/api/main/xray/trialvless.sh"
+wget -q -O add-ss "https://raw.githubusercontent.com/vermiliion/api/main/xray/add-ss.sh"
+wget -q -O trialss "https://raw.githubusercontent.com/vermiliion/api/main/xray/trialss.sh"
+wget -q -O del-ss "https://raw.githubusercontent.com/vermiliion/api/main/xray/del-ss.sh"
+wget -q -O renew-ss "https://raw.githubusercontent.com/vermiliion/api/main/xray/renew-ss.sh"
+wget -q -O cek-ss "https://raw.githubusercontent.com/vermiliion/api/main/xray/cek-ss.sh"
 wget -q -O /usr/bin/menu-trial "https://raw.githubusercontent.com/vermiliion/api/main/menu/menu-trial.sh"
-wget -q -O /usr/bin/warp "https://raw.githubusercontent.com/vermiliion/api/main/warp.sh"
-wget -q -O /usr/bin/noobz "https://raw.githubusercontent.com/vermiliion/api/main/noobz.sh"
-wget -q -O /usr/bin/m-nob "https://raw.githubusercontent.com/vermiliion/api/main/m-nob.sh"
 chmod +x /usr/bin/usernew
 chmod +x /usr/bin/auto-reboot
 chmod +x /usr/bin/restart
@@ -102,6 +109,11 @@ chmod +x /usr/bin/menu-trojan
 chmod +x /usr/bin/menu-ssh
 chmod +x /usr/bin/menu-backup
 chmod +x /usr/bin/menu-webmin
+chmod +x /usr/bin/menu-warp
+chmod +x /usr/bin/menu-nubz
+chmod +x /usr/bin/menu-nob
+chmod +x /usr/bin/menu-bot
+chmod +x /usr/bin/menu-ss
 chmod +x /usr/bin/xp
 chmod +x /usr/bin/update
 chmod +x /usr/bin/add-host
@@ -127,10 +139,12 @@ chmod +x /usr/bin/del-vless
 chmod +x /usr/bin/cek-vless
 chmod +x /usr/bin/renew-vless
 chmod +x /usr/bin/trialvless
+chmod +x /usr/bin/add-ss
+chmod +x /usr/bin/trialss
+chmod +x /usr/bin/del-ss
+chmod +x /usr/bin/cek-ss
+chmod +x /usr/bin/renew-ss
 chmod +x /usr/bin/menu-trial
-chmod +x /usr/bin/warp
-chmod +x /usr/bin/noobz
-chmod +x /usr/bin/m-nob
 clear
 echo -e ""
 echo -e "\e[0;32mDownloaded successfully!\e[0m"

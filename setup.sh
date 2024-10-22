@@ -7,6 +7,27 @@ green='\e[0;32m'
 yell='\e[1;33m'
 tyblue='\e[1;36m'
 kuning='\033[0;93m'
+BIBlack='\033[1;90m'      # Black
+f='\033[1;91m'        # Red
+BIGreen='\033[1;92m'      # Green
+BIYellow='\033[0;97m'     # Yellow
+BIBlue='\033[1;94m'       # Blue
+BIPurple='\033[1;95m'     # Purple
+BICyan='\033[1;96m'       # Cyan
+BIWhite='\033[1;97m'      # White
+UWhite='\033[4;37m'       # White
+On_IPurple='\033[0;105m'  #
+On_IRed='\033[0;101m'
+IBlack='\033[0;90m'       # Black
+IRed='\033[0;91m'         # Red
+IGreen='\033[0;92m'       # Green
+IYellow='\033[0;93m'      # Yellow
+IBlue='\033[0;94m'        # Blue
+IPurple='\033[0;95m'      # Purple
+ICyan='\033[0;96m'        # Cyan
+IWhite='\033[0;97m'       # White
+w="\033[97m"
+ORANGE="\033[0;34m"
 NC='\e[0m'
 purple() { echo -e "\\033[35;1m${*}\\033[0m"; }
 tyblue() { echo -e "\\033[36;1m${*}\\033[0m"; }
@@ -106,7 +127,7 @@ echo -e "[ ${green}INFO${NC} ] Preparing the install file"
 apt install git curl -y >/dev/null 2>&1
 apt install python -y >/dev/null 2>&1
 echo -e "[ ${green}INFO${NC} ] Aight good ... installation file is ready"
-echo -e "$green                                                                                         $NC"
+echo -e "$BIWhite                                                                                         $NC"
 sleep 5
 echo -ne "[ ${green}INFO${NC} ] Check permission : "
 mkdir -p /var/lib >/dev/null 2>&1
@@ -116,13 +137,13 @@ wget -q https://raw.githubusercontent.com/vermiliion/api/main/tools.sh;chmod +x 
 rm tools.sh
 clear
     echo -e""
-    echo -e "$green━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━$NC"
-    echo -e "$green━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━$NC"
+    echo -e "$BIWhite━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━$NC"
+    echo -e "$BIWhite━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━$NC"
     echo -e "$BBlue                     SETUP DOMAIN VPS     $NC"
-    echo -e "$BYellow----------------------------------------------------------$NC"
-    echo -e "$BGreen 1. Choose Your Own Domain / Gunakan Domain Sendiri $NC"
-    echo -e "$BGreen 2. Use Domain Random / Gunakan Domain Random $NC"
-    echo -e "$BYellow----------------------------------------------------------$NC"
+    echo -e "$BIYellow━━━━━━━━━━━━━━━━━━━━━━━$NC"
+    echo -e "$BIGreen 1. Choose Your Own Domain / Gunakan Domain Sendiri $NC"
+    echo -e "$BIGreen 2. Use Domain Random / Gunakan Domain Random $NC"
+    echo -e "$BIYellow━━━━━━━━━━━━━━━━━━━━━━━$NC"
     read -rp " input 1 or 2 / pilih 1 atau 2 : " dns
 	if test $dns -eq 1; then
     read -rp " Enter Your Domain / masukan domain : " dom
@@ -190,14 +211,14 @@ Edit By : @Lite_Vermilion
 curl -s --max-time $TIME -d "chat_id=$CHATID&disable_web_page_preview=1&text=$TEXT&parse_mode=html" $URL >/dev/null
 clear
 echo -e "$kuning━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━"
-echo -e "$green      Install SSH / WS               $NC"
+echo -e "$BIWhite      Install SSH / WS               $NC"
 echo -e "$kuning━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━"
 sleep 2
 clear
 wget https://raw.githubusercontent.com/vermiliion/api/main/ssh/ssh-vpn.sh && chmod +x ssh-vpn.sh && ./ssh-vpn.sh
 clear
 echo -e "$kuning━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━"
-echo -e "$green      Install BACKUP               $NC"
+echo -e "$BIWhite      Install BACKUP               $NC"
 echo -e "$kuning━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━"
 sleep 2
 clear
@@ -205,7 +226,7 @@ wget https://raw.githubusercontent.com/vermiliion/api/main/backup/set-br.sh &&  
 clear
 clear
 echo -e "$kuning━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━"
-echo -e "$green          Install XRAY              $NC"
+echo -e "$BIWhite          Install XRAY              $NC"
 echo -e "$kuning━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━"
 sleep 2
 clear
@@ -213,7 +234,7 @@ wget https://raw.githubusercontent.com/vermiliion/api/main/xray/ins-xray.sh && c
 wget https://raw.githubusercontent.com/vermiliion/api/main/sshws/insshws.sh && chmod +x insshws.sh && ./insshws.sh
 clear
 echo -e "$kuning━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━"
-echo -e "$green          Install SLOWDNS              $NC"
+echo -e "$BIWhite          Install SLOWDNS              $NC"
 echo -e "$kuning━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━"
 sleep 2
 clear
