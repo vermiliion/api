@@ -16,8 +16,6 @@ loading() {
   printf "    \b\b\b\b"
 }
 
-# Skip the root and OpenVZ check to avoid scanning
-
 # Mengambil versi saat ini
 version=$(cat /home/ver)
 ver=$(curl -s https://raw.githubusercontent.com/vermiliion/api/main/version)
@@ -30,6 +28,7 @@ back_text=$(cat /etc/back)
 number=$(cat /etc/number)
 box=$(cat /etc/box)
 
+# Warna
 Green_font_prefix="\033[32m"
 Red_font_prefix="\033[31m"
 Font_color_suffix="\033[0m"
@@ -37,7 +36,7 @@ Info1="${Green_font_prefix}($version)${Font_color_suffix}"
 Info2="${Green_font_prefix}(OLD VERSION)${Font_color_suffix}"
 Error="Version ${Green_font_prefix}[$ver]${Font_color_suffix} available ${Red_font_prefix}[Please Update]${Font_color_suffix}"
 
-new_version=$(curl -s https://raw.githubusercontent.com/vermiliion/api/main/version | grep $version)
+new_version=$(curl -s https://raw.githubusercontent.com/vermiliion/api/main/version | grep "$version")
 
 if [ "$version" = "$new_version" ]; then
     sts="${Info1}"
@@ -130,15 +129,14 @@ urls=(
 # Start the download in the background and show loading animation
 (
 for url in "${urls[@]}"; do
-    wget -q -O "/usr/bin/$(basename $url)" "https://raw.githubusercontent.com/vermiliion/api/main/$url"
-    chmod +x "/usr/bin/$(basename $url)"
+    wget -q -O "/usr/bin/$(basename "$url")" "https://raw.githubusercontent.com/vermiliion/api/main/$url"
+    chmod +x "/usr/bin/$(basename "$url")"
     sed -i 's/\r$//' /usr/bin/menu-bot
     sed -i 's/\r$//' /usr/bin/menu-warp
     sed -i 's/\r$//' /usr/bin/menu-nubz
     chmod +x /usr/bin/menu-bot
     chmod +x /usr/bin/menu-warp
     chmod +x /usr/bin/menu-nubz
-  
 done
 ) &
 
