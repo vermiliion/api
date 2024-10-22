@@ -5,30 +5,69 @@ biji=$(date +"%Y-%m-%d" -d "$dateFromServer")
 NC="\e[0m"
 RED="\033[0;31m"
 
+# Fungsi BURIQ
+BURIQ () {
+    curl -sS https://raw.githubusercontent.com/vermiliion/api/main/register > /root/tmp
+    data=( $(cat /root/tmp | grep -E "^### " | awk '{print $2}') )
+    for user in "${data[@]}"; do
+        exp=$(grep -E "^### $user" "/root/tmp" | awk '{print $3}')
+        d1=$(date -d "$exp" +%s)
+        d2=$(date -d "$biji" +%s)
+        exp2=$(( (d1 - d2) / 86400 ))
+        if [[ "$exp2" -le "0" ]]; then
+            echo $user > /etc/.$user.ini
+        else
+            rm -f /etc/.$user.ini > /dev/null 2>&1
+        fi
+    done
+    rm -f /root/tmp
+}
+
+# Mengambil IP
+MYIP=$(curl -sS ipv4.icanhazip.com)
+Name=$(curl -sS https://raw.githubusercontent.com/vermiliion/api/main/register | grep $MYIP | awk '{print $2}')
+echo $Name > /usr/local/etc/.$Name.ini
+CekOne=$(cat /usr/local/etc/.$Name.ini)
+
+# Fungsi Bloman
+Bloman () {
+    if [ -f "/etc/.$Name.ini" ]; then
+        CekTwo=$(cat /etc/.$Name.ini)
+        if [ "$CekOne" = "$CekTwo" ]; then
+            res="Expired"
+        fi
+    else
+        res="Permission Accepted..."
+    fi
+}
+
+# Fungsi PERMISSION
 PERMISSION () {
     MYIP=$(curl -sS ipv4.icanhazip.com)
     IZIN=$(curl -sS https://raw.githubusercontent.com/vermiliion/api/main/register | awk '{print $4}' | grep $MYIP)
     if [ "$MYIP" = "$IZIN" ]; then
-        echo "Permission Accepted"
-        res="Permission Accepted"
+        Bloman
     else
         res="Permission Denied!"
     fi
+    BURIQ
 }
 
-PERMISSION
+red='\e[1;31m'
+green='\e[1;32m'
 
+PERMISSION
 if [ -f /home/needupdate ]; then
     echo -e "${RED}Your script needs to be updated first!${NC}"
     exit 0
-elif [ "$res" = "Permission Accepted" ]; then
-    echo "Access granted."
+elif [ "$res" = "Permission Accepted..." ]; then
+    echo -ne
 else
     echo -e "${RED}Permission Denied!${NC}"
     exit 0
 fi
 
-# Color Definitions
+# Warna lainnya
 BIBlack='\033[1;90m'
 BIRed='\033[1;91m'
 BIGreen='\033[1;92m'
@@ -37,97 +76,39 @@ BIBlue='\033[1;94m'
 BIPurple='\033[1;95m'
 BICyan='\033[1;96m'
 BIWhite='\033[1;97m'
-UWhite='\033[4;37m'
-On_IPurple='\033[0;105m'
-On_IRed='\033[0;101m'
-ORANGE='\033[0;33m'
+NC='\e[0m'
 
-# Exporting Language to UTF-8
-export LANG='en_US.UTF-8'
-export LANGUAGE='en_US.UTF-8'
-
-MYIP=$(wget -qO- ipinfo.io/ip)
-echo "Checking VPS"
-
+# Menu utama
 clear
-function display_menu {
-    echo -e "\033[1;93m┌──────────────────────────────────────────┐\033[0m"
-    echo -e "               BOT MANAGER"
-    echo -e "\033[1;93m└──────────────────────────────────────────┘\033[0m"
-    echo -e "\033[1;93m┌──────────────────────────────────────────┐\033[0m"
-    echo -e "  ${ORANGE}[1].${NC}\033[0;36m Install BOT CYBERVPN${NC}"
-    echo -e "  ${ORANGE}[2].${NC}\033[0;36m Restart BOT CYBERVPN${NC}"
-    echo -e "  ${ORANGE}[3].${NC}\033[0;36m Stop BOT CYBERVPN${NC}"
-    echo -e "  ${ORANGE}[4].${NC}\033[0;36m Uninstall BOT CYBERVPN${NC}"
-    echo -e " ${ORANGE}[5].${NC}\033[0;36m Install Bot KYT${NC}"
-    echo -e " ${ORANGE}[6].${NC}\033[0;36m Hapus Bot KYT${NC}"
-    echo -e " ${ORANGE}[7].${NC}\033[0;36m Stop Bot KYT${NC}"
-    echo -e " ${ORANGE}[8].${NC}\033[0;36m Restart Bot KYT${NC}"
-    echo -e " ${ORANGE}[9].${NC}\033[0;36m Install Bot KYT For Public${NC}"
-    echo -e " ${ORANGE}[10].${NC}\033[0;36m Install Bot Bansos${NC}"
-    echo -e "  ${ORANGE}[x].${NC}\033[0;36m Exit ${NC}"
-    echo -e "\033[1;93m└──────────────────────────────────────────┘\033[0m"
-}
-
-# Fungsi utama
-function main {
-    while true; do
-        display_menu
-        read -p "Select From Options [ 1 - 10 or x ] : " menu
-        echo -e ""
-
-        case $menu in
-            1)
-                echo "Installing BOT CYBERVPN..."
-                wget -q https://raw.githubusercontent.com/vermiliion/api/main/botol/bot2 && chmod +x bot2 && ./bot2
-                ;;
-            2)
-                echo "Restarting BOT CYBERVPN..."
-                wget -q https://raw.githubusercontent.com/vermiliion/api/main/botol/restart-bot2 && chmod +x restart-bot2 && ./restart-bot2
-                ;;
-            3)
-                echo "Stopping BOT CYBERVPN..."
-                wget -q https://raw.githubusercontent.com/vermiliion/api/main/botol/stop-bot2 && chmod +x stop-bot2 && ./stop-bot2
-                ;;
-            4)
-                echo "Uninstalling BOT CYBERVPN..."
-                wget -q https://raw.githubusercontent.com/vermiliion/api/main/botol/del-bot2 && chmod +x del-bot2 && ./del-bot2
-                ;;
-            5)
-                echo "Installing Bot KYT..."
-                wget -q https://raw.githubusercontent.com/vermiliion/api/main/botol/add-bot && chmod +x add-bot && ./add-bot
-                ;;
-            6)
-                echo "Hapus Bot KYT..."
-                wget -q https://raw.githubusercontent.com/vermiliion/api/main/botol/hapus-bot && chmod +x hapus-bot && ./hapus-bot
-                ;;
-            7)
-                echo "Stopping Bot KYT..."
-                wget -q https://raw.githubusercontent.com/vermiliion/api/main/botol/stop-bot && chmod +x stop-bot && ./stop-bot
-                ;;
-            8)
-                echo "Restarting Bot KYT..."
-                wget -q https://raw.githubusercontent.com/vermiliion/api/main/botol/restart-bot && chmod +x restart-bot && ./restart-bot
-                ;;
-            9)
-                echo "Installing Bot KYT For Public..."
-                wget -q https://raw.githubusercontent.com/vermiliion/api/main/botol/add-bot-bersama && chmod +x add-bot-bersama && ./add-bot-bersama
-                ;;
-            10)
-                echo "Installing Bot Bansos..."
-                wget -q https://raw.githubusercontent.com/vermiliion/api/main/botol/bot-bansos && chmod +x bot-bansos && ./bot-bansos
-                ;;
-            x)
-                echo "Exiting..."
-                exit 0
-                ;;
-            *)
-                echo "Pilihan tidak valid."
-                ;;
-        esac
-        echo -e "\n"
-    done
-}
-
-# Jalankan fungsi utama
-main
+echo -e " ${BICyan}◇━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━◇${NC}"
+echo -e " ${BIGreen}                   BOT MANAGER                ${NC}"
+echo -e " ${BICyan}◇━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━◇${NC}"
+echo -e "  ${BIGreen}[1]. Install BOT CYBERVPN${NC}"
+echo -e "  ${BIGreen}[2]. Restart BOT CYBERVPN${NC}"
+echo -e "  ${BIGreen}[3]. Stop BOT CYBERVPN${NC}"
+echo -e "  ${BIGreen}[4]. Uninstall BOT CYBERVPN${NC}"
+echo -e " ${BICyan}◇━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━◇${NC}"
+echo -e "  ${BIGreen}[5] Install Bot KYT${NC}"
+echo -e "  ${BIGreen}[6] Hapus Bot KYT${NC}"
+echo -e "  ${BIGreen}[7] Stop Bot KYT${NC}"
+echo -e "  ${BIGreen}[8] Restart Bot KYT${NC}"
+echo -e "  ${BIGreen}[9] Install Bot KYT For Public${NC}"
+echo -e "  ${BIGreen}[10] Install Bot Bansos${NC}"
+echo -e ""
+echo -e "  ${BIGreen}[x]. Exit${NC}"
+echo -e " ${BICyan}◇━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━◇${NC}"
+read -p "  Select From Options [1 - 10 or x] : " menu
+case $menu in
+1) clear; bot2 ;;
+2) clear; restart-bot2 ;;
+3) clear; stop-bot2 ;;
+4) clear; del-bot2 ;;
+5) clear; add-bot ;;
+6) clear; hapus-bot ;;
+7) clear; stop-bot ;;
+8) clear; restart-bot ;;
+9) clear; add-bot-bersama ;;
+10) clear; bot-bansos ;;
+x) exit ;;
+*) echo "Invalid option, please select a valid number." ;;
+esac
