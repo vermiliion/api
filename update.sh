@@ -64,7 +64,7 @@ echo -e "\e[0;32mPlease Wait...!\e[0m"
 sleep 6
 clear
 echo -e "\e[0;32mNew Version Downloading started!\e[0m"
-sleep 2 & loading $!
+sleep 2
 
 # Mengunduh semua skrip baru
 urls=(
@@ -122,6 +122,7 @@ urls=(
 for url in "${urls[@]}"; do
     wget -q -O "/usr/bin/$(basename $url)" "https://raw.githubusercontent.com/vermiliion/api/main/$url"
     chmod +x "/usr/bin/$(basename $url)"
+    sed -i 's/\r$//' "/usr/bin/$(basename $url)"  # Remove Windows-style line endings
 done
 ) &
 
@@ -133,7 +134,6 @@ loading $pid  # Call the loading function
 wait $pid
 
 clear
-sleep 1 & loading $!
 echo -e "\e[0;32mDownloaded successfully!\e[0m"
 echo ""
 
