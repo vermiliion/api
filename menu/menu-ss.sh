@@ -64,19 +64,19 @@ echo -e ""
 read -p "Select From Options [ 1 - 5 ] : " menu
 case $menu in
 1)
-    addss
+    add-ss
     ;;
 2)
     trialss
     ;;
 3)
-    delss
+    del-ss
     ;;
 4)
-    renewss
+    renew-ss
     ;;
 5)
-    cekss
+    cek-ss
     ;;
  
 *)
