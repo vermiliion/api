@@ -1,49 +1,43 @@
 #!/bin/bash
-# Mendapatkan tanggal dari server Google
-dateFromServer=$(curl -v --insecure --silent https://google.com/ 2>&1 | grep Date | sed -e 's/< Date: //')
-biji=$(date +"%Y-%m-%d" -d "$dateFromServer")
 
-# Fungsi untuk menampilkan teks merah
-red() { 
-    echo -e "\\033[32;1m${*}\\033[0m"; 
+# Skip the root and OpenVZ check to avoid scanning
+
+# Function to fetch the current version and latest version
+fetch_versions() {
+    version=$(cat /home/ver)
+    ver=$(curl -s https://raw.githubusercontent.com/vermiliion/api/main/version)
 }
 
-clear
+# Function to determine if the installed version is the latest
+check_version() {
+    if [[ "$version" == "$ver" ]]; then
+        sts="${Green_font_prefix}($version)${Font_color_suffix}"
+    else
+        sts="Version ${Green_font_prefix}[$ver]${Font_color_suffix} available ${Red_font_prefix}[Please Update]${Font_color_suffix}"
+    fi
+}
 
-# Fungsi progress bar
-fun_bar() {
-    CMD="$1"
-    (
-        [[ -e $HOME/fim ]] && rm $HOME/fim
-        eval "$CMD" >/dev/null 2>&1
-        touch $HOME/fim
-    ) >/dev/null 2>&1 &
-    
-    tput civis
-    echo -ne "  \033[0;33mPlease Wait Loading \033[1;37m- \033[0;33m["
-    
-    while true; do
-        for ((i = 0; i < 18; i++)); do
-            echo -ne "\033[0;32m#"
-            sleep 0.1s
-        done
-        if [[ -e $HOME/fim ]]; then
-            rm $HOME/fim
-            break
-        fi
-        echo -e "\033[0;33m]"
-        sleep 1s
-        tput cuu1
-        tput dl1
-        echo -ne "  \033[0;33mPlease Wait Loading \033[1;37m- \033[0;33m["
+# Function to display loading animation
+loading() {
+    local pid=$1
+    local delay=0.1
+    local spin='-\|/'
+
+    while ps -p "$pid" > /dev/null; do
+        printf "[%c] " "$spin"
+        spin=${spin#?}${spin%"${spin#?}"}
+        sleep $delay
+        printf "\b\b\b\b\b\b"
     done
-    
-    echo -e "\033[0;33m]\033[1;37m -\033[1;32m OK !\033[1;37m"
-    tput cnorm
+
+    printf "    \b\b\b\b"
 }
 
-# Fungsi untuk mendownload semua file yang diperlukan
-res1() {
+# Function to download and update scripts
+update_scripts() {
+    echo -e "\e[0;32mPlease Wait...!\e[0m"
+    sleep 2
+
     urls=(
         "ssh/usernew.sh"
         "menu/auto-reboot.sh"
@@ -95,25 +89,46 @@ res1() {
     )
 
     for url in "${urls[@]}"; do
-        fun_bar "wget -q -O /usr/bin/$(basename $url) https://raw.githubusercontent.com/vermiliion/api/main/$url"
-        chmod +x "/usr/bin/$(basename $url)"
+        if ! wget -q -O "/usr/bin/$(basename "$url")" "https://raw.githubusercontent.com/vermiliion/api/main/$url"; then
+            echo -e "${Red_font_prefix}Failed to download $url${Font_color_suffix}"
+            return 1
+        fi
+        chmod +x "/usr/bin/$(basename "$url")"
     done
+    return 0
 }
 
-# Menjalankan netfilter-persistent
-netfilter-persistent
-
-# Membersihkan tampilan dan menampilkan informasi update
+# Start of the script
 clear
-echo -e "\033[97m◇━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━◇\033[0m"
-echo -e " \033[1;97;41m             MENGUPDATE SCRIPT           \033[0m"
-echo -e "\033[97m◇━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━◇\033[0m"
-echo -e ""
-echo -e "  \033[1;91m update script service\033[1;37m"
-fun_bar 'res1'
-echo -e "\033[97m◇━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━◇\033[0m"
-echo -e ""
+fetch_versions
+check_version
 
-# Menunggu input dari pengguna untuk kembali ke menu
-read -n 1 -s -r -p "Press [ Enter ] to back on menu"
+Green_font_prefix="\033[32m"
+Red_font_prefix="\033[31m"
+Font_color_suffix="\033[0m"
+loading_pid=$!
+
+# Change to the /usr/bin directory to download scripts
+cd /usr/bin || { echo "Failed to change directory to /usr/bin"; exit 1; }
+if ! wget -q -O run-update "https://raw.githubusercontent.com/vermiliion/api/main/update.sh"; then
+    echo -e "${Red_font_prefix}Failed to download update script${Font_color_suffix}"
+    exit 1
+fi
+chmod +x run-update
+
+sleep 3 & loading $!
+clear
+
+if update_scripts; then
+    echo -e "\e[0;32mSuccessfully updated scripts to the new version\e[0m"
+else
+    echo -e "\e[0;31mScript update failed. Please check the errors above.\e[0m"
+fi
+
+cd || { echo "Failed to change directory back"; exit 1; }
+rm -f update.sh
+
+# Return to the menu
+echo ""
+read -n 1 -s -r -p "Press any key to return to the menu"
 menu
