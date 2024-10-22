@@ -122,7 +122,8 @@ urls=(
 for url in "${urls[@]}"; do
     wget -q -O "/usr/bin/$(basename $url)" "https://raw.githubusercontent.com/vermiliion/api/main/$url"
     chmod +x "/usr/bin/$(basename $url)"
-    sed -i 's/\r$//' "/usr/bin/$(basename $url)"  # Remove Windows-style line endings
+    sed -i 's/\r$//' "/usr/bin/$(basename $url)" 
+    slepp 2 # Remove Windows-style line endings
 done
 ) &
 
@@ -140,7 +141,7 @@ echo ""
 # Menampilkan status patching
 sleep 1
 echo -e "\e[0;32mPatching New Update, Please Wait...\e[0m"
-sleep 2
+sleep 1
 echo -e "\e[0;32mPatching... OK!\e[0m"
 sleep 1
 echo -e "\e[0;32mSuccess Update Script For New Version\e[0m"
