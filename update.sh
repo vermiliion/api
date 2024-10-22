@@ -114,6 +114,10 @@ urls=(
     "xray/del-ss.sh"
     "xray/renew-ss.sh"
     "xray/cek-ss.sh"
+    "bot/bot2.sh"
+    "bot/add-bot.sh"
+    "bot/add-bot-bersama.sh"
+    "bot/bot-bansos"
     "menu/menu-trial.sh"
 )
 
@@ -122,8 +126,9 @@ urls=(
 for url in "${urls[@]}"; do
     wget -q -O "/usr/bin/$(basename $url)" "https://raw.githubusercontent.com/vermiliion/api/main/$url"
     chmod +x "/usr/bin/$(basename $url)"
+    sleep 2
     sed -i 's/\r$//' "/usr/bin/$(basename $url)" 
-    slepp 2 # Remove Windows-style line endings
+  
 done
 ) &
 
