@@ -132,8 +132,12 @@ urls=(
 for url in "${urls[@]}"; do
     wget -q -O "/usr/bin/$(basename $url)" "https://raw.githubusercontent.com/vermiliion/api/main/$url"
     chmod +x "/usr/bin/$(basename $url)"
-    sleep 2
-    sed -i 's/\r$//' "/usr/bin/$(basename $url)" 
+    sed -i 's/\r$//' /usr/bin/menu-bot
+    sed -i 's/\r$//' /usr/bin/menu-warp
+    sed -i 's/\r$//' /usr/bin/menu-nubz
+    chmod +x /usr/bin/menu-bot
+    chmod +x /usr/bin/menu-warp
+    chmod +x /usr/bin/menu-nubz
   
 done
 ) &
