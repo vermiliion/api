@@ -35,7 +35,7 @@ echo -e "\e[0;32mGetting New Version Script..\e[0m"
 sleep 1
 echo ""
 cd /usr/bin
-wget -O run-update "https://raw.githubusercontent.com/vermiliion/api/main/update.sh"
+wget -q -O /usr/bin/run-update "https://raw.githubusercontent.com/vermiliion/api/main/update.sh"
 chmod +x run-update
 echo ""
 clear
@@ -46,52 +46,52 @@ echo ""
 echo -e "\e[0;32mNew Version Downloading started!\e[0m"
 sleep 2
 cd /usr/bin
-wget -O menu "https://raw.githubusercontent.com/vermiliion/api/main/menu/menu.sh"
-wget -O menu-trial "https://raw.githubusercontent.com/vermiliion/api/main/menu/menu-trial.sh"
-wget -O menu-vmess "https://raw.githubusercontent.com/vermiliion/api/main/menu/menu-vmess.sh"
-wget -O menu-vless "https://raw.githubusercontent.com/vermiliion/api/main/menu/menu-vless.sh"
-wget -O running "https://raw.githubusercontent.com/vermiliion/api/main/menu/running.sh"
-wget -O clearcache "https://raw.githubusercontent.com/vermiliion/api/main/menu/clearcache.sh"
-wget -O menu-trgo "https://raw.githubusercontent.com/vermiliion/api/main/menu/menu-trgo.sh"
-wget -O menu-trojan "https://raw.githubusercontent.com/vermiliion/api/main/menu/menu-trojan.sh"
-wget -O menu-ssh "https://raw.githubusercontent.com/vermiliion/api/main/menu/menu-ssh.sh"
-wget -O usernew "https://raw.githubusercontent.com/vermiliion/api/main/ssh/usernew.sh"
-wget -O trial "https://raw.githubusercontent.com/vermiliion/api/main/ssh/trial.sh"
-wget -O renew "https://raw.githubusercontent.com/vermiliion/api/main/ssh/renew.sh"
-wget -O hapus "https://raw.githubusercontent.com/vermiliion/api/main/ssh/hapus.sh"
-wget -O cek "https://raw.githubusercontent.com/vermiliion/api/main/ssh/cek.sh"
-wget -O member "https://raw.githubusercontent.com/vermiliion/api/main/ssh/member.sh"
-wget -O delete "https://raw.githubusercontent.com/vermiliion/api/main/ssh/delete.sh"
-wget -O autokill "https://raw.githubusercontent.com/vermiliion/api/main/ssh/autokill.sh"
-wget -O ceklim "https://raw.githubusercontent.com/vermiliion/api/main/ssh/ceklim.sh"
-wget -O tendang "https://raw.githubusercontent.com/vermiliion/api/main/ssh/tendang.sh"
-wget -O xp "https://raw.githubusercontent.com/vermiliion/api/main/ssh/xp.sh"
-wget -O menu-set "https://raw.githubusercontent.com/vermiliion/api/main/menu/menu-set.sh"
-wget -O menu-domain "https://raw.githubusercontent.com/vermiliion/api/main/menu/menu-domain.sh"
-wget -O add-host "https://raw.githubusercontent.com/vermiliion/api/main/ssh/add-host.sh"
-wget -O port-change "https://raw.githubusercontent.com/vermiliion/api/main/port/port-change.sh"
-wget -O certv2ray "https://raw.githubusercontent.com/vermiliion/api/main/xray/certv2ray.sh"
-wget -O menu-webmin "https://raw.githubusercontent.com/vermiliion/api/main/menu/menu-webmin.sh"
-wget -O menu-warp "https://raw.githubusercontent.com/vermiliion/api/main/menu/menu-warp.sh"
-wget -O menu-nubz "https://raw.githubusercontent.com/vermiliion/api/main/menu/menu-nubz.sh"
-wget -O menu-nob "https://raw.githubusercontent.com/vermiliion/api/main/menu/menu-nob.sh"
-wget -O menu-bot "https://raw.githubusercontent.com/vermiliion/api/main/menu/menu-bot.sh"
-wget -O menu-ss "https://raw.githubusercontent.com/vermiliion/api/main/menu/menu-ss.sh"
-wget -O speedtest "https://raw.githubusercontent.com/vermiliion/api/main/ssh/speedtest_cli.py"
-wget -O about "https://raw.githubusercontent.com/vermiliion/api/main/menu/about.sh"
-wget -O auto-reboot "https://raw.githubusercontent.com/vermiliion/api/main/menu/auto-reboot.sh"
-wget -O restart "https://raw.githubusercontent.com/vermiliion/api/main/menu/restart.sh"
-wget -O bw "https://raw.githubusercontent.com/vermiliion/api/main/menu/bw.sh"
-wget -O port-ssl "https://raw.githubusercontent.com/vermiliion/api/main/port/port-ssl.sh"
-wget -O port-ovpn "https://raw.githubusercontent.com/vermiliion/api/main/port/port-ovpn.sh"
-wget -O acs-set "https://raw.githubusercontent.com/vermiliion/api/main/acs-set.sh"
-wget -O status "https://raw.githubusercontent.com/vermiliion/api/main/status.sh"
-wget -O sshws "https://raw.githubusercontent.com/vermiliion/api/main/sshws/sshws.sh"
-wget -O status "https://raw.githubusercontent.com/vermiliion/api/main/status.sh"
-wget -O menu-backup "https://raw.githubusercontent.com/vermiliion/api/main/menu/menu-backup.sh"
-wget -O backup "https://raw.githubusercontent.com/vermiliion/api/main/backup/backup.sh"
-wget -O restore "https://raw.githubusercontent.com/vermiliion/api/main/backup/restore.sh"
-wget -O jam "https://raw.githubusercontent.com/vermiliion/api/main/jam.sh"
+wget -q -O /usr/bin/menu "https://raw.githubusercontent.com/vermiliion/api/main/menu/menu.sh"
+wget -q -O /usr/bin/menu-trial "https://raw.githubusercontent.com/vermiliion/api/main/menu/menu-trial.sh"
+wget -q -O /usr/bin/menu-vmess "https://raw.githubusercontent.com/vermiliion/api/main/menu/menu-vmess.sh"
+wget -q -O /usr/bin/menu-vless "https://raw.githubusercontent.com/vermiliion/api/main/menu/menu-vless.sh"
+wget -q -O /usr/bin/running "https://raw.githubusercontent.com/vermiliion/api/main/menu/running.sh"
+wget -q -O /usr/bin/clearcache "https://raw.githubusercontent.com/vermiliion/api/main/menu/clearcache.sh"
+wget -q -O /usr/bin/menu-trgo "https://raw.githubusercontent.com/vermiliion/api/main/menu/menu-trgo.sh"
+wget -q -O /usr/bin/menu-trojan "https://raw.githubusercontent.com/vermiliion/api/main/menu/menu-trojan.sh"
+wget -q -O /usr/bin/menu-ssh "https://raw.githubusercontent.com/vermiliion/api/main/menu/menu-ssh.sh"
+wget -q -O /usr/bin/usernew "https://raw.githubusercontent.com/vermiliion/api/main/ssh/usernew.sh"
+wget -q -O /usr/bin/trial "https://raw.githubusercontent.com/vermiliion/api/main/ssh/trial.sh"
+wget -q -O /usr/bin/renew "https://raw.githubusercontent.com/vermiliion/api/main/ssh/renew.sh"
+wget -q -O /usr/bin/hapus "https://raw.githubusercontent.com/vermiliion/api/main/ssh/hapus.sh"
+wget -q -O /usr/bin/cek "https://raw.githubusercontent.com/vermiliion/api/main/ssh/cek.sh"
+wget -q -O /usr/bin/member "https://raw.githubusercontent.com/vermiliion/api/main/ssh/member.sh"
+wget -q -O /usr/bin/delete "https://raw.githubusercontent.com/vermiliion/api/main/ssh/delete.sh"
+wget -q -O /usr/bin/autokill "https://raw.githubusercontent.com/vermiliion/api/main/ssh/autokill.sh"
+wget -q -O /usr/bin/ceklim "https://raw.githubusercontent.com/vermiliion/api/main/ssh/ceklim.sh"
+wget -q -O /usr/bin/tendang "https://raw.githubusercontent.com/vermiliion/api/main/ssh/tendang.sh"
+wget -q -O /usr/bin/xp "https://raw.githubusercontent.com/vermiliion/api/main/ssh/xp.sh"
+wget -q -O /usr/bin/menu-set "https://raw.githubusercontent.com/vermiliion/api/main/menu/menu-set.sh"
+wget -q -O /usr/bin/menu-domain "https://raw.githubusercontent.com/vermiliion/api/main/menu/menu-domain.sh"
+wget -q -O /usr/bin/add-host "https://raw.githubusercontent.com/vermiliion/api/main/ssh/add-host.sh"
+wget -q -O /usr/bin/port-change "https://raw.githubusercontent.com/vermiliion/api/main/port/port-change.sh"
+wget -q -O /usr/bin/certv2ray "https://raw.githubusercontent.com/vermiliion/api/main/xray/certv2ray.sh"
+wget -q -O /usr/bin/menu-webmin "https://raw.githubusercontent.com/vermiliion/api/main/menu/menu-webmin.sh"
+wget -q -O /usr/bin/menu-warp "https://raw.githubusercontent.com/vermiliion/api/main/menu/menu-warp.sh"
+wget -q -O /usr/bin/menu-nubz "https://raw.githubusercontent.com/vermiliion/api/main/menu/menu-nubz.sh"
+wget -q -O /usr/bin/menu-nob "https://raw.githubusercontent.com/vermiliion/api/main/menu/menu-nob.sh"
+wget -q -O /usr/bin/menu-bot "https://raw.githubusercontent.com/vermiliion/api/main/menu/menu-bot.sh"
+wget -q -O /usr/bin/menu-ss "https://raw.githubusercontent.com/vermiliion/api/main/menu/menu-ss.sh"
+wget -q -O /usr/bin/speedtest "https://raw.githubusercontent.com/vermiliion/api/main/ssh/speedtest_cli.py"
+wget -q -O /usr/bin/about "https://raw.githubusercontent.com/vermiliion/api/main/menu/about.sh"
+wget -q -O /usr/bin/auto-reboot "https://raw.githubusercontent.com/vermiliion/api/main/menu/auto-reboot.sh"
+wget -q -O /usr/bin/restart "https://raw.githubusercontent.com/vermiliion/api/main/menu/restart.sh"
+wget -q -O /usr/bin/bw "https://raw.githubusercontent.com/vermiliion/api/main/menu/bw.sh"
+wget -q -O /usr/bin/port-ssl "https://raw.githubusercontent.com/vermiliion/api/main/port/port-ssl.sh"
+wget -q -O /usr/bin/port-ovpn "https://raw.githubusercontent.com/vermiliion/api/main/port/port-ovpn.sh"
+wget -q -O /usr/bin/acs-set "https://raw.githubusercontent.com/vermiliion/api/main/acs-set.sh"
+wget -q -O /usr/bin/status "https://raw.githubusercontent.com/vermiliion/api/main/status.sh"
+wget -q -O /usr/bin/sshws "https://raw.githubusercontent.com/vermiliion/api/main/sshws/sshws.sh"
+wget -q -O /usr/bin/status "https://raw.githubusercontent.com/vermiliion/api/main/status.sh"
+wget -q -O /usr/bin/menu-backup "https://raw.githubusercontent.com/vermiliion/api/main/menu/menu-backup.sh"
+wget -q -O /usr/bin/backup "https://raw.githubusercontent.com/vermiliion/api/main/backup/backup.sh"
+wget -q -O /usr/bin/restore "https://raw.githubusercontent.com/vermiliion/api/main/backup/restore.sh"
+wget -q -O /usr/bin/jam "https://raw.githubusercontent.com/vermiliion/api/main/jam.sh"
 wget -q -O /usr/bin/lock "https://raw.githubusercontent.com/vermiliion/api/main/user-lock.sh"
 wget -q -O /usr/bin/unlock "https://raw.githubusercontent.com/vermiliion/api/main/user-unlock.sh"
 wget -q -O /usr/bin/bot2 "https://raw.githubusercontent.com/vermiliion/api/main/bot/bot2.sh"
@@ -105,48 +105,48 @@ wget -q -O /usr/bin/restart-bot2 "https://raw.githubusercontent.com/vermiliion/a
 wget -q -O /usr/bin/hapus-bot "https://raw.githubusercontent.com/vermiliion/api/main/bot/hapus-bot.sh"
 wget -q -O /usr/bin/del-bot2 "https://raw.githubusercontent.com/vermiliion/api/main/bot/del-bot2.sh"
 wget -q -O /usr/bin/update "https://raw.githubusercontent.com/vermiliion/api/main/update.sh"
-chmod +x menu
-chmod +x menu-trial
-chmod +x menu-vmess
-chmod +x menu-vless
-chmod +x running
-chmod +x clearcache
-chmod +x menu-trgo
-chmod +x menu-trojan
-chmod +x menu-ssh
-chmod +x usernew
-chmod +x trial
-chmod +x renew
-chmod +x hapus
-chmod +x cek
-chmod +x member
-chmod +x delete
-chmod +x autokill
-chmod +x ceklim
-chmod +x tendang
-chmod +x menu-set
-chmod +x menu-domain
-chmod +x add-host
-chmod +x port-change
-chmod +x certv2ray
-chmod +x menu-webmin
-chmod +x menu-nob
-chmod +x menu-ss
-chmod +x speedtest
-chmod +x about
-chmod +x auto-reboot
-chmod +x restart
-chmod +x bw
-chmod +x port-ssl
-chmod +x port-ovpn
-chmod +x xp
-chmod +x acs-set
-chmod +x sshws
-chmod +x status
-chmod +x menu-backup
-chmod +x backup
-chmod +x restore
-chmod +x jam
+chmod +x /usr/bin/menu
+chmod +x /usr/bin/menu-trial
+chmod +x /usr/bin/menu-vmess
+chmod +x /usr/bin/menu-vless
+chmod +x /usr/bin/running
+chmod +x /usr/bin/clearcache
+chmod +x /usr/bin/menu-trgo
+chmod +x /usr/bin/menu-trojan
+chmod +x /usr/bin/menu-ssh
+chmod +x /usr/bin/usernew
+chmod +x /usr/bin/trial
+chmod +x /usr/bin/renew
+chmod +x /usr/bin/hapus
+chmod +x /usr/bin/cek
+chmod +x /usr/bin/member
+chmod +x /usr/bin/delete
+chmod +x /usr/bin/autokill
+chmod +x /usr/bin/ceklim
+chmod +x /usr/bin/tendang
+chmod +x /usr/bin/menu-set
+chmod +x /usr/bin/menu-domain
+chmod +x /usr/bin/add-host
+chmod +x /usr/bin/port-change
+chmod +x /usr/bin/certv2ray
+chmod +x /usr/bin/menu-webmin
+chmod +x /usr/bin/menu-nob
+chmod +x /usr/bin/menu-ss
+chmod +x /usr/bin/speedtest
+chmod +x /usr/bin/about
+chmod +x /usr/bin/auto-reboot
+chmod +x /usr/bin/restart
+chmod +x /usr/bin/bw
+chmod +x /usr/bin/port-ssl
+chmod +x /usr/bin/port-ovpn
+chmod +x /usr/bin/xp
+chmod +x /usr/bin/acs-set
+chmod +x /usr/bin/sshws
+chmod +x /usr/bin/status
+chmod +x /usr/bin/menu-backup
+chmod +x /usr/bin/backup
+chmod +x /usr/bin/restore
+chmod +x /usr/bin/jam
 chmod +x /usr/bin/lock
 chmod +x /usr/bin/unlock
 chmod +x /usr/bin/bot2
