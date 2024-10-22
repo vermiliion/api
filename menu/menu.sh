@@ -89,7 +89,7 @@ let vma=$vmc/2
 ssh1="$(awk -F: '$3 >= 1000 && $1 != "nobody" {print $1}' /etc/passwd | wc -l)"
 trx=$(grep -c -E "^#! " "/etc/xray/config.json")
 let tra=$trx/2
-ssx=$(grep -c -E "^## " "/etc/xray/config.json")
+ssx=$(grep -c -E "^#!# " "/etc/xray/config.json")
 let ssa=$ssx/2
 BIBlack='\033[1;90m'      # Black
 f='\033[1;91m'        # Red
@@ -278,13 +278,13 @@ echo -e "${BIYellow} ┌──────────────────�
 echo -e " ${BIYellow}│   ${BIYellow}SSH${NC}    :$ressh ${BIYellow}NGINX${NC}    :$resngx ${BIYellow}XRAY${NC}   :$resv2r ${BIYellow}TROJAN${NC}: $resv2r"
 echo -e " ${BIYellow}│   ${BIYellow}STUNNEL${NC}:$resst ${BIYellow}DROPBEAR${NC} :$resdbr ${BIYellow}SSH-WS${NC} :$ressshws"
 echo -e "${BIYellow} └─────────────────────────────────────────────────────┘${NC}"
-echo -e "${BIYellow}   ────────────────────────────────────────────────────${NC}"
+echo -e "${BIYellow}   ───────────────────────────────────────────────────${NC}"
 echo -e "${BIYellow}                ${BIYellow}SSH    TOTAL ACCOUNT : $ssh1${NC}" 
 echo -e "${BIYellow}                ${BIYellow}VLESS  TOTAL ACCOUNT : $vla${NC}"  
 echo -e "${BIYellow}                ${BIYellow}VMESS  TOTAL ACCOUNT : $vma${NC}"
 echo -e "${BIYellow}                ${BIYellow}TROJAN TOTAL ACCOUNT : $tra${NC}"  
 echo -e "${BIYellow}            ${BIYellow}SHADOWSOCKS  TOTAL ACCOUNT : $ssa${NC}"  
-echo -e "${BIYellow}   ────────────────────────────────────────────────────${NC}"
+echo -e "${BIYellow}   ───────────────────────────────────────────────────${NC}"
 echo -e "${BIYellow} ┌─────────────────────────────────────────────────────┐${NC}"
 echo -e "${BIYellow}   ${BICyan}[${BIWhite}01${BICyan}] SSH            ${BICyan}[${BIWhite}10${BICyan}] Bot Telegram${NC}             ${BIYellow} ${NC}"
 echo -e "${BIYellow}   ${BICyan}[${BIWhite}02${BICyan}] Vmess          ${BICyan}[${BIWhite}11${BICyan}] Bandwidth${NC}                ${BIYellow} ${NC}"
