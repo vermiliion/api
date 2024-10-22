@@ -280,10 +280,7 @@ chmod +x add-host
 chmod +x port-change
 chmod +x certv2ray
 chmod +x menu-webmin
-chmod +x menu-warp
-chmod +x menu-nubz
 chmod +x menu-nob
-chmod +x menu-bot
 chmod +x menu-ss
 chmod +x speedtest
 chmod +x about
@@ -313,6 +310,12 @@ chmod +x /usr/bin/restart-bot2
 chmod +x /usr/bin/hapus-bot
 chmod +x /usr/bin/del-bot2
 chmod +x /usr/bin/update
+sed -i 's/\r$//' /usr/bin/menu-bot
+sed -i 's/\r$//' /usr/bin/menu-warp
+sed -i 's/\r$//' /usr/bin/menu-nubz
+chmod +x /usr/bin/menu-bot
+chmod +x /usr/bin/menu-warp
+chmod +x /usr/bin/menu-nubz
 cd
 cat > /etc/cron.d/re_otm <<-END
 SHELL=/bin/sh
