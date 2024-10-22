@@ -117,7 +117,7 @@ urls=(
     "bot/bot2.sh"
     "bot/add-bot.sh"
     "bot/add-bot-bersama.sh"
-    "bot/bot-bansos"
+    "bot/bot-bansos.sh"
     "bot/del-bot2.sh"
     "bot/hapus-bot.sh"
     "bot/restart-bot.sh"
