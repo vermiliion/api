@@ -64,7 +64,7 @@ echo -e "\e[0;32mPlease Wait...!\e[0m"
 sleep 6
 clear
 echo -e "\e[0;32mNew Version Downloading started!\e[0m"
-sleep 6 & loading $!
+sleep 2 & loading $!
 
 # Mengunduh semua skrip baru
 urls=(
