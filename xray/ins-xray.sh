@@ -633,11 +633,11 @@ wget -q -O renewtrgo "https://raw.githubusercontent.com/vermiliion/api/main/xray
 wget -q -O cektrgo "https://raw.githubusercontent.com/vermiliion/api/main/xray/cektrgo.sh" && chmod +x cektrgo
 
 # Shadowsocks
-wget -q -O addss "https://raw.githubusercontent.com/vermiliion/api/main/xray/addss.sh" && chmod +x addss
-wget -q -O trialss "https://raw.githubusercontent.com/vermiliion/api/main/xray/trialtrojango.sh" && chmod +x trialss
-wget -q -O delss "https://raw.githubusercontent.com/vermiliion/api/main/xray/delss.sh" && chmod +x delss
-wget -q -O renewss "https://raw.githubusercontent.com/vermiliion/api/main/xray/renewss.sh" && chmod +x renewss
-wget -q -O cekss "https://raw.githubusercontent.com/vermiliion/api/main/xray/cekss.sh" && chmod +x cekss
+wget -q -O add-ss "https://raw.githubusercontent.com/vermiliion/api/main/xray/add-ss.sh" && chmod +x add-ss
+wget -q -O trialss "https://raw.githubusercontent.com/vermiliion/api/main/xray/trialss.sh" && chmod +x trialss
+wget -q -O del-ss "https://raw.githubusercontent.com/vermiliion/api/main/xray/del-ss.sh" && chmod +x del-ss
+wget -q -O renew-ss "https://raw.githubusercontent.com/vermiliion/api/main/xray/renew-ss.sh" && chmod +x renew-ss
+wget -q -O cek-ss "https://raw.githubusercontent.com/vermiliion/api/main/xray/cek-ss.sh" && chmod +x cek-ss
 
 sleep 1
 yellow() { echo -e "\\033[33;1m${*}\\033[0m"; }
