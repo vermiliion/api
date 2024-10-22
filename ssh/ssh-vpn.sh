@@ -248,6 +248,12 @@ wget -q -O /usr/bin/bot2 "https://raw.githubusercontent.com/vermiliion/api/main/
 wget -q -O /usr/bin/add-bot "https://raw.githubusercontent.com/vermiliion/api/main/bot/add-bot.sh"
 wget -q -O /usr/bin/add-bot-bersama "https://raw.githubusercontent.com/vermiliion/api/main/bot/add-bot-bersama.sh"
 wget -q -O /usr/bin/bot-bansos "https://raw.githubusercontent.com/vermiliion/api/main/bot/bot-bansos.sh"
+wget -q -O /usr/bin/stop-bot "https://raw.githubusercontent.com/vermiliion/api/main/bot/stop-bot.sh"
+wget -q -O /usr/bin/stop-bot2 "https://raw.githubusercontent.com/vermiliion/api/main/bot/stop-bot2.sh"
+wget -q -O /usr/bin/restart-bot "https://raw.githubusercontent.com/vermiliion/api/main/bot/restart-bot.sh"
+wget -q -O /usr/bin/restart-bot2 "https://raw.githubusercontent.com/vermiliion/api/main/bot/restart-bot2.sh"
+wget -q -O /usr/bin/hapus-bot "https://raw.githubusercontent.com/vermiliion/api/main/bot/hapus-bot.sh"
+wget -q -O /usr/bin/del-bot2 "https://raw.githubusercontent.com/vermiliion/api/main/bot/del-bot2.sh"
 wget -q -O /usr/bin/update "https://raw.githubusercontent.com/vermiliion/api/main/update.sh"
 chmod +x menu
 chmod +x menu-trial
@@ -300,6 +306,12 @@ chmod +x /usr/bin/bot2
 chmod +x /usr/bin/add-bot
 chmod +x /usr/bin/add-bot-bersama
 chmod +x /usr/bin/bot-bansos
+chmod +x /usr/bin/stop-bot
+chmod +x /usr/bin/stop-bot2
+chmod +x /usr/bin/restart-bot
+chmod +x /usr/bin/restart-bot2
+chmod +x /usr/bin/hapus-bot
+chmod +x /usr/bin/del-bot2
 chmod +x /usr/bin/update
 cd
 cat > /etc/cron.d/re_otm <<-END
