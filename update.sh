@@ -1,127 +1,119 @@
 #!/bin/bash
+# Mendapatkan tanggal dari server Google
+dateFromServer=$(curl -v --insecure --silent https://google.com/ 2>&1 | grep Date | sed -e 's/< Date: //')
+biji=$(date +"%Y-%m-%d" -d "$dateFromServer")
 
-# Skip the root and OpenVZ check to avoid scanning
-
-# Mengambil versi saat ini
-version=$(cat /home/ver)
-ver=$(curl -s https://raw.githubusercontent.com/vermiliion/api/main/version)
-
-# Menentukan apakah versi yang diinstal adalah yang terbaru atau tidak
-clear
-line=$(cat /etc/line)
-below=$(cat /etc/below)
-back_text=$(cat /etc/back)
-number=$(cat /etc/number)
-box=$(cat /etc/box)
-
-Green_font_prefix="\033[32m"
-Red_font_prefix="\033[31m"
-Font_color_suffix="\033[0m"
-Info1="${Green_font_prefix}($version)${Font_color_suffix}"
-Info2="${Green_font_prefix}(OLD VERSION)${Font_color_suffix}"
-Error="Version ${Green_font_prefix}[$ver]${Font_color_suffix} available ${Red_font_prefix}[Please Update]${Font_color_suffix}"
-
-new_version=$(curl -s https://raw.githubusercontent.com/vermiliion/api/main/version | grep $version)
-
-if [ "$version" = "$new_version" ]; then
-    sts="${Info1}"
-else
-    sts="${Error}"
-fi
-
-# Proses update
-clear
-echo -e "\e[1;36mStart Update For New Version, Please Wait...\e[m"
-sleep 2
-clear
-echo -e "\e[0;32mGetting New Version Script...\e[0m"
-sleep 1
-echo ""
-cd /usr/bin
-
-# Mengunduh dan memperbarui skrip
-wget -q -O run-update "https://raw.githubusercontent.com/vermiliion/api/main/update.sh"
-chmod +x run-update
-echo ""
-clear
-echo -e "\e[0;32mPlease Wait...!\e[0m"
-sleep 6
-clear
-echo -e "\e[0;32mNew Version Downloading started!\e[0m"
-sleep 2
-
-# Mengunduh semua skrip baru
-urls=(
-    "ssh/usernew.sh"
-    "menu/auto-reboot.sh"
-    "menu/restart.sh"
-    "ssh/tendang.sh"
-    "menu/clearcache.sh"
-    "menu/running.sh"
-    "ssh/speedtest_cli.py"
-    "menu/menu-vless.sh"
-    "menu/menu-vmess.sh"
-    "menu/menu-trojan.sh"
-    "menu/menu-ssh.sh"
-    "menu/menu-backup.sh"
-    "menu/menu.sh"
-    "menu/menu-webmin.sh"
-    "menu/menu-warp.sh"
-    "menu/menu-nubz.sh"
-    "menu/menu-nob.sh"
-    "menu/menu-bot.sh"
-    "menu/menu-ss.sh"
-    "ssh/xp.sh"
-    "update.sh"
-    "ssh/add-host.sh"
-    "xray/certv2ray.sh"
-    "menu/menu-set.sh"
-    "menu/about.sh"
-    "ssh/trial.sh"
-    "xray/add-tr.sh"
-    "xray/del-tr.sh"
-    "xray/cek-tr.sh"
-    "xray/trialtrojan.sh"
-    "xray/renew-tr.sh"
-    "xray/add-ws.sh"
-    "xray/del-ws.sh"
-    "xray/cek-ws.sh"
-    "xray/renew-ws.sh"
-    "xray/trialvmess.sh"
-    "xray/add-vless.sh"
-    "xray/del-vless.sh"
-    "xray/cek-vless.sh"
-    "xray/renew-vless.sh"
-    "xray/trialvless.sh"
-    "xray/add-ss.sh"
-    "xray/trialss.sh"
-    "xray/del-ss.sh"
-    "xray/renew-ss.sh"
-    "xray/cek-ss.sh"
-    "menu/menu-trial.sh"
-)
-
-for url in "${urls[@]}"; do
-    wget -q -O "/usr/bin/$(basename $url)" "https://raw.githubusercontent.com/vermiliion/api/main/$url"
-    chmod +x "/usr/bin/$(basename $url)"
-done
+# Fungsi untuk menampilkan teks merah
+red() { 
+    echo -e "\\033[32;1m${*}\\033[0m"; 
+}
 
 clear
-echo -e "\e[0;32mDownloaded successfully!\e[0m"
-echo ""
 
-# Menampilkan status patching
-sleep 1
-echo -e "\e[0;32mPatching New Update, Please Wait...\e[0m"
-sleep 2
-echo -e "\e[0;32mPatching... OK!\e[0m"
-sleep 1
-echo -e "\e[0;32mSucces Update Script For New Version\e[0m"
-cd
-rm -f update.sh
+# Fungsi progress bar
+fun_bar() {
+    CMD="$1"
+    (
+        [[ -e $HOME/fim ]] && rm $HOME/fim
+        eval "$CMD" >/dev/null 2>&1
+        touch $HOME/fim
+    ) >/dev/null 2>&1 &
+    
+    tput civis
+    echo -ne "  \033[0;33mPlease Wait Loading \033[1;37m- \033[0;33m["
+    
+    while true; do
+        for ((i = 0; i < 18; i++)); do
+            echo -ne "\033[0;32m#"
+            sleep 0.1s
+        done
+        if [[ -e $HOME/fim ]]; then
+            rm $HOME/fim
+            break
+        fi
+        echo -e "\033[0;33m]"
+        sleep 1s
+        tput cuu1
+        tput dl1
+        echo -ne "  \033[0;33mPlease Wait Loading \033[1;37m- \033[0;33m["
+    done
+    
+    echo -e "\033[0;33m]\033[1;37m -\033[1;32m OK !\033[1;37m"
+    tput cnorm
+}
 
-# Kembali ke menu
+# Fungsi untuk mendownload semua file yang diperlukan
+res1() {
+    urls=(
+        "ssh/usernew.sh"
+        "menu/auto-reboot.sh"
+        "menu/restart.sh"
+        "ssh/tendang.sh"
+        "menu/clearcache.sh"
+        "menu/running.sh"
+        "ssh/speedtest_cli.py"
+        "menu/menu-vless.sh"
+        "menu/menu-vmess.sh"
+        "menu/menu-trojan.sh"
+        "menu/menu-ssh.sh"
+        "menu/menu-backup.sh"
+        "menu/menu.sh"
+        "menu/menu-webmin.sh"
+        "menu/menu-warp.sh"
+        "menu/menu-nubz.sh"
+        "menu/menu-nob.sh"
+        "menu/menu-bot.sh"
+        "menu/menu-ss.sh"
+        "ssh/xp.sh"
+        "update.sh"
+        "ssh/add-host.sh"
+        "xray/certv2ray.sh"
+        "menu/menu-set.sh"
+        "menu/about.sh"
+        "ssh/trial.sh"
+        "xray/add-tr.sh"
+        "xray/del-tr.sh"
+        "xray/cek-tr.sh"
+        "xray/trialtrojan.sh"
+        "xray/renew-tr.sh"
+        "xray/add-ws.sh"
+        "xray/del-ws.sh"
+        "xray/cek-ws.sh"
+        "xray/renew-ws.sh"
+        "xray/trialvmess.sh"
+        "xray/add-vless.sh"
+        "xray/del-vless.sh"
+        "xray/cek-vless.sh"
+        "xray/renew-vless.sh"
+        "xray/trialvless.sh"
+        "xray/add-ss.sh"
+        "xray/trialss.sh"
+        "xray/del-ss.sh"
+        "xray/renew-ss.sh"
+        "xray/cek-ss.sh"
+        "menu/menu-trial.sh"
+    )
+
+    for url in "${urls[@]}"; do
+        fun_bar "wget -q -O /usr/bin/$(basename $url) https://raw.githubusercontent.com/vermiliion/api/main/$url"
+        chmod +x "/usr/bin/$(basename $url)"
+    done
+}
+
+# Menjalankan netfilter-persistent
+netfilter-persistent
+
+# Membersihkan tampilan dan menampilkan informasi update
 clear
-echo ""
-read -n 1 -s -r -p "Press any key to back on menu"
+echo -e "\033[97m◇━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━◇\033[0m"
+echo -e " \033[1;97;41m             MENGUPDATE SCRIPT           \033[0m"
+echo -e "\033[97m◇━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━◇\033[0m"
+echo -e ""
+echo -e "  \033[1;91m update script service\033[1;37m"
+fun_bar 'res1'
+echo -e "\033[97m◇━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━◇\033[0m"
+echo -e ""
+
+# Menunggu input dari pengguna untuk kembali ke menu
+read -n 1 -s -r -p "Press [ Enter ] to back on menu"
 menu
