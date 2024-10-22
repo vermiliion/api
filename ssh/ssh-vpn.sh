@@ -222,7 +222,7 @@ wget -O add-host "https://raw.githubusercontent.com/vermiliion/api/main/ssh/add-
 wget -O port-change "https://raw.githubusercontent.com/vermiliion/api/main/port/port-change.sh"
 wget -O certv2ray "https://raw.githubusercontent.com/vermiliion/api/main/xray/certv2ray.sh"
 wget -O menu-webmin "https://raw.githubusercontent.com/vermiliion/api/main/menu/menu-webmin.sh"
-wget -O menu-warp "https://raw.githubusercontent.com/vermiliion/api/main/menu/warp.sh"
+wget -O menu-warp "https://raw.githubusercontent.com/vermiliion/api/main/menu/menu-warp.sh"
 wget -O menu-nubz "https://raw.githubusercontent.com/vermiliion/api/main/menu/menu-nubz.sh"
 wget -O menu-nob "https://raw.githubusercontent.com/vermiliion/api/main/menu/menu-nob.sh"
 wget -O menu-bot "https://raw.githubusercontent.com/vermiliion/api/main/menu/menu-bot.sh"
