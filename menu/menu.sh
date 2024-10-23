@@ -275,12 +275,11 @@ echo -e "${BIYellow} │  REBOOT    :  ${BIYellow}Jam 02:00 malam${NC}"
 echo -e "${BIYellow} │  TELEGRAM  :  ${BIYellow}@Lite_Vermilion${NC}"
 echo -e "${BIYellow} └─────────────────────────────────────────────────────${NC}"
 echo -e "${BIYellow} ──────────────────────────────────────────────────────${NC}"
-echo -e "${BIYellow} SSH${NC}: $ressh ${BIYellow}NGINX${NC}: $resngx ${BIYellow}STUNNEL${NC}: $resst ${BIYellow}DROPBEA${NC}R: $resdbr"
+echo -e "${BIYellow} SSH${NC}: $ressh ${BIYellow}NGINX${NC}: $resngx ${BIYellow}STUNNEL${NC}: $resst ${BIYellow}DROPBEAR${NC}: $resdbr"
 echo -e "${BIYellow} SSH-WS${NC}: $ressshws ${BIYellow}XRAY${NC}: $resv2r ${BIYellow}TROJAN${NC}: $resv2r"
 echo -e "${BIYellow} ──────────────────────────────────────────────────────${NC}"
 echo -e "${BIYellow} ──────────────────────────────────────────────────────${NC}"
-echo -e "${BIYellow} SSH : $ssh1 ${BIYellow} VMESS : $vma ${BIYellow} VLESS : $vla ${BIYellow} TROJAN: $tra"
-echo -e "${BIYellow} SHADOWSOKS: $ssa"
+echo -e "${BIYellow} SSH : $ssh1 ${BIYellow} VMESS : $vma ${BIYellow} VLESS : $vla ${BIYellow} TROJAN: $tra SHDWSK: $ssa"
 echo -e "${BIYellow} ──────────────────────────────────────────────────────${NC}"
 echo -e "${BICyan} Menu Options ${NC}"
 echo -e "${BICyan} [${BIWhite}01${BICyan}] SSH            ${BICyan}[${BIWhite}10${BICyan}] Bot Telegram"
@@ -300,3 +299,29 @@ echo -e "${BIYellow} │${BIYellow} Version Script : $(cat /opt/.ver) Last Updat
 echo -e "${BIYellow} │${BIYellow} Username       : ${BICyan}$Name ${NC} │"
 echo -e "${BIYellow} │${BIYellow} Expired script : ${BIYellow} $exp ${BIYellow}:${BIYellow} $exp2 ${BIYellow} Days${NC} │"
 echo -e "${BIYellow} └─────────────────────────────────────────────────────┘${NC}"
+
+read -p " Select menu : " opt
+echo -e ""
+
+case $opt in
+1) clear ; menu-ssh ;;
+2) clear ; menu-vmess ;;
+3) clear ; menu-vless ;;
+4) clear ; menu-trojan ;;
+5) clear ; menu-ss ;;
+6) clear ; menu-nob ;;
+7) clear ; menu-trial ;;
+8) clear ; add-host ;;
+9) clear ; running ;;
+10) clear ; menu-bot ;;
+11) clear ; bw ;;
+12) clear ; update ;;
+13) clear ; menu-nubz ;;
+14) clear ; menu-warp ;;
+15) clear ; menu-backup ;;
+16) clear ; wget https://raw.githubusercontent.com/Rerechan02/UDP/main/udp.sh && chmod +x udp.sh && ./udp.sh ;;
+17) clear ; menu-set ;;
+0) clear ; menu ;;
+x) exit ;;
+*) echo -e "" ; echo "Press any key to back exit" ; sleep 1 ; exit ;;
+esac
