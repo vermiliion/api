@@ -257,7 +257,6 @@ d2=$(date -d "$2" +%s)
 }
 mai="datediff "$Exp" "$DATE""
 export sem=$( curl -s https://raw.githubusercontent.com/vermiliion/api/main/version)
-export pak=$( cat /home/.ver)
 IPVPS=$(curl -s ipinfo.io/ip )
 clear
 echo -e "$(figlet   "")" | lolcat
@@ -279,7 +278,7 @@ echo -e "${BIYellow} SSH${NC}: $ressh ${BIYellow}NGINX${NC}: $resngx ${BIYellow}
 echo -e "${BIYellow} SSH-WS${NC}: $ressshws ${BIYellow}XRAY${NC}: $resv2r ${BIYellow}TROJAN${NC}: $resv2r"
 echo -e "${BIYellow} ──────────────────────────────────────────────────────${NC}"
 echo -e "${BIYellow} ──────────────────────────────────────────────────────${NC}"
-echo -e "${BIYellow} SSH: $ssh1 ${BIYellow} VMESS: $vma ${BIYellow} VLESS: $vla ${BIYellow} TROJAN: $tra SHDWSK: $ssa"
+echo -e "${BIYellow} SSH${NC}: $ssh1 ${BIYellow} VMESS${NC}: $vma ${BIYellow} VLESS${NC}: $vla ${BIYellow} TROJAN${NC}: $tra SHDWSK:${NC} $ssa"
 echo -e "${BIYellow} ──────────────────────────────────────────────────────${NC}"
 echo -e "${BICyan} Menu Options ${NC}"
 echo -e "${BICyan} [${BIWhite}01${BICyan}] SSH            ${BICyan}[${BIWhite}10${BICyan}] Bot Telegram"
@@ -295,8 +294,8 @@ echo -e "${BIYellow} ┌──────────────────�
 echo -e "${BIYellow} │ \e[44;97;1m               AUTHOR LITE VERMILION               \033[0m ${BIYellow}│${NC}"
 echo -e "${BIYellow} └─────────────────────────────────────────────────────┘${NC}"
 echo -e "${BIYellow} ┌─────────────────────────────────────────────────────${NC}"
-echo -e "${BIYellow} │${BIYellow} Version Script : $(cat /opt/.ver) Last Update ${BIYellow} "
-echo -e "${BIYellow} │${BIYellow} Username       : ${BICyan}$Name ${NC} "
+echo -e "${BIYellow} │${BIYellow} Version Script :  $(cat /opt/.ver) Last Update ${BIYellow} "
+echo -e "${BIYellow} │${BIYellow} Username       :  ${BICyan}$Name ${NC} "
 echo -e "${BIYellow} │${BIYellow} Expired script : ${BIYellow} $exp ${BIYellow}:${BIYellow} $exp2 ${BIYellow} Days${NC} "
 echo -e "${BIYellow} └─────────────────────────────────────────────────────${NC}"
 
