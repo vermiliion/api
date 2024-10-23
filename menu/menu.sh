@@ -278,7 +278,7 @@ echo -e "${BIYellow} SSH${NC}: $ressh ${BIYellow}NGINX${NC}: $resngx ${BIYellow}
 echo -e "${BIYellow} SSH-WS${NC}: $ressshws ${BIYellow}XRAY${NC}: $resv2r ${BIYellow}TROJAN${NC}: $resv2r"
 echo -e "${BIYellow} ──────────────────────────────────────────────────────${NC}"
 echo -e "${BIYellow} ──────────────────────────────────────────────────────${NC}"
-echo -e "${BIYellow} SSH${NC}: $ssh1 ${BIYellow} VMESS${NC}: $vma ${BIYellow} VLESS${NC}: $vla ${BIYellow} TROJAN${NC}: $tra SHDWSK:${NC} $ssa"
+echo -e "${BIYellow} SSH${NC}: $ssh1 ${BIYellow} VMESS${NC}: $vma ${BIYellow} VLESS${NC}: $vla ${BIYellow} TROJAN${NC}: $tra SHDWSK${NC}: $ssa"
 echo -e "${BIYellow} ──────────────────────────────────────────────────────${NC}"
 echo -e "${BICyan} Menu Options ${NC}"
 echo -e "${BICyan} [${BIWhite}01${BICyan}] SSH            ${BICyan}[${BIWhite}10${BICyan}] Bot Telegram"
