@@ -134,12 +134,12 @@ rm tools.sh
 
 clear
 echo -e ""
-echo -e "$BIWhite┌───────────────────────────────────────────┐$NC"
-echo -e "$BGreen │           SETUP DOMAIN VPS                │ $NC"
-echo -e "$BIYellow└───────────────────────────────────────────┘$NC"
-echo -e "$BIGreen 1. Choose Your Own Domain / Gunakan Domain Sendiri $NC"
-echo -e "$BIGreen 2. Use Domain Random / Gunakan Domain Random $NC"
-echo -e "$BIWhite───────────────────────────────────────────$NC"
+echo -e "┌───────────────────────────────────────────┐
+echo -e "│           SETUP DOMAIN VPS                                                          
+echo -e "└───────────────────────────────────────────┘
+echo -e " 1. Choose Your Own Domain / Gunakan Domain Sendiri 
+echo -e " 2. Use Domain Random / Gunakan Domain Random 
+echo -e " ───────────────────────────────────────────
 
 # Loop untuk memastikan input 1 atau 2 yang valid
 while true; do
@@ -278,32 +278,32 @@ reply_markup='{
 # Mengirim pesan ke Telegram
 curl -s --max-time $TIME -d "chat_id=$CHATID&disable_web_page_preview=1&text=$TEXT&parse_mode=html&reply_markup=$reply_markup" $URL >/dev/null
 clear
-echo -e "$kuning┌───────────────────────────────────────────┐"
-echo -e "$BIWhite │           Install SSH / WS               │    $NC"
-echo -e "$kuning└───────────────────────────────────────────┘"
+echo -e "┌───────────────────────────────────────────┐"
+echo -e "│           Install SSH / WS                   
+echo -e "└───────────────────────────────────────────┘"
 sleep 2
 wget https://raw.githubusercontent.com/vermiliion/api/main/ssh/ssh-vpn.sh && chmod +x ssh-vpn.sh && ./ssh-vpn.sh
 clear
-echo -e "$kuning┌───────────────────────────────────────────┐"
-echo -e "$BIWhite │            Install BACKUP                │  $NC"
-echo -e "$kuning└───────────────────────────────────────────┘"
+echo -e "┌───────────────────────────────────────────┐"
+echo -e "│            Install BACKUP                  
+echo -e "└───────────────────────────────────────────┘"
 sleep 2
 wget https://raw.githubusercontent.com/vermiliion/api/main/backup/set-br.sh && chmod +x set-br.sh && ./set-br.sh
 clear
 
 # Install XRAY dan SSH Websocket
-echo -e "$kuning┌───────────────────────────────────────────┐"
-echo -e "$BIWhite │              Install XRAY                │  $NC"
-echo -e "$kuning└───────────────────────────────────────────┘"
+echo -e "┌───────────────────────────────────────────┐"
+echo -e "│              Install XRAY                  
+echo -e "└───────────────────────────────────────────┘"
 sleep 2
 wget https://raw.githubusercontent.com/vermiliion/api/main/xray/ins-xray.sh && chmod +x ins-xray.sh && ./ins-xray.sh
 wget https://raw.githubusercontent.com/vermiliion/api/main/sshws/insshws.sh && chmod +x insshws.sh && ./insshws.sh
 clear
 
 # Install SlowDNS
-echo -e "$kuning┌───────────────────────────────────────────┐"
-echo -e "$BIWhite │             Install SLOWDNS              │     $NC"
-echo -e "$kuning└───────────────────────────────────────────┘"
+echo -e "┌───────────────────────────────────────────┐"
+echo -e "│             Install SLOWDNS                   
+echo -e "└───────────────────────────────────────────┘"
 sleep 2
 wget -q -O slow.sh https://raw.githubusercontent.com/vermiliion/api/main/slow.sh && chmod +x slow.sh && ./slow.sh
 clear
