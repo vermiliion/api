@@ -262,10 +262,10 @@ IPVPS=$(curl -s ipinfo.io/ip )
 clear
 echo -e "$(figlet   "")" | lolcat
 echo -e "${BIYellow} ┌─────────────────────────────────────────────────────┐${NC}"
-echo -e "${BIYellow} │ \e[44;97;1m               TALES OF THE FREENET               \033[0m ${BIYellow} │${NC}"
+echo -e "${BIYellow} │ \e[44;97;1m               TALES OF THE FREENET               \033[0m ${BIYellow}  │${NC}"
 echo -e "${BIYellow} └─────────────────────────────────────────────────────┘${NC}"
-echo -e "${BIYellow} ┌─────────────────────────────────────────────────────┐${NC}"
-echo -e "${BIYellow} │  OS        :  ${BIYellow}$(cat /etc/os-release | grep -w PRETTY_NAME | sed 's/PRETTY_NAME=//g' | sed 's/"//g')${NC}"
+echo -e "${BIYellow} ┌─────────────────────────────────────────────────────${NC}"
+echo -e "${BIYellow} │  OS        :  ${BIYellow}$(grep -w PRETTY_NAME /etc/os-release | sed 's/PRETTY_NAME=//;s/"//g')${NC}"
 echo -e "${BIYellow} │  NS        :  ${BIYellow}$(cat /root/nsdomain)${NC}"
 echo -e "${BIYellow} │  DOMAIN    :  ${BIYellow}$(cat /etc/xray/domain)${NC}"
 echo -e "${BIYellow} │  RAM & CPU :  ${BIYellow}$totalram MB / $cpu_usage${NC}"
@@ -273,60 +273,56 @@ echo -e "${BIYellow} │  SWAP RAM  :  ${BIYellow}$uram / $tram MB${NC}"
 echo -e "${BIYellow} │  IP VPS    :  ${BIYellow}$IPVPS${NC}"
 echo -e "${BIYellow} │  REBOOT    :  ${BIYellow}Jam 02:00 malam${NC}"
 echo -e "${BIYellow} │  TELEGRAM  :  ${BIYellow}@Lite_Vermilion${NC}"
-echo -e "${BIYellow} └─────────────────────────────────────────────────────┘${NC}"
+echo -e "${BIYellow} └─────────────────────────────────────────────────────${NC}"
+echo -e "${BIYellow} ──────────────────────────────────────────────────────${NC}"
+echo -e "${BIYellow} SSH${NC}: $ressh ${BIYellow}NGINX${NC}: $resngx ${BIYellow}STUNNEL${NC}: $resst ${BIYellow}DROPBEA${NC}R: $resdbr"
+echo -e "${BIYellow} SSH-WS${NC}: $ressshws ${BIYellow}XRAY${NC}: $resv2r ${BIYellow}TROJAN${NC}: $resv2r"
+echo -e "${BIYellow} ──────────────────────────────────────────────────────${NC}"
+echo -e "${BIYellow} ──────────────────────────────────────────────────────${NC}"
+echo -e "${BIYellow} SSH : $ssh1" ${BIYellow}VMESS : $vma ${BIYellow}VLESS : $vla ${BIYellow}TROJAN: $tra"
+echo -e "${BIYellow} SHADWSK: $ssa"
+echo -e "${BIYellow} ──────────────────────────────────────────────────────${NC}"
+echo -e "${BICyan}Menu Options ${NC}"
+echo -e "${BICyan}[${BIWhite}01${BICyan}] SSH            ${BICyan}[${BIWhite}10${BICyan}] Bot Telegram"
+echo -e "${BICyan}[${BIWhite}02${BICyan}] Vmess          ${BICyan}[${BIWhite}11${BICyan}] Bandwidth"
+echo -e "${BICyan}[${BIWhite}03${BICyan}] Vless          ${BICyan}[${BIWhite}12${BICyan}] Update Script"
+echo -e "${BICyan}[${BIWhite}04${BICyan}] Trojan         ${BICyan}[${BIWhite}13${BICyan}] Install Noobzvpns"
+echo -e "${BICyan}[${BIWhite}05${BICyan}] Shadowsocks    ${BICyan}[${BIWhite}14${BICyan}] Warp"
+echo -e "${BICyan}[${BIWhite}06${BICyan}] Noobzvpns      ${BICyan}[${BIWhite}15${BICyan}] Backup"
+echo -e "${BICyan}[${BIWhite}07${BICyan}] Menu Trial     ${BICyan}[${BIWhite}16${BICyan}] Install UDP"
+echo -e "${BICyan}[${BIWhite}08${BICyan}] Domain         ${BICyan}[${BIWhite}17${BICyan}] Setting"
+echo -e "${BICyan}[${BIWhite}09${BICyan}] Running"
 echo -e "${BIYellow} ┌─────────────────────────────────────────────────────┐${NC}"
-echo -e " ${BIYellow}│   ${BIYellow}SSH${NC}    :$ressh ${BIYellow}NGINX${NC}    :$resngx ${BIYellow}XRAY${NC}   :$resv2r ${BIYellow}TROJAN${NC}: $resv2r"
-echo -e " ${BIYellow}│   ${BIYellow}STUNNEL${NC}:$resst ${BIYellow}DROPBEAR${NC} :$resdbr ${BIYellow}SSH-WS${NC} :$ressshws"
-echo -e "${BIYellow} └─────────────────────────────────────────────────────┘${NC}"
-echo -e "${BIYellow}   ───────────────────────────────────────────────────${NC}"
-echo -e "${BIYellow}                ${BIYellow}SSH    TOTAL ACCOUNT : $ssh1${NC}" 
-echo -e "${BIYellow}                ${BIYellow}VLESS  TOTAL ACCOUNT : $vla${NC}"  
-echo -e "${BIYellow}                ${BIYellow}VMESS  TOTAL ACCOUNT : $vma${NC}"
-echo -e "${BIYellow}                ${BIYellow}TROJAN TOTAL ACCOUNT : $tra${NC}"  
-echo -e "${BIYellow}            ${BIYellow}SHADOWSOCKS  TOTAL ACCOUNT : $ssa${NC}"  
-echo -e "${BIYellow}   ───────────────────────────────────────────────────${NC}"
-echo -e "${BIYellow} ┌─────────────────────────────────────────────────────┐${NC}"
-echo -e "${BIYellow}   ${BICyan}[${BIWhite}01${BICyan}] SSH            ${BICyan}[${BIWhite}10${BICyan}] Bot Telegram${NC}             ${BIYellow} ${NC}"
-echo -e "${BIYellow}   ${BICyan}[${BIWhite}02${BICyan}] Vmess          ${BICyan}[${BIWhite}11${BICyan}] Bandwidth${NC}                ${BIYellow} ${NC}"
-echo -e "${BIYellow}   ${BICyan}[${BIWhite}03${BICyan}] Vless          ${BICyan}[${BIWhite}12${BICyan}] Update Script${NC}            ${BIYellow} ${NC}"
-echo -e "${BIYellow}   ${BICyan}[${BIWhite}04${BICyan}] Trojan         ${BICyan}[${BIWhite}13${BICyan}] Install Noobzvpns${NC}        ${BIYellow} ${NC}"
-echo -e "${BIYellow}   ${BICyan}[${BIWhite}05${BICyan}] Shadowsocks    ${BICyan}[${BIWhite}14${BICyan}] Warp${NC}                     ${BIYellow} ${NC}"
-echo -e "${BIYellow}   ${BICyan}[${BIWhite}06${BICyan}] Noobzvpns      ${BICyan}[${BIWhite}15${BICyan}] Backup${NC}                   ${BIYellow} ${NC}"
-echo -e "${BIYellow}   ${BICyan}[${BIWhite}07${BICyan}] Menu Trial     ${BICyan}[${BIWhite}16${BICyan}] Install UDP${NC}              ${BIYellow} ${NC}"
-echo -e "${BIYellow}   ${BICyan}[${BIWhite}08${BICyan}] Domain         ${BICyan}[${BIWhite}17${BICyan}] Setting${NC}                  ${BIYellow} ${NC}"
-echo -e "${BIYellow}   ${BICyan}[${BIWhite}09${BICyan}] Running${NC}                                                    ${BIYellow} ${NC}"
-echo -e "${BIYellow} └─────────────────────────────────────────────────────┘${NC}"
-echo -e "${BIYellow} ┌─────────────────────────────────────────────────────┐${NC}"
-echo -e "${BIYellow} │  ${BICyan}[${BIWhite}00${BICyan}] BACK TO MENU      ${BICyan}[${BIWhite}X${BICyan}] EXIT${NC}                   ${BIYellow} │${NC}"
+echo -e "${BIYellow} │ \e[44;97;1m               AUTHOR LITE VERMILION               \033[0m ${BIYellow} │${NC}"
 echo -e "${BIYellow} └─────────────────────────────────────────────────────┘${NC}"
 echo -e "${BIYellow} ┌─────────────────────────────────────────────────────┐${NC}"
 echo -e "${BIYellow} │${BIYellow} Version Script : $(cat /opt/.ver) Last Update ${BIYellow}"
-echo -e "${BIYellow} │${BIYellow} Username       :\033[1;36m $Name \e[0m"
-echo -e "${BIYellow} │${BIYellow} Expired script :${BIYellow} $exp ${BIYellow}:${BIYellow} $exp2${BIYellow} Days${NC}"
+echo -e "${BIYellow} │${BIYellow} Username       : ${BICyan}$Name ${NC}"
+echo -e "${BIYellow} │${BIYellow} Expired script : ${BIYellow} $exp ${BIYellow}:${BIYellow} $exp2 ${BIYellow}Days${NC}"
 echo -e "${BIYellow} └─────────────────────────────────────────────────────┘${NC}"
 
 read -p " Select menu : " opt
 echo -e ""
 
 case $opt in
-1) clear ; menu-ssh ;;
-2) clear ; menu-vmess ;;
-3) clear ; menu-vless ;;
-4) clear ; menu-trojan ;;
-5) clear ; menu-ss ;;
-6) clear ; menu-nob ;;
-7) clear ; menu-trial ;;
-8) clear ; add-host ;;
-9) clear ; running ;;
-10) clear ; menu-bot ;;
-11) clear ; bw ;;
-12) clear ; update ;;
-13) clear ; menu-nubz ;;
-14) clear ; menu-warp ;;
-15) clear ; menu-backup ;;
-16) clear ; wget https://raw.githubusercontent.com/Rerechan02/UDP/main/udp.sh && chmod +x udp.sh && ./udp.sh ;;
-17) clear ; menu-set ;;
-0) clear ; menu ;;
-x) exit ;;
-*) echo -e "" ; echo "Press any key to back exit" ; sleep 1 ; exit ;;
+    1) clear ; menu-ssh ;;
+    2) clear ; menu-vmess ;;
+    3) clear ; menu-vless ;;
+    4) clear ; menu-trojan ;;
+    5) clear ; menu-ss ;;
+    6) clear ; menu-nob ;;
+    7) clear ; menu-trial ;;
+    8) clear ; add-host ;;
+    9) clear ; running ;;
+    10) clear ; menu-bot ;;
+    11) clear ; bw ;;
+    12) clear ; update ;;
+    13) clear ; menu-nubz ;;
+    14) clear ; menu-warp ;;
+    15) clear ; menu-backup ;;
+    16) clear ; wget https://raw.githubusercontent.com/Rerechan02/UDP/main/udp.sh && chmod +x udp.sh && ./udp.sh ;;
+    17) clear ; menu-set ;;
+    0) clear ; menu ;;
+    x) exit ;;
+    *) echo -e "" ; echo "Press any key to back exit" ; sleep 1 ; exit ;;
 esac
