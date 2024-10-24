@@ -27,6 +27,22 @@ sts="${Info2}"
 else
 sts="${Error}"
 fi
+
+loading() {
+  local pid=$1
+  local delay=0.1
+  local spin='-\|/'
+
+  while ps -p "$pid" > /dev/null; do
+    printf "[%c] " "$spin"
+    spin=${spin#?}${spin%"${spin#?}"}
+    sleep $delay
+    printf "\b\b\b\b\b\b"
+  done
+
+  printf "    \b\b\b\b"
+}
+
 clear
 echo -e "\e[1;36mStart Update For New Version, Please Wait..\e[m"
 sleep 2
@@ -40,11 +56,11 @@ chmod +x run-update
 echo ""
 clear
 echo -e "\e[0;32mPlease Wait...!\e[0m"
-sleep 6
+sleep 2
 clear
 echo ""
 echo -e "\e[0;32mNew Version Downloading started!\e[0m"
-sleep 2
+sleep 1
 cd /usr/bin
 wget -q -O /usr/bin/menu "https://raw.githubusercontent.com/vermiliion/api/main/menu/menu.sh"
 wget -q -O /usr/bin/menu-trial "https://raw.githubusercontent.com/vermiliion/api/main/menu/menu-trial.sh"
@@ -167,6 +183,7 @@ chmod +x /usr/bin/menu-bot
 chmod +x /usr/bin/menu-warp
 chmod +x /usr/bin/menu-nubz
 clear
+sleep 1 & loading $!
 echo -e ""
 echo -e "\e[0;32mDownloaded successfully!\e[0m"
 echo ""
