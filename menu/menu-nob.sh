@@ -46,18 +46,36 @@ function Banner() {
 function ins_noobz() {
   clear
   echo -e "${runn} Installing NoobzVPN...${Suffix}"
+  
+  # Download the NoobzVPN zip file
   wget https://raw.githubusercontent.com/vermiliion/api/main/noobzvpns.zip
+  
+  # Unzip the downloaded file
   unzip noobzvpns.zip
-  cd
-  ls
-  rm- rf noobzvpns.zip
+  
+  # Remove the zip file after extraction
+  rm -f noobzvpns.zip
+  
+  # Navigate to the unzipped directory
   cd noobzvpns
+  
+  # Give execute permission to the install script
   chmod +x install.sh
+  
+  # Run the install script
   ./install.sh
+  
+  # Start and restart the NoobzVPN service
   systemctl start noobzvpns
   systemctl restart noobzvpns
+  
+  # Notify the user of successful installation
   echo -e "${acc} NoobzVPN successfully installed! ${Suffix}"
-  read -n 1 -s -r -p "Press any key to menu"
+  
+  # Wait for the user to press a key before returning to the menu
+  read -n 1 -s -r -p "Press any key to return to menu"
+  
+  # Call the menu function
   menu-nob
 }
 
@@ -71,7 +89,7 @@ function uninstall_noobz() {
   rm -rf /usr/local/bin/noobzvpns
   rm -f /etc/systemd/system/noobzvpns.service
   echo -e "${acc} NoobzVPN successfully uninstalled! ${Suffix}"
-  read -n 1 -s -r -p "Press any key to menu"
+  ${R1}read -n 1 -s -r -p "Press any key to menu"
   menu-nob
 }
 
@@ -81,7 +99,7 @@ function restart_noobz() {
   echo -e "${runn} Restarting NoobzVPN...${Suffix}"
   systemctl restart noobzvpns
   echo -e "${acc} NoobzVPN successfully restarted! ${Suffix}"
-  read -n 1 -s -r -p "Press any key to menu"
+  ${R1}read -n 1 -s -r -p "Press any key to menu"
   menu-nob
 }
 
@@ -121,7 +139,7 @@ END
   echo -e "Host             : $(cat /etc/xray/domain)"
   echo -e "Aktif Selama     : $days Hari"
   Liner
-  read -n 1 -s -r -p "Press any key to menu"
+  ${R1}read -n 1 -s -r -p "Press any key to menu"
   menu-nob
 }
 
@@ -129,14 +147,14 @@ END
 function block_user() {
     read -p "Enter username to block: " username
     noobzvpns --block-user "$username"
-    read -n 1 -s -r -p "Press any key to menu"
+    ${R1}read -n 1 -s -r -p "Press any key to menu"
     menu-nob
 }
 
 function unblock_user() {
     read -p "Enter username to unblock: " username
     noobzvpns --unblock-user "$username"
-    read -n 1 -s -r -p "Press any key to menu"
+    ${R1}read -n 1 -s -r -p "Press any key to menu"
     menu-nob
 }
 
@@ -144,14 +162,14 @@ function set_expiration() {
     read -p "Enter username: " username
     read -p "Enter expiration days (0 for unlimited): " days
     noobzvpns --expired-user "$username" "$days"
-    read -n 1 -s -r -p "Press any key to menu"
+    ${R1}read -n 1 -s -r -p "Press any key to menu"
     menu-nob
 }
 
 function renew_expiration() {
     read -p "Enter username to renew expiration: " username
     noobzvpns --renew-user "$username"
-    read -n 1 -s -r -p "Press any key to menu"
+    ${R1}read -n 1 -s -r -p "Press any key to menu"
     menu-nob
 }
 
@@ -159,7 +177,7 @@ function change_password() {
     read -p "Enter username: " username
     read -p "Enter new password: " new_password
     noobzvpns --password-user "$username" "$new_password"
-    read -n 1 -s -r -p "Press any key to menu"
+    ${R1}read -n 1 -s -r -p "Press any key to menu"
     menu-nob
 }
 
@@ -167,14 +185,14 @@ function rename_user() {
     read -p "Enter current username: " old_username
     read -p "Enter new username: " new_username
     noobzvpns --rename-user "$old_username" "$new_username"
-    read -n 1 -s -r -p "Press any key to menu"
+    ${R1}read -n 1 -s -r -p "Press any key to menu"
     menu-nob
 }
 
 function remove_user() {
     read -p "Enter username to remove: " username
     noobzvpns --remove-user "$username"
-    read -n 1 -s -r -p "Press any key to menu"
+    ${R1}read -n 1 -s -r -p "Press any key to menu"
     menu-nob
 }
 
@@ -185,20 +203,20 @@ function remove_all_users() {
     else
         echo "Operation cancelled."
     fi
-    read -n 1 -s -r -p "Press any key to menu"
+    ${R1}read -n 1 -s -r -p "Press any key to menu"
     menu-nob
 }
 
 function info_user() {
     read -p "Enter username: " username
     noobzvpns --info-user "$username"
-    read -n 1 -s -r -p "Press any key to menu"
+    ${R1}read -n 1 -s -r -p "Press any key to menu"
     menu-nob
 }
 
 function info_all_users() {
     noobzvpns --info-all-user
-    read -n 1 -s -r -p "Press any key to menu"
+    ${R1}read -n 1 -s -r -p "Press any key to menu"
     menu-nob
 }
 
