@@ -48,20 +48,6 @@ else
 fi
 
 # Fungsi loading animasi
-loading() {
-    local pid=$1
-    local delay=0.1
-    local spin='-\|/'
-    
-    while ps -p "$pid" > /dev/null; do
-        printf "[%c] " "$spin"
-        spin=${spin#?}${spin%"${spin#?}"}
-        sleep $delay
-        printf "\b\b\b\b\b\b"
-    done
-
-    printf "    \b\b\b\b"
-}
 
 # Membersihkan layar dan mulai proses update
 clear
@@ -79,8 +65,6 @@ echo -e "\e[0;32mPlease Wait...!\e[0m"
 sleep 2
 clear
 cd /usr/bin
-pid=$!
-loading $pid
 wget -q -O /usr/bin/menu "https://raw.githubusercontent.com/vermiliion/api/main/menu/menu.sh"
 wget -q -O /usr/bin/menu-trial "https://raw.githubusercontent.com/vermiliion/api/main/menu/menu-trial.sh"
 wget -q -O /usr/bin/menu-vmess "https://raw.githubusercontent.com/vermiliion/api/main/menu/menu-vmess.sh"
