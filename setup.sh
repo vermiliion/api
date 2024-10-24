@@ -350,17 +350,11 @@ if [ "$aureb" -gt "$b" ]; then
 else
   gg="AM"
 fi
-
-# Simpan alamat IP VPS
+clear
 curl -sS ifconfig.me > /etc/myipvps
-# Hapus file setup dan script lainnya jika ada
 rm /root/setup.sh >/dev/null 2>&1
 rm /root/ins-xray.sh >/dev/null 2>&1
 rm /root/insshws.sh >/dev/null 2>&1
-
-# Tampilkan waktu instalasi dan tunggu input dari user
-secs_to_human "$(($(date +%s) - ${start}))" | tee -a log-install.txt
+clear
 read -n 1 -s -r -p "Press any key to menu"
-
-# Panggil menu setelah selesai
 menu
