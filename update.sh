@@ -187,16 +187,6 @@ echo ""
     chmod +x /usr/bin/menu-bot
     chmod +x /usr/bin/menu-warp
     chmod +x /usr/bin/menu-nubz"
-    sleep 2
-    # Periksa apakah unduhan berhasil
-# Check if there are any files in /usr/bin
-if ls /usr/bin/* &> /dev/null; then
-    echo "Script update berhasil diunduh"
-    chmod +x /usr/bin/*
-else
-    echo "Gagal mengunduh skrip update"
-    exit 1
-fi &
 
 # Ambil PID dari proses background
 pid=$!  
