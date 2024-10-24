@@ -1,6 +1,28 @@
 #!/bin/bash
 
-# Colors
+PERMISSION () {
+    MYIP=$(curl -sS ipv4.icanhazip.com)
+    IZIN=$(curl -sS https://raw.githubusercontent.com/vermiliion/api/main/register | awk '{print $4}' | grep $MYIP)
+    if [ "$MYIP" = "$IZIN" ]; then
+        echo "Permission Accepted"
+        res="Permission Accepted"
+    else
+        res="Permission Denied!"
+    fi
+}
+
+PERMISSION
+
+if [ -f /home/needupdate ]; then
+    echo -e "${RED}Your script needs to be updated first!${NC}"
+    exit 0
+elif [ "$res" = "Permission Accepted" ]; then
+    echo "Access granted."
+else
+    echo -e "${RED}Permission Denied!${NC}"
+    exit 0
+fi
+
 BIYellow='\e[1;93m'
 NC='\e[0m'  # No Color
 runn='\e[38;5;14m' 
