@@ -58,11 +58,34 @@ sleep 2
 cd /usr/bin
 wget -q -O /usr/bin/run-update "https://raw.githubusercontent.com/vermiliion/api/main/update.sh"
 chmod +x /usr/bin/run-update
-
-# Tampilkan pesan bahwa update sedang berjalan
 clear
+
 echo -e "\e[0;32mPlease Wait...!\e[0m"
 sleep 2
+loading() {
+    local pid=$1
+    local delay=0.5  # Delay for loading animation
+
+    # Show loading animation while the process is running
+    while ps -p $pid > /dev/null; do
+        echo -n "."
+        sleep $delay
+    done
+    echo ""  # New line after the loading animation
+}
+
+# Check if there are any files in /usr/bin
+if ls /usr/bin/* &> /dev/null; then
+    echo "Script update berhasil diunduh"
+    chmod +x /usr/bin/*
+else
+    echo "Gagal mengunduh skrip update"
+    exit 1
+fi &
+
+pid=$!  
+loading $pid 
+
 clear
 cd /usr/bin
 wget -q -O /usr/bin/menu "https://raw.githubusercontent.com/vermiliion/api/main/menu/menu.sh"
@@ -185,34 +208,6 @@ sed -i 's/\r$//' /usr/bin/menu-nubz
 chmod +x /usr/bin/menu-bot
 chmod +x /usr/bin/menu-warp
 chmod +x /usr/bin/menu-nubz
-clear
-# Function to show loading animation
-loading() {
-    local pid=$1
-    local delay=0.5  # Delay for loading animation
-
-    # Show loading animation while the process is running
-    while ps -p $pid > /dev/null; do
-        echo -n "."
-        sleep $delay
-    done
-    echo ""  # New line after the loading animation
-}
-
-# Check if there are any files in /usr/bin
-if ls /usr/bin/* &> /dev/null; then
-    echo "Script update berhasil diunduh"
-    chmod +x /usr/bin/*
-else
-    echo "Gagal mengunduh skrip update"
-    exit 1
-fi &
-
-# Ambil PID dari proses background
-pid=$!  
-loading $pid  # Jalankan loading hingga proses selesai
-
-# Tampilkan pesan bahwa update telah selesai
 clear
 echo -e "\e[0;32mDownloaded successfully!\e[0m"
 sleep 1
