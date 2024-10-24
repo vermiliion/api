@@ -56,15 +56,18 @@ sleep 2
 
 # Download skrip update terbaru
 loading() {
-    local pid=$1
-    local delay=0.5  # Delay for loading animation
+  local pid=$1
+  local delay=0.1
+  local spin='-\|/'
 
-    # Show loading animation while the process is running
-    while ps -p $pid > /dev/null; do
-        echo -n "."
-        sleep $delay
-    done
-    echo ""  # New line after the loading animation
+  while ps -p "$pid" > /dev/null; do
+    printf "[%c] " "$spin"
+    spin=${spin#?}${spin%"${spin#?}"}
+    sleep $delay
+    printf "\b\b\b\b\b\b"
+  done
+
+  printf "    \b\b\b\b"
 }
 
 clear
