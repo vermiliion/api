@@ -1,48 +1,69 @@
 #!/bin/bash
+
+# Memastikan script dijalankan sebagai root
 if [ "${EUID}" -ne 0 ]; then
-echo "You need to run this script as root"
-exit 1
+    echo "You need to run this script as root"
+    exit 1
 fi
+
+# Memeriksa apakah sistem berjalan di OpenVZ
 if [ "$(systemd-detect-virt)" == "openvz" ]; then
-echo "OpenVZ is not supported"
-exit 1
+    echo "OpenVZ is not supported"
+    exit 1
 fi
+
 echo ""
+
+# Mendapatkan versi saat ini dari file lokal
 version=$(cat /home/ver)
-ver=$( curl https://raw.githubusercontent.com/vermiliion/api/main/version )
+
+# Mendapatkan versi terbaru dari server
+ver=$(curl -s https://raw.githubusercontent.com/vermiliion/api/main/version)
+
+# Membersihkan layar
 clear
-line=$(cat /etc/line)
-below=$(cat /etc/below)
-back_text=$(cat /etc/back)
-number=$(cat /etc/number)
-box=$(cat /etc/box)
-Green_font_prefix="\033[32m" && Red_font_prefix="\033[31m" && Green_background_prefix="\033[42;37m" && Red_background_prefix="\033[41;37m" && Font_color_suffix="\033[0m"
+
+# Membaca file konfigurasi lain jika diperlukan
+line=$(cat /etc/line 2>/dev/null)
+below=$(cat /etc/below 2>/dev/null)
+back_text=$(cat /etc/back 2>/dev/null)
+number=$(cat /etc/number 2>/dev/null)
+box=$(cat /etc/box 2>/dev/null)
+
+# Definisi warna
+Green_font_prefix="\033[32m"
+Red_font_prefix="\033[31m"
+Font_color_suffix="\033[0m"
+
+# Informasi versi
 Info1="${Green_font_prefix}($version)${Font_color_suffix}"
 Info2="${Green_font_prefix}(OLD VERSION)${Font_color_suffix}"
-Error="Version ${Green_font_prefix}[$ver]${Font_color_suffix} available${Red_font_prefix}[Please Update]${Font_color_suffix}"
-version=$(cat /home/ver)
-new_version=$( curl https://raw.githubusercontent.com/vermiliion/api/main/version | grep $version )
-if [ $version = $new_version ]; then
-sts="${Info2}"
+Error="Version ${Green_font_prefix}[$ver]${Font_color_suffix} available ${Red_font_prefix}[Please Update]${Font_color_suffix}"
+
+# Membandingkan versi lokal dengan versi terbaru
+if [ "$version" = "$ver" ]; then
+    sts="${Info1}"
 else
-sts="${Error}"
+    sts="${Error}"
 fi
 
+# Fungsi loading animasi
 loading() {
-  local pid=$1
-  local delay=0.1
-  local spin='-\|/'
+    local pid=$1
+    local delay=0.1
+    local spin='-\|/'
+    
+    while ps -p "$pid" > /dev/null; do
+        printf "[%c] " "$spin"
+        spin=${spin#?}${spin%"${spin#?}"}
+        sleep $delay
+        printf "\b\b\b\b\b\b"
+    done
 
-  while ps -p "$pid" > /dev/null; do
-    printf "[%c] " "$spin"
-    spin=${spin#?}${spin%"${spin#?}"}
-    sleep $delay
-    printf "\b\b\b\b\b\b"
-  done
-
-  printf "    \b\b\b\b"
+    printf "    \b\b\b\b"
 }
 
+# Membersihkan layar dan mulai proses update
 clear
 echo -e "\e[1;36mStart Update For New Version, Please Wait..\e[m"
 sleep 2
@@ -50,17 +71,20 @@ clear
 echo -e "\e[0;32mGetting New Version Script..\e[0m"
 sleep 1
 echo ""
+
+# Download skrip update terbaru
 cd /usr/bin
 wget -q -O /usr/bin/run-update "https://raw.githubusercontent.com/vermiliion/api/main/update.sh"
-chmod +x run-update
-echo ""
+chmod +x /usr/bin/run-update
+
+# Tampilkan pesan bahwa update sedang berjalan
 clear
 echo -e "\e[0;32mPlease Wait...!\e[0m"
 sleep 2
 clear
 echo ""
 echo -e "\e[0;32mNew Version Downloading started!\e[0m"
-sleep 1
+clear
 cd /usr/bin
 wget -q -O /usr/bin/menu "https://raw.githubusercontent.com/vermiliion/api/main/menu/menu.sh"
 wget -q -O /usr/bin/menu-trial "https://raw.githubusercontent.com/vermiliion/api/main/menu/menu-trial.sh"
@@ -182,8 +206,10 @@ sed -i 's/\r$//' /usr/bin/menu-nubz
 chmod +x /usr/bin/menu-bot
 chmod +x /usr/bin/menu-warp
 chmod +x /usr/bin/menu-nubz
+sleep 1
+pid=$!
+loading $pid
 clear
-sleep 1 & loading $!
 echo -e ""
 echo -e "\e[0;32mDownloaded successfully!\e[0m"
 echo ""
