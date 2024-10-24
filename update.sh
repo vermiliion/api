@@ -73,21 +73,11 @@ loading() {
     done
     echo ""  # New line after the loading animation
 }
-
-# Check if there are any files in /usr/bin
-if ls /usr/bin/* &> /dev/null; then
-    echo "Script update berhasil diunduh"
-    chmod +x /usr/bin/*
-else
-    echo "Gagal mengunduh skrip update"
-    exit 1
-fi &
-
-pid=$!  
-loading $pid 
-
 clear
 cd /usr/bin
+sleep 2
+pid=$!  
+loading $pid 
 wget -q -O /usr/bin/menu "https://raw.githubusercontent.com/vermiliion/api/main/menu/menu.sh"
 wget -q -O /usr/bin/menu-trial "https://raw.githubusercontent.com/vermiliion/api/main/menu/menu-trial.sh"
 wget -q -O /usr/bin/menu-vmess "https://raw.githubusercontent.com/vermiliion/api/main/menu/menu-vmess.sh"
