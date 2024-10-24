@@ -295,7 +295,7 @@ echo -e "${BIYellow} ┌──────────────────�
 echo -e "${BIYellow} │ \e[44;97;1m               AUTHOR LITE VERMILION               \033[0m ${BIYellow}│${NC}"
 echo -e "${BIYellow} └─────────────────────────────────────────────────────┘${NC}"
 echo -e "${BIYellow} ┌─────────────────────────────────────────────────────${NC}"
-echo -e "${BIYellow} │${BIYellow} Version Script : $ver Last Update ${BIYellow} "
+echo -e "${BIYellow} │${BIYellow} Version Script :  $ver Last Update ${BIYellow} "
 echo -e "${BIYellow} │${BIYellow} Username       :  ${BICyan}$Name ${NC} "
 echo -e "${BIYellow} │${BIYellow} Expired script : ${BIYellow} $exp ${BIYellow}:${BIYellow} $exp2 ${BIYellow} Days${NC} "
 echo -e "${BIYellow} └─────────────────────────────────────────────────────${NC}"
