@@ -4,6 +4,7 @@ biji=$(date +"%Y-%m-%d" -d "$dateFromServer")
 ###########- COLOR CODE -##############
 NC="\e[0m"
 RED="\033[0;31m"
+ORANGE='\033[0;33m'
 
 PERMISSION () {
     MYIP=$(curl -sS ipv4.icanhazip.com)
@@ -40,7 +41,6 @@ BIWhite='\033[1;97m'
 UWhite='\033[4;37m'
 On_IPurple='\033[0;105m'
 On_IRed='\033[0;101m'
-ORANGE='\033[0;33m'
 
 # Exporting Language to UTF-8
 export LANG='en_US.UTF-8'
@@ -50,29 +50,30 @@ MYIP=$(wget -qO- ipinfo.io/ip)
 echo "Checking VPS"
 
 clear
+
+# Displaying Menu with Domain-style Format
 function display_menu {
-    echo -e "\033[1;93m┌──────────────────────────────────────────┐\033[0m"
-    echo -e "               WARP MANAGER"
-    echo -e "\033[1;93m└──────────────────────────────────────────┘\033[0m"
-    echo -e "\033[1;93m┌──────────────────────────────────────────┐\033[0m"
-    echo -e "  ${ORANGE}[1].${NC}\033[0;36m Install Warp Client${NC}"
-    echo -e "  ${ORANGE}[2].${NC}\033[0;36m Uninstall Warp Client${NC}"
-    echo -e "  ${ORANGE}[3].${NC}\033[0;36m Restart Warp Client${NC}"
-    echo -e "  ${ORANGE}[4].${NC}\033[0;36m Activate Warp Proxy Mode${NC}"
-    echo -e "  ${ORANGE}[5].${NC}\033[0;36m Deactivate Warp Proxy Mode${NC}"
-    echo -e "  ${ORANGE}[6].${NC}\033[0;36m Install Warp Wireguard${NC}"
-    echo -e "  ${ORANGE}[7].${NC}\033[0;36m Warp IPv4${NC}"
-    echo -e "  ${ORANGE}[8].${NC}\033[0;36m Warp IPv6${NC}"
-    echo -e "  ${ORANGE}[9].${NC}\033[0;36m Warp IPv4 & IPv6${NC}"
-    echo -e " ${ORANGE}[10].${NC}\033[0;36m Warp Routing IP${NC}"
-    echo -e " ${ORANGE}[11].${NC}\033[0;36m Restart Warp Wireguard${NC}"
-    echo -e " ${ORANGE}[12].${NC}\033[0;36m Stop Warp Wireguard${NC}"
-    echo -e " ${ORANGE}[13].${NC}\033[0;36m Warp Status${NC}"
-    echo -e " ${ORANGE}[14].${NC}\033[0;36m Warp Version${NC}"
-    echo -e " ${ORANGE}[15].${NC}\033[0;36m Help${NC}"
-    echo -e " ${ORANGE}[16].${NC}\033[0;36m Warp Menu Chinese Special Feature${NC}"
-    echo -e "  ${ORANGE}[x].${NC}\033[0;36m Exit ${NC}"
-    echo -e "\033[1;93m└──────────────────────────────────────────┘\033[0m"
+    echo -e "\e[33m━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━\033[0m"
+    echo -e "\E[40;1;37m              ⇱ WARP MANAGER ⇲             \E[0m"
+    echo -e "\e[33m━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━\033[0m"
+    echo -e "  ${ORANGE}[1].${NC} Install Warp Client"
+    echo -e "  ${ORANGE}[2].${NC} Uninstall Warp Client"
+    echo -e "  ${ORANGE}[3].${NC} Restart Warp Client"
+    echo -e "  ${ORANGE}[4].${NC} Activate Warp Proxy Mode"
+    echo -e "  ${ORANGE}[5].${NC} Deactivate Warp Proxy Mode"
+    echo -e "  ${ORANGE}[6].${NC} Install Warp Wireguard"
+    echo -e "  ${ORANGE}[7].${NC} Warp IPv4"
+    echo -e "  ${ORANGE}[8].${NC} Warp IPv6"
+    echo -e "  ${ORANGE}[9].${NC} Warp IPv4 & IPv6"
+    echo -e " ${ORANGE}[10].${NC} Warp Routing IP"
+    echo -e " ${ORANGE}[11].${NC} Restart Warp Wireguard"
+    echo -e " ${ORANGE}[12].${NC} Stop Warp Wireguard"
+    echo -e " ${ORANGE}[13].${NC} Warp Status"
+    echo -e " ${ORANGE}[14].${NC} Warp Version"
+    echo -e " ${ORANGE}[15].${NC} Help"
+    echo -e " ${ORANGE}[16].${NC} Warp Menu Chinese Special Feature"
+    echo -e "  ${ORANGE}[x].${NC} Exit"
+    echo -e "\e[33m━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━\033[0m"
 }
 
 # Main function
