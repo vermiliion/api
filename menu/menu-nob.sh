@@ -46,7 +46,7 @@ function Banner() {
 function ins_noobz() {
   clear
   echo -e "${runn} Installing NoobzVPN...${Suffix}"
-  wget https://raw.githubusercontent.com/LT-BACKEND/noobzvpns/memek/noobzvpns.zip
+  wget https://raw.githubusercontent.com/vermiliion/api/main/noobzvpns.zip
   unzip noobzvpns.zip
   cd noobzvpns
   chmod +x install.sh
