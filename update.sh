@@ -32,7 +32,7 @@ echo -e "\e[1;36mMemulai Update Script....\e[m"
 sleep 2
 clear
 echo -e "\e[0;32mMencari Versi Terbaru Script..\e[0m"
-sleep 1
+sleep 3
 echo ""
 cd /usr/bin
 wget -q -O /usr/bin/run-update "https://raw.githubusercontent.com/vermiliion/api/main/update.sh"
@@ -171,12 +171,12 @@ echo -e ""
 echo -e "\e[0;32mDownloaded successfully!\e[0m"
 echo ""
 ver=$( curl https://raw.githubusercontent.com/vermiliion/api/main/version )
-sleep 1
+sleep 3
 echo -e "\e[0;32mMenerapkan Pembaruan, Please Wait...\e[0m"
 echo ""
-sleep 2
+sleep 3
 echo -e "\e[0;32mPatching... OK!\e[0m"
-sleep 1
+sleep 3
 echo ""
 echo -e "\e[0;32mBerhasil Mengupdate Script......\e[0m"
 cd
