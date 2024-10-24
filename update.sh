@@ -43,25 +43,6 @@ loading() {
   printf "    \b\b\b\b"
 }
 
-clear
-echo -e "\e[1;36mMemulai Update Script....\e[m"
-sleep 2
-clear
-echo -e "\e[0;32mMencari Versi Terbaru Script..\e[0m"
-sleep 3
-echo ""
-cd /usr/bin
-wget -q -O /usr/bin/run-update "https://raw.githubusercontent.com/vermiliion/api/main/update.sh"
-chmod +x run-update
-echo ""
-clear
-echo -e "\e[0;32mPlease Wait...!\e[0m"
-sleep 6
-clear
-echo ""
-echo -e "\e[0;32mMemulai Mendownload Versi terbaru......!\e[0m"
-sleep 2
-cd /usr/bin
 cd /usr/bin
 sleep 2 & loading $! & wget -q -O /usr/bin/menu "https://raw.githubusercontent.com/vermiliion/api/main/menu/menu.sh"
 sleep 2 & loading $! & wget -q -O /usr/bin/menu-trial "https://raw.githubusercontent.com/vermiliion/api/main/menu/menu-trial.sh"
@@ -183,22 +164,19 @@ sleep 2 & loading $! & sed -i 's/\r$//' /usr/bin/menu-nubz
 sleep 2 & loading $! & chmod +x /usr/bin/menu-bot
 sleep 2 & loading $! & chmod +x /usr/bin/menu-warp
 sleep 2 & loading $! & chmod +x /usr/bin/menu-nubz
+
+echo
+
+# Loading saat sleep
+sleep 2 & loading $!
+
 clear
-echo -e ""
-echo -e "\e[0;32mDownloaded successfully!\e[0m"
-echo ""
-ver=$( curl https://raw.githubusercontent.com/vermiliion/api/main/version )
-sleep 3
-echo -e "\e[0;32mMenerapkan Pembaruan, Please Wait...\e[0m"
-echo ""
-sleep 3
-echo -e "\e[0;32mPatching... OK!\e[0m"
-sleep 3
-echo ""
-echo -e "\e[0;32mBerhasil Mengupdate Script......\e[0m"
+
+
+sleep 0.6 & loading $!
+clear
 cd
 rm -f update.sh
 clear
-echo ""
-read -n 1 -s -r -p "Press any key to back on menu"
+read -n 1 -s -r -p "Press [ Enter ] to back on menu"
 menu
