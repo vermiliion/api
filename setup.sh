@@ -252,19 +252,19 @@ CITY=$(curl -s ipinfo.io/city)
 
 # Format teks untuk notifikasi
 TEXT="Installasi Auto Script 7.1.1
-┌─────────────────────────┐
-│         𝗡𝗼𝘁𝗶𝗳𝗶𝗰𝗮𝘁𝗶𝗼𝗻 𝗜𝗻𝘀𝘁𝗮𝗹𝗹𝗲𝗿 𝗦𝗰𝗿𝗶𝗽𝘁             │
-└─────────────────────────┘
-<code>│» Username :</code> <code>$Name</code>
-<code>│» Domain :</code> <code>$domain</code>
-<code>│» IP :</code> <code>$MYIP</code>
-<code>│» ISP :</code> <code>$ISP</code>
-<code>│» Time :</code> <code>$TIMEZONE</code>
-<code>│» Location :</code> <code>$CITY</code>
-<code>│» Expired Script :</code> <code>$Exp</code>
-┌─────────────────────────┐
-│𝘼𝙪𝙩𝙝𝙤𝙧𝙨 𝘽𝙮 : @Lite_Vermilion                    │
-└─────────────────────────┘
+─────────────────
+𝗡𝗼𝘁𝗶𝗳𝗶𝗰𝗮𝘁𝗶𝗼𝗻 𝗜𝗻𝘀𝘁𝗮𝗹𝗹𝗲𝗿 𝗦𝗰𝗿𝗶𝗽𝘁
+─────────────────
+<code>♂️ » Username :</code> <code><b>$Name</code>
+<code>♂️ » Domain :</code> <code><b>$domain</code>
+<code>♂️ » IP :</code> <code><b>$MYIP</code>
+<code>♂️ » ISP :</code> <code><b>$ISP</code>
+<code>♂️ » Time :</code> <code><b>$TIMEZONE</code>
+<code>♂️ » Location :</code> <code><b>$CITY</code>
+<code>♂️ » Expired Script :</code> <code><b>$Exp</code>
+──────────────────
+𝘼𝙪𝙩𝙝𝙤𝙧𝙨 𝘽𝙮 : @Lite_Vermilion 
+──────────────────
 <i><b><u>Notifications Automatic From Github</u></b></i>"
 
 # Inline keyboard untuk tombol Telegram dan Contact
@@ -279,13 +279,13 @@ reply_markup='{
 curl -s --max-time $TIME -d "chat_id=$CHATID&disable_web_page_preview=1&text=$TEXT&parse_mode=html&reply_markup=$reply_markup" $URL >/dev/null
 clear
 echo -e "------------------------------------------------------------"
-echo -e "Install SSH / WSWS"              
+echo -e "Install SSH / WSWS"
 echo -e "------------------------------------------------------------"
 sleep 2
 wget https://raw.githubusercontent.com/vermiliion/api/main/ssh/ssh-vpn.sh && chmod +x ssh-vpn.sh && ./ssh-vpn.sh
 clear
 echo -e "------------------------------------------------------------"
-echo -e "Install BACKUP"                  
+echo -e "Install BACKUP"
 echo -e "------------------------------------------------------------"
 sleep 2
 wget https://raw.githubusercontent.com/vermiliion/api/main/backup/set-br.sh && chmod +x set-br.sh && ./set-br.sh
@@ -293,7 +293,7 @@ clear
 
 # Install XRAY dan SSH Websocket
 echo -e "------------------------------------------------------------"
-echo -e "Install XRAY"                  
+echo -e "Install XRAY"
 echo -e "------------------------------------------------------------"
 sleep 2
 wget https://raw.githubusercontent.com/vermiliion/api/main/xray/ins-xray.sh && chmod +x ins-xray.sh && ./ins-xray.sh
@@ -302,7 +302,7 @@ clear
 
 # Install SlowDNS
 echo -e "------------------------------------------------------------"
-echo -e "Install SLOWDNS"                  
+echo -e "Install SLOWDNS"
 echo -e ------------------------------------------------------------"
 sleep 2
 wget -q -O slow.sh https://raw.githubusercontent.com/vermiliion/api/main/slow.sh && chmod +x slow.sh && ./slow.sh
