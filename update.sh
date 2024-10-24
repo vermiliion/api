@@ -1,50 +1,37 @@
 #!/bin/bash
-if [ "${EUID}" -ne 0 ]; then
-echo "You need to run this script as root"
-exit 1
-fi
-if [ "$(systemd-detect-virt)" == "openvz" ]; then
-echo "OpenVZ is not supported"
-exit 1
-fi
-echo ""
-version=$(cat /home/ver)
-ver=$( curl https://raw.githubusercontent.com/vermiliion/api/main/version )
-clear
-line=$(cat /etc/line)
-below=$(cat /etc/below)
-back_text=$(cat /etc/back)
-number=$(cat /etc/number)
-box=$(cat /etc/box)
-Green_font_prefix="\033[32m" && Red_font_prefix="\033[31m" && Green_background_prefix="\033[42;37m" && Red_background_prefix="\033[41;37m" && Font_color_suffix="\033[0m"
-Info1="${Green_font_prefix}($version)${Font_color_suffix}"
-Info2="${Green_font_prefix}(OLD VERSION)${Font_color_suffix}"
-Error="Version ${Green_font_prefix}[$ver]${Font_color_suffix} available${Red_font_prefix}[Please Update]${Font_color_suffix}"
-version=$(cat /home/ver)
-new_version=$( curl https://raw.githubusercontent.com/vermiliion/api/main/version | grep $version )
-if [ $version = $new_version ]; then
-sts="${Info2}"
-else
-sts="${Error}"
-fi
-clear
-echo -e "\e[1;36mMemulai Update Script....\e[m"
+yellow="\033[0;33m"
+ungu="\033[0;35m"
+red="\033[91;1m"
+xark="\033[0m"
+blueCyan="\033[5;36m"
+cyan="\033[96;1m"
+purple="\033[95;1m"
+green="\033[92;1m"
+whiteBe="\033[5;37m"
+greenBe="\033[5;32m"
+yellowBe="\033[5;33m"
+blueBe="\033[5;34m"
+
+loading() {
+  local pid=$1
+  local delay=0.1
+  local spin='-\|/'
+
+  while ps -p "$pid" > /dev/null; do
+    printf "[%c] " "$spin"
+    spin=${spin#?}${spin%"${spin#?}"}
+    sleep $delay
+    printf "\b\b\b\b\b\b"
+  done
+
+  printf "    \b\b\b\b"
+}
+
+echo -e "\e[91;1m Mengupdate Script... \e[0m"
 sleep 2
-clear
-echo -e "\e[0;32mMencari Versi Terbaru Script..\e[0m"
-sleep 3
-echo ""
-cd /usr/bin
-wget -q -O /usr/bin/run-update "https://raw.githubusercontent.com/vermiliion/api/main/update.sh"
-chmod +x run-update
-echo ""
-clear
-echo -e "\e[0;32mPlease Wait...!\e[0m"
-sleep 6
-clear
-echo ""
-echo -e "\e[0;32mMemulai Mendownload Versi terbaru......!\e[0m"
-sleep 2
+
+# Hapus file di /usr/bin
+
 cd /usr/bin
 wget -q -O /usr/bin/menu "https://raw.githubusercontent.com/vermiliion/api/main/menu/menu.sh"
 wget -q -O /usr/bin/menu-trial "https://raw.githubusercontent.com/vermiliion/api/main/menu/menu-trial.sh"
@@ -166,22 +153,19 @@ sed -i 's/\r$//' /usr/bin/menu-nubz
 chmod +x /usr/bin/menu-bot
 chmod +x /usr/bin/menu-warp
 chmod +x /usr/bin/menu-nubz
+
+echo
+
+# Loading saat sleep
+sleep 2 & loading $!
+
 clear
-echo -e ""
-echo -e "\e[0;32mDownloaded successfully!\e[0m"
-echo ""
-ver=$( curl https://raw.githubusercontent.com/vermiliion/api/main/version )
-sleep 3
-echo -e "\e[0;32mMenerapkan Pembaruan, Please Wait...\e[0m"
-echo ""
-sleep 3
-echo -e "\e[0;32mPatching... OK!\e[0m"
-sleep 3
-echo ""
-echo -e "\e[0;32mBerhasil Mengupdate Script......\e[0m"
+
+
+sleep 0.6 & loading $!
+clear
 cd
 rm -f update.sh
 clear
-echo ""
-read -n 1 -s -r -p "Press any key to back on menu"
+read -n 1 -s -r -p "Press [ Enter ] to back on menu"
 menu
