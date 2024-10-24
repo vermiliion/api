@@ -187,17 +187,19 @@ echo ""
     chmod +x /usr/bin/menu-bot
     chmod +x /usr/bin/menu-warp
     chmod +x /usr/bin/menu-nubz"
-    
+    sleep 2
     # Periksa apakah unduhan berhasil
-if [ -f /usr/bin/run-update ]; then
-        echo "Script update berhasil diunduh"
-        chmod +x /usr/bin/run-update
-    else
-        echo "Gagal mengunduh skrip update"
-        exit 1
-    fi
-) &
-pid=$!  # Ambil PID dari proses background
+# Check if there are any files in /usr/bin
+if ls /usr/bin/* &> /dev/null; then
+    echo "Script update berhasil diunduh"
+    chmod +x /usr/bin/*
+else
+    echo "Gagal mengunduh skrip update"
+    exit 1
+fi &
+
+# Ambil PID dari proses background
+pid=$!  
 loading $pid  # Jalankan loading hingga proses selesai
 
 # Tampilkan pesan bahwa update telah selesai
