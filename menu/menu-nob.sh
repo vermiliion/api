@@ -1,132 +1,137 @@
 #!/bin/bash
 
 # Colors
+BIYellow='\e[1;93m'
+NC='\e[0m'  # No Color
 runn='\e[38;5;14m' 
 acc='\e[38;5;146m'
-LO='\e[38;5;162m' # PURPLE SANGAR
-UK='\e[38;5;99m'  # UNGU KOLOT
-BK='\e[38;5;196m' # BEREM KOLOT 
-R1='\e[38;5;155m' # HEJO SEMU BODAS
-R2='\e[38;5;49m'  # HEJO LIME / APEL
-BC='\e[38;5;195m' # BODAS CERAH PISAN
-HU='\e[38;5;115m' # HEJO SEMU ABU
-UB='\e[38;5;147m' # UNGU KABODASAN
-KT='\e[38;5;187m' # KONENG TARIGU
+R1='\e[38;5;155m' 
+R2='\e[38;5;49m'  
 Suffix='\e[0m'
-Xark="\e[0m"
 
-# . Liner 
+# Liner (line separator)
 function Liner() {
-  echo -e "${w} ◇━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━◇ ${R2} "
+  echo -e "${BIYellow} ┌─────────────────────────────────────────────────────┐${NC}"
 }
 
-# . Banner
+# Banner (header title)
 function Banner() {
-echo -e "${R1}        CREATE TITLE ACCOUNT          \e[0m"
+  echo -e "${BIYellow} │ \e[44;97;1m                NOOBZVPNs MENU                  \033[0m ${BIYellow} │${NC}"
+  echo -e "${BIYellow} └─────────────────────────────────────────────────────┘${NC}"
 }
 
+# Install NoobzVPN
+function ins_noobz() {
+  clear
+  echo -e "${runn} Installing NoobzVPN...${Suffix}"
+  wget https://raw.githubusercontent.com/LT-BACKEND/noobzvpns/memek/noobzvpns.zip
+  unzip noobzvpns.zip
+  cd noobzvpns
+  chmod +x install.sh
+  ./install.sh
+  systemctl start noobzvpns
+  systemctl restart noobzvpns
+  echo -e "${acc} NoobzVPN successfully installed! ${Suffix}"
+}
 
+# Uninstall NoobzVPN
+function uninstall_noobz() {
+  clear
+  echo -e "${runn} Uninstalling NoobzVPN...${Suffix}"
+  systemctl stop noobzvpns
+  systemctl disable noobzvpns
+  rm -rf /etc/noobzvpns
+  rm -rf /usr/local/bin/noobzvpns
+  rm -f /etc/systemd/system/noobzvpns.service
+  echo -e "${acc} NoobzVPN successfully uninstalled! ${Suffix}"
+}
 
-# Telegram settings
-CHATID=$(grep -E "^#bot# " "/etc/bot/.bot.db" | cut -d ' ' -f 3)
-KEY=$(grep -E "^#bot# " "/etc/bot/.bot.db" | cut -d ' ' -f 2)
-export TIME="10"
-export URL="https://api.telegram.org/bot$KEY/sendMessage"
+# Restart NoobzVPN
+function restart_noobz() {
+  clear
+  echo -e "${runn} Restarting NoobzVPN...${Suffix}"
+  systemctl restart noobzvpns
+  echo -e "${acc} NoobzVPN successfully restarted! ${Suffix}"
+}
 
-# Function to install NoobzVpn-Server
-add_noobvpn_user() {
-clear
-Liner
-Banner
-Liner
-    read -p " Username : " username
-    echo ""
-    read -p " Password : " password
-    echo ""
-    read -p " Expiry   : " days
-    
-    noobzvpns --add-user "$username" "$password"
-    noobzvpns --expired-user "$username" "$days"
-    echo "#nob# ${username} ${Password} ${days}" >>/etc/noobzvpns/.noobzvpns.db
-    curl -s --max-time $TIME -d "chat_id=$CHATID&disable_web_page_preview=1&text=$TEXT&parse_mode=html" $URL >/dev/null
-    clear
-    echo ""
+# Add NoobzVPN user
+function add_noobvpn_user() {
+  clear
+  Liner
+  Banner
+  Liner
+  read -p " Username: " username
+  read -p " Password: " password
+  read -p " Expiry (days): " days
+  
+  noobzvpns --add-user "$username" "$password"
+  noobzvpns --expired-user "$username" "$days"
+  echo "#nob# ${username} ${password} ${days}" >>/etc/noobzvpns/.noobzvpns.db
 
-
-mkdir -p /detail/nob
-cat > /detail/nob/$username.txt <<-END
+  mkdir -p /detail/nob
+  cat > /detail/nob/$username.txt <<-END
 ◇━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━◇
            DETAIL ACCOUNT
 ◇━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━◇
 Username         : $username
 Password         : $password
-Host             : $domain
+Host             : $(cat /etc/xray/domain)
 Base Config      : Bs64
 ◇━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━◇
 Aktif Selama     : $days Hari
 ◇━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━◇
 END
 
-
-
-Liner
-    echo -e "${R1}         NOOBZVPN ACCOUNT       \e[0m"
-Liner
-    echo -e "Username         : $username"
-    echo -e "Password         : $password"
-    echo -e "Host             : $domain"
-Liner
-    echo -e "Aktif Selama     : $days Hari"
-Liner    
+  Liner
+  echo -e "${R1} NoobzVPN Account Details \e[0m"
+  Liner
+  echo -e "Username         : $username"
+  echo -e "Password         : $password"
+  echo -e "Host             : $(cat /etc/xray/domain)"
+  echo -e "Aktif Selama     : $days Hari"
+  Liner
 }
 
-# Function to block a user
-block_user() {
+# Other user-related functions
+function block_user() {
     read -p "Enter username to block: " username
     noobzvpns --block-user "$username"
 }
 
-# Function to unblock a user
-unblock_user() {
+function unblock_user() {
     read -p "Enter username to unblock: " username
     noobzvpns --unblock-user "$username"
 }
 
-# Function to set expiration for a user
-set_expiration() {
+function set_expiration() {
     read -p "Enter username: " username
     read -p "Enter expiration days (0 for unlimited): " days
     noobzvpns --expired-user "$username" "$days"
 }
 
-# Function to renew expiration for a user
-renew_expiration() {
+function renew_expiration() {
     read -p "Enter username to renew expiration: " username
     noobzvpns --renew-user "$username"
 }
 
-# Function to change password for a user
-change_password() {
+function change_password() {
     read -p "Enter username: " username
     read -p "Enter new password: " new_password
-    noobzvpns--password-user "$username" "$new_password"
+    noobzvpns --password-user "$username" "$new_password"
 }
 
-# Function to rename a user
-rename_user() {
+function rename_user() {
     read -p "Enter current username: " old_username
     read -p "Enter new username: " new_username
     noobzvpns --rename-user "$old_username" "$new_username"
 }
 
-# Function to remove a user
-remove_user() {
+function remove_user() {
     read -p "Enter username to remove: " username
     noobzvpns --remove-user "$username"
 }
 
-# Function to remove all users
-remove_all_users() {
+function remove_all_users() {
     read -p "Are you sure you want to remove all users? (yes/no): " confirm
     if [ "$confirm" == "yes" ]; then
         noobzvpns --remove-all-user
@@ -135,93 +140,55 @@ remove_all_users() {
     fi
 }
 
-# Function to get info for a user
-info_user() {
+function info_user() {
     read -p "Enter username: " username
     noobzvpns --info-user "$username"
 }
 
-# Function to get info for all users
-info_all_users() {
+function info_all_users() {
     noobzvpns --info-all-user
 }
 
+# Main menu
 clear
-
-# Permission checking
-MYIP=$(curl -sS ipv4.icanhazip.com)
-echo -e "\e[32mloading...\e[0m"
-clear
-
-ipsaya=$(wget -qO- ipv4.icanhazip.com)
-data_server=$(curl -v --insecure --silent https://google.com/ 2>&1 | grep Date | sed -e 's/< Date: //')
-date_list=$(date +"%Y-%m-%d" -d "$data_server")
-data_ip="https://raw.githubusercontent.com/vermiliion/api/main/register"
-
-checking_sc() {
-  useexp=$(wget -qO- $data_ip | grep $ipsaya | awk '{print $3}')
-  if [[ $date_list < $useexp ]]; then
-    echo -ne
-  else
-    echo -e "\033[1;93m────────────────────────────────────────────\033[0m"
-    echo -e "\033[42m          404 NOT FOUND AUTOSCRIPT          \033[0m"
-    echo -e "\033[1;93m────────────────────────────────────────────\033[0m"
-    echo -e ""
-    echo -e "            ${RED}PERMISSION DENIED !\e[0m"
-    echo -e "   \033[0;33mYour VPS\e[0m $ipsaya \033[0;33mHas been Banned\e[0m"
-    echo -e "     \033[0;33mBuy access permissions for scripts\e[0m"
-    echo -e "             \033[0;33mContact Admin :\e[0m"
-    echo -e "      \033[0;36mTelegram\e[0m t.me/Lite_Vermillion"
-    echo -e "      ${GREEN}WhatsApp\e[0m wa.me/6283867809137"
-    echo -e "\033[1;93m────────────────────────────────────────────\033[0m"
-    exit
-  fi
-}
-
-checking_sc
-
-echo -e "\e[32mloading...\e[0m"
-clear
-
-#Domain
-domain=$(cat /etc/xray/domain)
-
 Liner
-echo -e "${R2}                 NoobzVpnS                \e[0m"
+Banner
 Liner
+echo -e "  [01]. Install NoobzVPN"
+echo -e "  [02]. Uninstall NoobzVPN"
+echo -e "  [03]. Restart NoobzVPN"
+echo -e "  [04]. Add User"
+echo -e "  [05]. Block User"
+echo -e "  [06]. Unblock User"
+echo -e "  [07]. Set Expiration"
+echo -e "  [08]. Renew Expiration"
+echo -e "  [09]. Change Password"
+echo -e "  [10]. Rename User"
+echo -e "  [11]. Remove User"
+echo -e "  [12]. Remove All Users"
+echo -e "  [13]. Info User"
+echo -e "  [14]. Info All Users"
+echo -e "  [15]. Exit"
 Liner
-echo -e "  \e[97;1m[01]. Add User\e[0m"
-echo -e "  \e[97;1m[02]. Block User\e[0m"
-echo -e "  \e[97;1m[03]. Unblock User\e[0m"
-echo -e "  \e[97;1m[04]. Set Expiration\e[0m"
-echo -e "  \e[97;1m[05]. Renew Expiration\e[0m"
-echo -e "  \e[97;1m[06]. Change Password\e[0m"
-echo -e "  \e[97;1m[07]. Rename User\e[0m"
-echo -e "  \e[97;1m[08]. Remove User\e[0m"
-echo -e "  \e[97;1m[09]. Remove All Users\e[0m"
-echo -e "  \e[97;1m[10]. Info User\e[0m"
-echo -e "  \e[97;1m[11]. Info All Users\e[0m"
-echo -e "  \e[97;1m[12]. Detail Account User\e[0m"
-echo -e "  \e[91;1m[13]. Exit\e[0m"
-Liner
-echo ""
 
 read -p " Please Select Menu: " menu
 echo -e ""
 
 case $menu in
-1) add_noobvpn_user ;;
-2) block_user ;;
-3) unblock_user ;;
-4) set_expiration ;;
-5) renew_expiration ;;
-6) change_password ;;
-7) rename_user ;;
-8) remove_user ;;
-9) remove_all_users ;;
-10) info_user ;;
-11) info_all_users ;;
-12) user-nob ;;
-13) exit ;;
-*) echo "Invalid choice. Please enter a number between 1 and 13." ;;
+1) ins_noobz ;;
+2) uninstall_noobz ;;
+3) restart_noobz ;;
+4) add_noobvpn_user ;;
+5) block_user ;;
+6) unblock_user ;;
+7) set_expiration ;;
+8) renew_expiration ;;
+9) change_password ;;
+10) rename_user ;;
+11) remove_user ;;
+12) remove_all_users ;;
+13) info_user ;;
+14) info_all_users ;;
+15) exit ;;
+*) echo "Invalid choice. Please enter a number between 1 and 15." ;;
 esac
