@@ -54,20 +54,20 @@ clear
 echo -e "\e[1;36mMengupdate Script.......\e[m"
 sleep 2
 
-# Download skrip update terbaru
 loading() {
-  local pid=$1
-  local delay=0.1
-  local spin='-\|/'
+    local pid=$1
+    local delay=0.1
+    local spin='-\|/'
 
-  while ps -p "$pid" > /dev/null; do
-    printf "[%c] " "$spin"
-    spin=${spin#?}${spin%"${spin#?}"}
-    sleep $delay
-    printf "\b\b\b\b\b\b"
-  done
+    # Show loading animation while the process is running
+    while ps -p "$pid" > /dev/null; do
+        printf "[%c] " "$spin"
+        spin=${spin#?}${spin%"${spin#?}"}
+        sleep $delay
+        printf "\b\b\b\b\b\b"  # Move cursor back to overwrite
+    done
 
-  printf "    \b\b\b\b"
+    printf "    \b\b\b\b"  # Clear the spinner after completion
 }
 
 clear
@@ -78,7 +78,7 @@ download_with_loading() {
     local output=$1
     local url=$2
 
-    wget -q -O "$output" "$url" &
+    wget -q -O "$output" "$url" &  # Start the download in the background
     local pid=$!  # Get PID of the wget process
     loading $pid  # Start loading animation while downloading
 }
