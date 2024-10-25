@@ -118,7 +118,7 @@ function main {
                 ;;
             x)
                 echo "Exiting..."
-                exit 0
+                menu
                 ;;
             *)
                 echo "Pilihan tidak valid."

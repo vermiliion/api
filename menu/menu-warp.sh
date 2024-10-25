@@ -148,7 +148,7 @@ function main {
                 ;;
             x)
                 echo "Exiting..."
-                exit 0
+                menu
                 ;;
             *)
                 echo "Invalid option."
