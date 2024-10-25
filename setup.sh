@@ -176,8 +176,14 @@ elif [[ "$dns" -eq 2 ]]; then
     # Instal paket yang diperlukan, jika belum ada
     apt update && apt install -y jq curl
     
+    # Cek apakah variabel CDN diatur dengan benar
+    if [[ -z "$CDN" ]]; then
+        echo -e "${red}CDN URL is not set. Please set the CDN variable before proceeding.${NC}"
+        exit 1
+    fi
+
     # Unduh skrip untuk domain acak
-    wget -q -O /root/cf "${CDN}/cf" >/dev/null 2>&1
+    wget -q -O /root/cf "${CDN}/cf"
     if [[ $? -ne 0 ]]; then
         echo -e "${red}Failed to download cf script. Please check your CDN URL.${NC}"
         exit 1
@@ -185,7 +191,7 @@ elif [[ "$dns" -eq 2 ]]; then
 
     # Beri izin eksekusi pada skrip
     chmod +x /root/cf
-    
+
     # Jalankan skrip domain acak
     bash /root/cf | tee /root/install.log
     if [[ $? -eq 0 ]]; then
