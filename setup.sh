@@ -225,64 +225,6 @@ mkdir -p /home/script/
 useradd -r -d /home/script -s /bin/bash -M $Username > /dev/null 2>&1
 echo -e "$Password\n$Password\n" | passwd $Username > /dev/null 2>&1
 usermod -aG sudo $Username > /dev/null 2>&1
-
-# Mengirim Notifikasi ke Telegram
-CHATID="5092269467"
-KEY="6918231835:AAFANlNjXrz-kxXmXskeY7TRUDMdM1lS6Bs"
-TIME="10"
-URL="https://api.telegram.org/bot$KEY/sendMessage"
-
-# Memastikan domain dan username sudah ada
-if [ -f /root/domain ]; then
-    domain=$(cat /root/domain)
-else
-    domain="domain not found"
-fi
-
-if [ -f /usr/bin/user ]; then
-    Name=$(cat /usr/bin/user)
-else
-    Name="Unknown User"
-fi
-
-if [ -f /usr/bin/e ]; then
-    Exp=$(cat /usr/bin/e)
-else
-    Exp="Unknown Expiration"
-fi
-
-# Mendapatkan informasi tambahan
-ISP=$(curl -s ipinfo.io/org | cut -d ' ' -f 2-)  # Mendapatkan nama ISP
-TIMEZONE=$(timedatectl | grep "Time zone" | awk '{print $3}')
-CITY=$(curl -s ipinfo.io/city)
-
-# Format teks untuk notifikasi
-TEXT="Installasi Auto Script 7.1.1
-─────────────────
-𝗡𝗼𝘁𝗶𝗳𝗶𝗰𝗮𝘁𝗶𝗼𝗻 𝗜𝗻𝘀𝘁𝗮𝗹𝗹𝗲𝗿 𝗦𝗰𝗿𝗶𝗽𝘁
-─────────────────
-<code>♂️ » Username :</code> <code><b>$Name</code>
-<code>♂️ » Domain :</code> <code><b>$domain</code>
-<code>♂️ » IP :</code> <code><b>$MYIP</code>
-<code>♂️ » ISP :</code> <code><b>$ISP</code>
-<code>♂️ » Time :</code> <code><b>$TIMEZONE</code>
-<code>♂️ » Location :</code> <code><b>$CITY</code>
-<code>♂️ » Expired Script :</code> <code><b>$Exp</code>
-──────────────────
-𝘼𝙪𝙩𝙝𝙤𝙧𝙨 𝘽𝙮 : @Lite_Vermilion 
-──────────────────
-<i><b><u>Notifications Automatic From Github</u></b></i>"
-
-# Inline keyboard untuk tombol Telegram dan Contact
-reply_markup='{
-  "inline_keyboard": [
-    [{"text": "Telegram", "url": "https://t.me/Lite_Vermilion"},
-     {"text": "Contact", "url": "https://wa.me/6281934335091"}]
-  ]
-}
-
-# Mengirim pesan ke Telegram
-curl -s --max-time $TIME -d "chat_id=$CHATID&disable_web_page_preview=1&text=$TEXT&parse_mode=html&reply_markup=$reply_markup" $URL >/dev/null
 clear
 echo -e "------------------------------------------------------------"
 echo -e "Install SSH / WSWS"
