@@ -52,8 +52,7 @@ echo "Checking VPS"
 clear
 function display_menu {
     echo -e "\033[1;93m──────────────────────────────────────────\033[0m"
-    echo -e "\e[44;97;1m               BOT MANAGER"
-    echo -e "\033[1;93m──────────────────────────────────────────\033[0m"
+    echo -e "\e[44;97;1m               BOT MANAGER               $NC"
     echo -e "\033[1;93m──────────────────────────────────────────\033[0m"
     echo -e "  ${ORANGE}[1].${NC}\033[0;36m Install BOT CYBERVPN${NC}"
     echo -e "  ${ORANGE}[2].${NC}\033[0;36m Restart BOT CYBERVPN${NC}"

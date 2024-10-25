@@ -52,8 +52,7 @@ echo "Checking VPS"
 clear
 function display_menu {
     echo -e "\033[1;93m──────────────────────────────────────────\033[0m"
-    echo -e "\e[44;97;1m               WARP MANAGER"
-    echo -e "\033[1;93m──────────────────────────────────────────\033[0m"
+    echo -e "\e[44;97;1m               WARP MANAGER               $NC"
     echo -e "\033[1;93m──────────────────────────────────────────\033[0m"
     echo -e "  ${ORANGE}[1].${NC}\033[0;36m Install Warp Client${NC}"
     echo -e "  ${ORANGE}[2].${NC}\033[0;36m Uninstall Warp Client${NC}"
