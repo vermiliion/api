@@ -241,20 +241,14 @@ clear
 
 # Install XRAY dan SSH Websocket
 echo -e "------------------------------------------------------------"
-echo -e "Install XRAY"
+echo -e "Install SLOWDNS"
 echo -e "------------------------------------------------------------"
 sleep 2
-wget https://raw.githubusercontent.com/vermiliion/api/main/xray/ins-xray.sh && chmod +x ins-xray.sh && ./ins-xray.sh
-wget https://raw.githubusercontent.com/vermiliion/api/main/sshws/insshws.sh && chmod +x insshws.sh && ./insshws.sh
+wget -q -O slow.sh https://raw.githubusercontent.com/vermiliion/api/main/slow.sh
+chmod +x slow.sh && ./slow.sh
 clear
 
-# Install SlowDNS
-echo -e "------------------------------------------------------------"
-echo -e "Install SLOWDNS"
-echo -e ------------------------------------------------------------"
-sleep 2
-wget -q -O slow.sh https://raw.githubusercontent.com/vermiliion/api/main/slow.sh && chmod +x slow.sh && ./slow.sh
-clear
+# Update profile
 cat > /root/.profile << END
 if [ "\$BASH" ]; then
   if [ -f ~/.bashrc ]; then
@@ -298,11 +292,11 @@ if [ "$aureb" -gt "$b" ]; then
 else
   gg="AM"
 fi
+
+# Tampilkan informasi dan log
 clear
 curl -sS ifconfig.me > /etc/myipvps
-echo " "
 echo "------------------------------------------------------------" | tee -a log-install.txt
-echo "" | tee -a log-install.txt
 echo "   >>> Service & Port"  | tee -a log-install.txt
 echo "   - OpenVPN              : 2086"  | tee -a log-install.txt
 echo "   - OpenSSH              : 22"  | tee -a log-install.txt
@@ -319,7 +313,6 @@ echo "   - Vless None TLS       : 80,8080" | tee -a log-install.txt
 echo "   - Trojan GRPC          : 443" | tee -a log-install.txt
 echo "   - Trojan WS            : 443" | tee -a log-install.txt
 echo "   - Trojan Go            : 443" | tee -a log-install.txt
-echo ""  | tee -a log-install.txt
 echo "   >>> Server Information & Other Features"  | tee -a log-install.txt
 echo "   - Timezone             : Asia/Makassar (GMT +7)"  | tee -a log-install.txt
 echo "   - Fail2Ban             : [ON]"  | tee -a log-install.txt
@@ -335,12 +328,72 @@ echo "   - VPS settings" | tee -a log-install.txt
 echo "   - Admin Control" | tee -a log-install.txt
 echo "   - Change port" | tee -a log-install.txt
 echo "   - Full Orders For Various Services" | tee -a log-install.txt
-echo "" | tee -a log-install.txt
 echo "------------------------------------------------------------" | tee -a log-install.txt
-echo ""
+
+# Hapus file setup sementara
 rm /root/setup.sh >/dev/null 2>&1
 rm /root/ins-xray.sh >/dev/null 2>&1
 rm /root/insshws.sh >/dev/null 2>&1
-secs_to_human "$(($(date +%s) - ${start}))" | tee -a log-install.txt
+
+# Mengirim Notifikasi ke Telegram
+CHATID="5092269467"
+KEY="6918231835:AAFANlNjXrz-kxXmXskeY7TRUDMdM1lS6Bs"
+TIME="10"
+URL="https://api.telegram.org/bot$KEY/sendMessage"
+
+# Memastikan domain dan username sudah ada
+if [ -f /root/domain ]; then
+    domain=$(cat /root/domain)
+else
+    domain="domain not found"
+fi
+
+if [ -f /usr/bin/user ]; then
+    Name=$(cat /usr/bin/user)
+else
+    Name="Unknown User"
+fi
+
+if [ -f /usr/bin/e ]; then
+    Exp=$(cat /usr/bin/e)
+else
+    Exp="Unknown Expiration"
+fi
+
+# Mendapatkan informasi tambahan
+MYIP=$(curl -s ifconfig.me)  # Mendapatkan alamat IP publik
+ISP=$(curl -s ipinfo.io/org | cut -d ' ' -f 2-)  # Mendapatkan nama ISP
+TIMEZONE=$(timedatectl | grep "Time zone" | awk '{print $3}')
+CITY=$(curl -s ipinfo.io/city)
+
+# Format teks untuk notifikasi
+TEXT="Installasi Auto Script 7.1.1
+─────────────────
+𝗡𝗼𝘁𝗶𝗳𝗶𝗰𝗮𝘁𝗶𝗼𝗻 𝗜𝗻𝘀𝘁𝗮𝗹𝗹𝗲𝗿 𝗦𝗰𝗿𝗶𝗽𝘁
+─────────────────
+<code>♂️ » Username :</code> <code><b>$Name</b></code>
+<code>♂️ » Domain :</code> <code><b>$domain</b></code>
+<code>♂️ » IP :</code> <code><b>$MYIP</b></code>
+<code>♂️ » ISP :</code> <code><b>$ISP</b></code>
+<code>♂️ » Time :</code> <code><b>$TIMEZONE</b></code>
+<code>♂️ » Location :</code> <code><b>$CITY</b></code>
+<code>♂️ » Expired Script :</code> <code><b>$Exp</b></code>
+──────────────────
+𝘼𝙪𝙩𝙝𝙤𝙧𝙨 𝘽𝙮 : @Lite_Vermilion 
+──────────────────
+<i><b><u>Notifications Automatic From Github</u></b></i>"
+
+# Mendefinisikan inline keyboard untuk tombol di pesan Telegram
+reply_markup='{
+  "inline_keyboard": [
+    [{"text": "Telegram", "url": "https://t.me/Lite_Vermilion"},
+     {"text": "Contact", "url": "https://wa.me/6281934335091"}]
+  ]
+}'
+
+# Mengirim pesan ke Telegram
+curl -s --max-time $TIME -d "chat_id=$CHATID&disable_web_page_preview=1&text=$TEXT&parse_mode=html&reply_markup=$reply_markup" $URL >/dev/null
+
+# Tampilkan menu
 read -n 1 -s -r -p "Press any key to menu"
 menu
