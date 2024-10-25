@@ -59,6 +59,8 @@ echo -e "  ${ORANGE}2.${NC} \033[0;36m Create Trial Shadowshocks WS/GRPC${NC}"
 echo -e "  ${ORANGE}3.${NC} \033[0;36m Delete Account Shadowsocks WS/GRPC${NC}"
 echo -e "  ${ORANGE}4.${NC} \033[0;36m Renew Shadowsocks Account${NC}"
 echo -e "  ${ORANGE}5.${NC} \033[0;36m Check Shadowsocks login Account${NC}"
+echo -e ""
+echo -e "  ${ORANGE}x.${NC} \033[0;36m Back To Dashboard${NC}"
 echo -e "\033[1;93m──────────────────────────────────────────\033[0m"
 echo -e ""
 read -p "Select From Options [ 1 - 5 ] : " menu
@@ -79,7 +81,7 @@ case $menu in
     cek-ss
     ;;
  
-*)
+x)
     menu
     ;;
 esac
